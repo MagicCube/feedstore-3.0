@@ -18,22 +18,14 @@ fss.biz.ChannelManager = function()
         mx.logger.info("Loading channels...");
         fs.model.Channel.find({}, function(p_err, p_results)
         {
-            if (p_err !== null)
-            {
-                mx.logger.error("Fail to load channels.");
-                if (isFunction(p_callback))
-                {
-                    p_callback(p_err);
-                }
-            }
-            else
+            if (isEmpty(p_err))
             {
                 if (p_results.length === 0)
                 {
                     mx.logger.warn("No channel found in the database.");
                     me.createInitialChannels(function(p_err, p_results)
                     {
-                        if (p_err === null)
+                        if (isEmpty(p_err))
                         {
                             // 重新加载
                             mx.logger.info("ChannelManager is about to reload channels.");
@@ -56,6 +48,14 @@ fss.biz.ChannelManager = function()
                     {
                         p_callback(null, p_results);
                     }
+                }
+            }
+            else
+            {
+                mx.logger.error("Fail to load channels.");
+                if (isFunction(p_callback))
+                {
+                    p_callback(p_err);
                 }
             }
         });
@@ -82,7 +82,7 @@ fss.biz.ChannelManager = function()
         });
         fs.model.Channel.create(channels, function(p_err, p_results)
         {
-            if (p_err === null)
+            if (isEmpty(p_err))
             {
                 mx.logger.info("Successfully create " + channels.length + " channels.");
                 if (isFunction(p_callback))

@@ -2,17 +2,15 @@ var path = require("path");
 var mx = require("mxframework");
 
 console.log("\033[2J");
-console.log("**********************************************************");
-console.log(" MagicCube FeedStore server is now initializing...");
-console.log("**********************************************************\n\n");
+console.log("***************************************************************************");
+console.log(" MagicCube FeedStore 3.0 (https://github.com/MagicCube/feedstore-3.0)");
+console.log("***************************************************************************");
 
-/**
- * Module fss
- */
-$module("fss", path.resolve(module.paths[0], "../lib/fss"));
-$ns("fss");
-require("./settings.js");
-$import("fss.Application");
+
+
+
+
+
 
 
 var express = require("express"),
@@ -41,12 +39,28 @@ if ("development" == app.get("env"))
     app.use(express.errorHandler());
 }
 
-// Start server.
-http.createServer(app).listen(app.get("port"), function()
+
+
+
+
+
+
+
+
+/**
+ * Module fss
+ */
+$module("fss", path.resolve(module.paths[0], "../lib/fss"));
+require("./settings.js");
+$import("fss.server");
+
+// Initialize Server
+fss.server.init();
+fss.server.start(function()
 {
-    //mx.logger.info("MagicCube FeedStore server is now listening on port " + app.get("port"));
+    // Start HTTP server.
+    http.createServer(app).listen(app.get("port"), function()
+    {
+        
+    });
 });
-
-
-fss.app.init();
-fss.app.run();
