@@ -50,10 +50,7 @@ fss.Server = function()
                 mx.logger.error(p_err);
             }
             
-            if (isFunction(p_callback))
-            {
-                p_callback(p_err, p_results);
-            }
+            p_callback(p_err, p_results);
         });
     };
     

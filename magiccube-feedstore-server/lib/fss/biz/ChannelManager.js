@@ -1,5 +1,7 @@
 $ns("fss.biz");
 
+$import("fss.biz.FeedUpdater");
+
 fss.biz.ChannelManager = function()
 {
     var me = $extend(mx.Component);
@@ -44,6 +46,7 @@ fss.biz.ChannelManager = function()
                 {
                     mx.logger.info("%d channels were loaded from the database.", p_results.length);
                     me.channels = p_results;
+                    new fss.biz.FeedUpdater({ channel: me.channels[2] }).update();
                     if (isFunction(p_callback))
                     {
                         p_callback(null, p_results);
@@ -71,11 +74,12 @@ fss.biz.ChannelManager = function()
             var channel = new fs.model.Channel({
                 cid: p_url,
                 title: "Channel#" + (p_index + 1),
+                description: null,
                 feedUrl: p_url,
                 linkUrl: p_url,
                 lastPublishTime: null,
                 lastUpdateTime: null,
-                lastUpdateStatus: -1,
+                lastUpdateStatus: 0,
                 lastSuccessfulUpdateTime: null
             });
             return channel;
@@ -85,18 +89,12 @@ fss.biz.ChannelManager = function()
             if (isEmpty(p_err))
             {
                 mx.logger.info("Successfully create " + channels.length + " channels.");
-                if (isFunction(p_callback))
-                {
-                    p_callback(null, p_results);
-                }
+                p_callback(null, p_results);
             }
             else
             {
                 mx.logger.info("Fail to create channels.");
-                if (isFunction(p_callback))
-                {
-                    p_callback(p_err);
-                }
+                p_callback(p_err);
             }
         });
     };
