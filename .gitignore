@@ -1,0 +1,5 @@
+magiccube-feedstore-db
+node_modules
+.DS_Store
+.jshintrc
+.settings
