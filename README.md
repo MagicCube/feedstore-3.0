@@ -3,7 +3,8 @@ MagicCube FeedStore 3.0 是一款集RSS聚合服务端、Web 客户端和iOS移�
 
 #开发与部署
 从3.0开始，FeedStore 服务端采用了全新的 Node.js + MongoDB 底层开发，将部署在百度开放云上。
-## Powered by MXFramework
+
+# Powered by MXFramework
 * FeedStore Web 客户端采用 [MagicCube MXFramework](https://github.com/MagicCube/mxframework-core) 开发。
 * FeedStore 服务端采用 [MagicCube MXFramework](https://github.com/MagicCube/mxframework-node) for Node 开发。
 
