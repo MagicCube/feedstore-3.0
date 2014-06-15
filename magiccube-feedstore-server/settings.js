@@ -1,15 +1,17 @@
 $ns("fss");
 
 fss.settings = {
+    runat: "bae", 
     db: {
-        host: "127.0.0.1",
-        port: "27017",
-        database: "feedstore"
+        host: "mongo.duapp.com",
+        port: "8908",
+        database: "WWRhmskWWqWjcKVdwlzJ",
+        username: "njFqNDIRwF48Ta68xZ3YS6ff",
+        password: "KSdszdeXYSqXEkitYANkvttbqQG7z98p"
     },
-    channels: {
-        update: {
-            defaultEncoding: "UTF-8",
-            timeout: 10000
-        }
+    update: {
+        defaultEncoding: "UTF-8",
+        timeout: 10000,
+        parallelLimit: 5
     }
 };

@@ -1,14 +1,6 @@
 var path = require("path");
 var mx = require("mxframework");
 
-console.log("\033[2J");
-console.log("***************************************************************************");
-console.log(" MagicCube FeedStore 3.0 (https://github.com/MagicCube/feedstore-3.0)");
-console.log("***************************************************************************");
-
-
-
-
 
 
 
@@ -18,6 +10,15 @@ var express = require("express"),
     path = require("path");
 
 var app = express();
+
+console.log("\033[2J");
+console.log("***************************************************************************");
+console.log(" MagicCube FeedStore 3.0 (%s)", app.get("env"));
+console.log("***************************************************************************");
+
+
+
+
 
 // Setup environments.
 app.set("port", process.env.PORT || 18080);
@@ -32,6 +33,7 @@ var routes = require("./routes");
 routes.applyAll(app, [
     "/api/channels"
 ]);
+
 
 // For development only.
 if ("development" == app.get("env"))
@@ -61,6 +63,6 @@ fss.server.start(function()
     // Start HTTP server.
     http.createServer(app).listen(app.get("port"), function()
     {
-        
+        mx.logger.info("HTTP server start to listen at " + app.get("port") + ".");
     });
 });

@@ -59,7 +59,7 @@ fss.biz.FeedUpdater = function()
         
         var url = me.channel.feedUrl;
         mx.logger.debug("Updating Channel <%s>...", me.channel.cid);
-        var req = request(url, {timeout: fss.settings.channels.update.timeout, pool: false});
+        var req = request(url, {timeout: fss.settings.update.timeout, pool: false});
         req.setHeader('user-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36')
            .setHeader('accept', 'text/html,application/xhtml+xml');
         var feedparser = new FeedParser();
@@ -86,7 +86,7 @@ fss.biz.FeedUpdater = function()
                 var charset = _getParams(res.headers['content-type'] || '').charset;
                 if (isEmptyString(charset))
                 {
-                    charset = fss.settings.channels.update.defaultEncoding;
+                    charset = fss.settings.update.defaultEncoding;
                 }
                 if (!/utf-*8/i.test(charset))
                 {
