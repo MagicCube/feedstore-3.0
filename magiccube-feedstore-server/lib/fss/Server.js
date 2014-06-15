@@ -49,11 +49,10 @@ fss.Server = function()
         me.runningMode = process.env.NODE_ENV ? process.env.NODE_ENV : "development";
         me.runat = process.env.RUNAT ? process.env.RUNAT : "local";
         
+        _loadSettings();       
         _printHeader();
-        
+
         _setStatus("initializing");
-        
-        _loadSettings();
         
         // Connect to MongoDB
         fss.db.DbConnection.connect();
@@ -156,16 +155,32 @@ fss.Server = function()
     
     function _printHeader()
     {
-        console.log($format("\n", 25));
-        console.log($format(new Date(), "yyyy-MM-dd HH:mm:ss"));
+        console.log();
         console.log("***************************************************************************");
         console.log(" MagicCube FeedStore 3.0 (%s@%s)", me.runningMode.toUpperCase(), me.runat.toUpperCase());
         console.log("***************************************************************************");
     }
     
+    function _printLog(p_message, p_args)
+    {
+        if (isEmpty(p_args))
+        {
+            console.log($format(new Date(), "yyyy-MM-dd HH:mm:ss") + " " + p_message);
+        }
+        else
+        {
+            console.log($format(new Date(), "yyyy-MM-dd HH:mm:ss") + " " + p_message, p_args);
+        }
+    }
+    
     function _loadSettings()
     {
-        
+        console.log($format("\n", 25));
+        _printLog("MagicCube FeedStore is now loading settings...");
+        var defaultSettings = require($mappath("~/settings/default.json"));
+        var specificSettings = require($mappath("~/settings/{runat}.json", me));
+        fss.settings = $merge(true, defaultSettings, specificSettings);
+        _printLog("%j", fss.settings);
     }
     
     return me.endOfClass(arguments);
