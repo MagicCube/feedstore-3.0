@@ -189,16 +189,9 @@ fss.Server = function()
         
         if (notEmpty(fss.settings.log))
         {
-            if (fss.settings.log.logger === "bae-log")
+            if (fss.settings.log.logger === "console")
             {
-                var log4js = require("log4js");
-                log4js.loadAppender("baev3-log");
-                var options = {
-                    user: fss.settings.auth.username,
-                    passwd: fss.settings.auth.password
-                };
-                log4js.addAppender(log4js.appenders["baev3-log"](options));
-                mx.logger = log4js.getLogger("node-log-sdk");
+                mx.logger = require("tracer").console(fss.settings.log.config);
             }
             
             if (notEmpty(fss.settings.log.level) && isFunction(mx.logger.setLevel))
