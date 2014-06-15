@@ -146,7 +146,7 @@ fss.biz.ChannelManager = function()
         {
             if (isEmpty(p_error) && notEmpty(p_results) && p_results.length == me.channels.length)
             {
-                mx.logger.info("******************************** Finished Sheduled Update ********************************");
+                mx.logger.info("****************************** Finished Sheduled Update ******************************");
                 
                 var seconds = (fss.settings.update.interval / 1000);
                 if (seconds < 60)

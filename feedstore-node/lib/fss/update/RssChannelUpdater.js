@@ -4,6 +4,18 @@ var request = require('request');
 var Iconv = require('iconv').Iconv;
 var FeedParser = require("feedparser");
 
+/*
+ * Channel.lastUpdateStatus
+ *  200 - OK
+ *  403 - Forbidden
+ *  404 - Not found
+ *  500 - Server error
+ * -500 - Network exception
+ * -601 - Encoding error
+ * -602 - Parser error
+ * -603 - Parser error  
+ */
+
 fss.update.RssChannelUpdater = function()
 {
     var me = $extend(mx.Component);
