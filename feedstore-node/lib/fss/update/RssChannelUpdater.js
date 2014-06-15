@@ -1,10 +1,10 @@
-$ns("fss.rss");
+$ns("fss.update");
 
 var request = require('request');
 var Iconv = require('iconv').Iconv;
 var FeedParser = require("feedparser");
 
-fss.rss.RssUpdater = function()
+fss.update.RssChannelUpdater = function()
 {
     var me = $extend(mx.Component);
     var base = {};
@@ -25,7 +25,7 @@ fss.rss.RssUpdater = function()
         {
             if (isFunction(p_callback))
             {
-                p_callback(new Error("FeedUpdater's channel can not be null when updating."));
+                p_callback(new Error("RssUpdater's channel can not be null when updating."));
             }
             return;
         }

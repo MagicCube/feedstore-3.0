@@ -1,4 +1,7 @@
 {
+    "http": {
+        "port": 18080
+    },
     "update": {
         "defaultEncoding": "UTF-8",
         "timeout": 10000,

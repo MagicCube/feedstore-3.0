@@ -2,7 +2,7 @@ $ns("fss.biz");
 
 var async = require("async");
 
-$import("fss.rss.RssUpdater");
+$import("fss.update.RssChannelUpdater");
 
 fss.biz.ChannelManager = function()
 {
@@ -10,6 +10,7 @@ fss.biz.ChannelManager = function()
     var base = {};
     
     me.channels = null;
+    me.updaters = null;
     
     base.init = me.init;
     me.init = function(p_options)
@@ -48,16 +49,7 @@ fss.biz.ChannelManager = function()
                 {
                     mx.logger.info("%d channels were loaded from the database.", p_results.length);
                     me.channels = p_results;
-                    
-                    var updaters = me.channels.map(function(p_channel)
-                    {
-                        var updater = new fss.rss.RssUpdater({
-                            channel: p_channel,
-                            ignoreError: true
-                        });
-                        return updater.update;
-                    });
-                    
+                    _createUpdaters();
                     if (isFunction(p_callback))
                     {
                         p_callback(null, p_results);
@@ -110,6 +102,24 @@ fss.biz.ChannelManager = function()
             }
         });
     };
+    
+    
+    
+    
+    function _createUpdaters()
+    {
+        me.updaters = me.channels.reduce(function(p_updaters, p_channel)
+        {
+            var updater = new fss.update.RssChannelUpdater({
+                channel: p_channel,
+                ignoreError: true
+            });
+            p_updaters.add(updater);
+            p_updaters[p_channel.cid] = updater;
+            return p_updaters;
+        }, []);
+        mx.logger.info("%s ChannelUpdaters were created accordingly.", me.updaters.length);
+    }
     
     return me.endOfClass(arguments);
 };

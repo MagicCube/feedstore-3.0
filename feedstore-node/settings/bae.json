@@ -12,5 +12,8 @@
     },
     "log": {
         "logger": "bae-log"
+    },
+    "http": {
+        "port": 18080
     }
 }
