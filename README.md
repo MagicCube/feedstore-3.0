@@ -1,5 +1,5 @@
 # MagicCube FeedStore 3.0
-MagicCube FeedStore 3.0 是一款集RSS聚合服务端、Web 客户端和iOS移动客户端为一体的整体阅读解决方案。
+MagicCube FeedStore 3.0 是一款集RSS聚合服务端、Web 客户端和iOS移动客户端为一体的私人定制阅读解决方案。
 
 # 在线运行
 百度开放平台 - [http://feedstore.duapp.com/](http://feedstore.duapp.com/)
