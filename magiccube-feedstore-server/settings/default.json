@@ -1,0 +1,7 @@
+{
+    "update": {
+        "defaultEncoding": "UTF-8",
+        "timeout": 10000,
+        "parallelLimit": 5
+    }
+}
