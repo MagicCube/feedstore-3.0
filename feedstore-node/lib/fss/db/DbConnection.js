@@ -15,7 +15,14 @@ fss.db.DbConnectionClass = function()
     
     me.connect = function()
     {
-        mongoose.connect(String.format("mongodb://{host}:{port}/{database}", fss.settings.db));
+        if (isEmpty(fss.settings.db.username))
+        {
+            mongoose.connect(String.format("mongodb://{host}:{port}/{database}", fss.settings.db));
+        }
+        else
+        {
+            mongoose.connect(String.format("mongodb://{username}:{password}@{host}:{port}/{database}", fss.settings.db));
+        }
     };
     
     me.registerModel = function(p_name, p_schema)

@@ -47,7 +47,7 @@ fss.Server = function()
         base.init(p_options);
         
         me.runningMode = process.env.NODE_ENV ? process.env.NODE_ENV : "development";
-        me.runAt = process.env.RUN_AT ? process.env.FSS_RUN_AT : "local";
+        me.runAt = process.env.FSS_RUN_AT ? process.env.FSS_RUN_AT : "local";
         
         _loadSettings();
         _printHeader();

@@ -1,7 +1,8 @@
 var path = require("path");
 var mx = require("mxframework");
+mx.contentPath = __dirname;
 
-$assembly("fss");
+$assembly("fss", path.resolve(__dirname, "lib", "fss"));
 $import("fss.Server");
 
 fss.server.init();
