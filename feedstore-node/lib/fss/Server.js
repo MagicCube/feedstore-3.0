@@ -24,7 +24,7 @@ fss.Server = function()
     /*
      * local / bae
      */
-    me.runat = null;
+    me.runAt = null;
     
     /*
      * null,
@@ -47,7 +47,7 @@ fss.Server = function()
         base.init(p_options);
         
         me.runningMode = process.env.NODE_ENV ? process.env.NODE_ENV : "development";
-        me.runat = process.env.RUNAT ? process.env.RUNAT : "local";
+        me.runAt = process.env.RUN_AT ? process.env.RUN_AT : "local";
         
         _loadSettings();
         _printHeader();
@@ -159,7 +159,7 @@ fss.Server = function()
     {
         console.log();
         console.log("***************************************************************************");
-        console.log(" MagicCube FeedStore 3.0 (%s @ %s)", me.runningMode.toUpperCase(), me.runat.toUpperCase());
+        console.log(" MagicCube FeedStore 3.0 (%s @ %s)", me.runningMode.toUpperCase(), me.runAt.toUpperCase());
         console.log("***************************************************************************");
     }
     
@@ -183,7 +183,7 @@ fss.Server = function()
         _printLog("Powered by MagicCube MXFramework.\n");
         _printLog("MagicCube FeedStore is now loading settings...");
         var defaultSettings = require($mappath("~/settings/default.json"));
-        var specificSettings = require($mappath("~/settings/{runat}.json", me));
+        var specificSettings = require($mappath("~/settings/{runAt}.json", me));
         fss.settings = $merge(true, defaultSettings, specificSettings);
         _printLog("%j", fss.settings);
         
