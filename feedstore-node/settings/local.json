@@ -5,6 +5,9 @@
         "database": "feedstore"
     },
     "update": {
-        "interval": 10000
+        "interval": 10000,
+        "timeout": 10000,
+        "parallelLimit": 5,
+        "defaultEncoding": "UTF-8"
     }
 }

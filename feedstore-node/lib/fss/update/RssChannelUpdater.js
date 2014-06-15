@@ -10,6 +10,7 @@ fss.update.RssChannelUpdater = function()
     var base = {};
     
     me.ignoreError = false;
+    me.hasError = false;
     
     me.channel = null;
     
@@ -52,11 +53,13 @@ fss.update.RssChannelUpdater = function()
                 {
                     if (!me.ignoreError)
                     {
+                        mx.logger.error("Failed to updated Channel <%s> with error code <%d>.", me.channel.cid, me.channel.lastUpdateStatus);
                         p_callback(p_error);
                     }
                     else
                     {
                         // Ignore errors and return nothing.
+                        mx.logger.warn("Failed to updated Channel <%s> with error code <%d> which will be ignored.", me.channel.cid, me.channel.lastUpdateStatus);
                         p_callback(null, null);
                     }
                 }
@@ -67,18 +70,23 @@ fss.update.RssChannelUpdater = function()
     function _fetch(p_callback)
     {
         me.channel.lastUpdateTime = new Date();
+        me.hasError = false;
         
         var url = me.channel.feedUrl;
         mx.logger.debug("Updating Channel <%s>...", me.channel.cid);
         var req = request(url, {timeout: fss.settings.update.timeout, pool: false});
         req.setHeader('user-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36')
            .setHeader('accept', 'text/html,application/xhtml+xml');
-        var feedparser = new FeedParser();
         
         req.on('error', function(p_err)
         {
-            mx.logger.warn("Failed to update Channel <%s>.", me.channel.cid);
-            me.channel.lastUpdateStatus = -1;
+            if (me.hasError)
+            {
+                return;
+            }
+            me.hasError = true;
+            
+            me.channel.lastUpdateStatus = -500;
             p_callback(p_err);
         });
         
@@ -89,28 +97,58 @@ fss.update.RssChannelUpdater = function()
             me.channel.lastUpdateStatus = res.statusCode;
             if (res.statusCode != 200)
             {
-                mx.logger.warn("Failed to update Channel <%s>.", me.channel.cid);
+                // If server returns with error code.
+                if (me.hasError)
+                {
+                    return;
+                }
+                me.hasError = true;
+                
                 p_callback(new Error("Bad status code returned (" + url + ")."));
-            }
-            else
-            {
-                var charset = _getParams(res.headers['content-type'] || '').charset;
-                if (isEmptyString(charset))
-                {
-                    charset = fss.settings.update.defaultEncoding;
-                }
-                if (!/utf-*8/i.test(charset))
-                {
-                    iconv = new Iconv(charset, 'utf-8');
-                    mx.logger.debug('Converting from charset %s to utf-8', charset);
-                    iconv.on('error', p_callback);
-                    stream = this.pipe(iconv);
-                }
-                stream.pipe(feedparser);
+                return;
             }
             
+            
+            // Encoding
+            var charset = _getParams(res.headers['content-type'] || '').charset;
+            if (isEmptyString(charset))
+            {
+                charset = fss.settings.update.defaultEncoding;
+            }
+            if (!/utf-*8/i.test(charset))
+            {
+                iconv = new Iconv(charset, 'utf-8');
+                mx.logger.debug('Converting from charset %s to utf-8.', charset);
+                iconv.on('error', function(p_err)
+                {
+                    if (me.hasError)
+                    {
+                        return;
+                    }
+                    me.hasError = true;
+                    
+                    me.channel.lastUpdateStatus = -601;
+                    p_callback(p_err);
+                });
+                stream = this.pipe(iconv);
+            }
+            
+            // Parsing
+            var feedparser = new FeedParser();
+            stream.pipe(feedparser);
+            
             var posts = [];
-            feedparser.on("error", p_callback);
+            feedparser.on("error", function(p_err)
+            {
+                if (me.hasError)
+                {
+                    return;
+                }
+                me.hasError = true;
+                
+                me.channel.lastUpdateStatus = -602;
+                p_callback(p_err);
+            });
             feedparser.on("readable", function()
             {
                 var post = null;
@@ -119,9 +157,23 @@ fss.update.RssChannelUpdater = function()
                     posts.add(post);
                 }
             });
-            feedparser.on("end", function()
+            feedparser.on("end", function(p_err)
             {
-                p_callback(null, posts);
+                if (isEmpty(p_err))
+                {
+                    p_callback(null, posts);
+                }
+                else
+                {
+                    if (me.hasError)
+                    {
+                        return;
+                    }
+                    me.hasError = true;
+                    
+                    me.channel.lastUpdateStatus = -603;
+                    p_callback(p_err);
+                }
             });
         });
     }

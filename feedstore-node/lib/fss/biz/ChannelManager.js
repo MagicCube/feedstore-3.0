@@ -12,6 +12,8 @@ fss.biz.ChannelManager = function()
     me.channels = null;
     me.updaters = null;
     
+    var _needUpdate = false;
+    
     base.init = me.init;
     me.init = function(p_options)
     {
@@ -103,22 +105,67 @@ fss.biz.ChannelManager = function()
         });
     };
     
-    
+    me.startSheduledUpdate = function()
+    {
+        _needUpdate = true;
+        setTimeout(function()
+        {
+            if (_needUpdate)
+            {
+                _batchUpdate();
+            }
+        }, 500);
+    };
     
     
     function _createUpdaters()
     {
-        me.updaters = me.channels.reduce(function(p_updaters, p_channel)
+        me.updaters = me.channels.map(function(p_channel)
         {
             var updater = new fss.update.RssChannelUpdater({
                 channel: p_channel,
                 ignoreError: true
             });
-            p_updaters.add(updater);
-            p_updaters[p_channel.cid] = updater;
-            return p_updaters;
-        }, []);
+            return updater;
+        });
         mx.logger.info("%s ChannelUpdaters were created accordingly.", me.updaters.length);
+    }
+    
+    function _batchUpdate()
+    {
+        if (!_needUpdate) return;
+        
+        console.log("\n");
+        mx.logger.info("******************************** Start Sheduled Update ********************************");
+        
+        var updates = me.updaters.map(function(p_updater)
+        {
+            return p_updater.update;
+        });
+        async.parallelLimit(updates, fss.settings.update.parallelLimit, function(p_error, p_results)
+        {
+            if (isEmpty(p_error) && notEmpty(p_results) && p_results.length == me.channels.length)
+            {
+                mx.logger.info("******************************** Finished Sheduled Update ********************************");
+                
+                var seconds = (fss.settings.update.interval / 1000);
+                if (seconds < 60)
+                {
+                    mx.logger.info("The next shift will start in %d seconds.", seconds);
+                }
+                else
+                {
+                    mx.logger.info("The next shift will start in %d minutes.", seconds / 60);
+                }
+                
+                console.log("\n");
+                
+                if (_needUpdate)
+                {
+                    setTimeout(_batchUpdate, fss.settings.update.interval);
+                }
+            }
+        });
     }
     
     return me.endOfClass(arguments);
