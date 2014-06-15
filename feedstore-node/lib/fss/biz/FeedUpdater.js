@@ -28,12 +28,13 @@ fss.biz.FeedUpdater = function()
             return;
         }
         
+        var beginTime = Date.now();
         _fetch(function(p_error, p_posts)
         {
             if (isEmpty(p_error))
             {
                 me.channel.lastSuccessfulUpdateTime = new Date();
-                mx.logger.info("Successfully updated Channel <%s> with %d posts.", me.channel.cid, p_posts.length);
+                mx.logger.info("Successfully updated Channel <%s> with %d posts in %d seconds.", me.channel.cid, p_posts.length, (Date.now() - beginTime) / 1000);
                 if (p_posts.length > 0)
                 {
                     _updateChannel(p_posts[0].meta);
@@ -122,7 +123,6 @@ fss.biz.FeedUpdater = function()
         me.channel.copyright = p_meta.copyright ? p_meta.copyright : null;
         me.channel.linkUrl = p_meta.link ? p_meta.link : me.channel.feedUrl;
         me.channel.lastPublishTime = p_meta.date;
-        console.log(me.channel);
     }
     
     

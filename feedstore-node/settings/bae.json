@@ -1,9 +1,16 @@
 {
+    "auth": {
+        "username": "",
+        "password": ""
+    },
     "db": {
         "host": "mongo.duapp.com",
         "port": "8908",
         "database": "WWRhmskWWqWjcKVdwlzJ",
         "username": "njFqNDIRwF48Ta68xZ3YS6ff",
         "password": "KSdszdeXYSqXEkitYANkvttbqQG7z98p"
+    },
+    "log": {
+        "logger": "bae-log"
     }
 }

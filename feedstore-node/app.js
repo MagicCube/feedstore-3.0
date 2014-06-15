@@ -2,7 +2,6 @@ var path = require("path");
 var mx = require("mxframework");
 
 $assembly("fss");
-require("./settings.js");
 $import("fss.Server");
 
 fss.server.init();

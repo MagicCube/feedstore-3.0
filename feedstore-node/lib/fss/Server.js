@@ -49,7 +49,7 @@ fss.Server = function()
         me.runningMode = process.env.NODE_ENV ? process.env.NODE_ENV : "development";
         me.runat = process.env.RUNAT ? process.env.RUNAT : "local";
         
-        _loadSettings();       
+        _loadSettings();
         _printHeader();
 
         _setStatus("initializing");
@@ -157,7 +157,7 @@ fss.Server = function()
     {
         console.log();
         console.log("***************************************************************************");
-        console.log(" MagicCube FeedStore 3.0 (%s@%s)", me.runningMode.toUpperCase(), me.runat.toUpperCase());
+        console.log(" MagicCube FeedStore 3.0 (%s @ %s)", me.runningMode.toUpperCase(), me.runat.toUpperCase());
         console.log("***************************************************************************");
     }
     
@@ -175,12 +175,35 @@ fss.Server = function()
     
     function _loadSettings()
     {
-        console.log($format("\n", 25));
+        console.log($format("\n", 50));
+        _printLog("MagicCube FeedStore Server 3.0 (magiccube-feedstore-3.0/feedstore-node)");
+        _printLog("Copyright 2014 MagicCube. All rights reserved.");
+        _printLog("Powered by MagicCube MXFramework.\n");
         _printLog("MagicCube FeedStore is now loading settings...");
         var defaultSettings = require($mappath("~/settings/default.json"));
         var specificSettings = require($mappath("~/settings/{runat}.json", me));
         fss.settings = $merge(true, defaultSettings, specificSettings);
         _printLog("%j", fss.settings);
+        
+        if (notEmpty(fss.settings.log))
+        {
+            if (fss.settings.log.logger === "bae-log")
+            {
+                var log4js = require("log4js");
+                log4js.loadAppender("baev3-log");
+                var options = {
+                    user: fss.settings.auth.username,
+                    passwd: fss.settings.auth.password
+                };
+                log4js.addAppender(log4js.appenders["baev3-log"](options));
+                mx.logger = log4js.getLogger("node-log-sdk");
+            }
+            
+            if (notEmpty(fss.settings.log.level) && isFunction(mx.logger.setLevel))
+            {
+                mx.logger.setLevel(fss.settings.log.level);
+            }
+        }
     }
     
     return me.endOfClass(arguments);

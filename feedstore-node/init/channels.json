@@ -1,7 +1,5 @@
 [
-    "http://www.mgpyh.com/feed",
-    "http://feed.smzdm.com",
-    
+    "http://www.pingwest.com/feed/",
     "http://cn.engadget.com/rss.xml",
     "http://feed.evolife.cn/",
     "http://www.ifanr.com/feed",
@@ -15,5 +13,8 @@
     "http://www.infoq.com/cn/rss/rss.action?token=b297uU1Tytv81AZ2PanE3EUMe4dsR7Tc",
     "http://www.csdn.net/article/rss_lastnews",
     
-    "https://dribbble.com/shots/popular.rss"
+    "https://dribbble.com/shots/popular.rss",
+    
+    "http://www.mgpyh.com/feed",
+    "http://feed.smzdm.com"
 ]

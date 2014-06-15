@@ -68,7 +68,7 @@ fss.biz.ChannelManager = function()
     me.createInitialChannels = function(p_callback)
     {
         mx.logger.info("ChannelManager is now creating the initial channels described in '/init/channels.json' file...");
-        var channelUrls = require("../../../init/channels.json");
+        var channelUrls = require($mappath("~/init/channels.json"));
         var channels = channelUrls.map(function(p_url, p_index)
         {
             var channel = new fs.model.Channel({
