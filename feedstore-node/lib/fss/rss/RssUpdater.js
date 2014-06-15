@@ -1,13 +1,15 @@
-$ns("fss.biz");
+$ns("fss.rss");
 
 var request = require('request');
 var Iconv = require('iconv').Iconv;
 var FeedParser = require("feedparser");
 
-fss.biz.FeedUpdater = function()
+fss.rss.RssUpdater = function()
 {
     var me = $extend(mx.Component);
     var base = {};
+    
+    me.ignoreError = false;
     
     me.channel = null;
     
@@ -41,14 +43,22 @@ fss.biz.FeedUpdater = function()
                 }
                 if (isFunction(p_callback))
                 {
-                    p_callback(null);
+                    p_callback(null, p_posts);
                 }
             }
             else
             {
                 if (isFunction(p_callback))
                 {
-                    p_callback(p_error);
+                    if (!me.ignoreError)
+                    {
+                        p_callback(p_error);
+                    }
+                    else
+                    {
+                        // Ignore errors and return nothing.
+                        p_callback(null, null);
+                    }
                 }
             }
         });
@@ -67,7 +77,7 @@ fss.biz.FeedUpdater = function()
         
         req.on('error', function(p_err)
         {
-            mx.logger.error("Fail to update Channel <%s>.", me.channel.cid);
+            mx.logger.warn("Failed to update Channel <%s>.", me.channel.cid);
             me.channel.lastUpdateStatus = -1;
             p_callback(p_err);
         });
@@ -79,7 +89,7 @@ fss.biz.FeedUpdater = function()
             me.channel.lastUpdateStatus = res.statusCode;
             if (res.statusCode != 200)
             {
-                mx.logger.error("Fail to update Channel <%s>.", me.channel.cid);
+                mx.logger.warn("Failed to update Channel <%s>.", me.channel.cid);
                 p_callback(new Error("Bad status code returned (" + url + ")."));
             }
             else
@@ -146,4 +156,3 @@ fss.biz.FeedUpdater = function()
     
     return me.endOfClass(arguments);
 };
-module.exports = fss.biz.FeedUpdater;

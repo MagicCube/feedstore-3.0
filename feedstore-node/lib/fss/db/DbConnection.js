@@ -27,4 +27,3 @@ fss.db.DbConnectionClass = function()
     return me.endOfClass(arguments);
 };
 fss.db.DbConnection = new fss.db.DbConnectionClass();
-module.exports = fss.db.DbConnectionClass;

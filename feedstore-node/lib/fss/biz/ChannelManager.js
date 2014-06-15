@@ -1,6 +1,8 @@
 $ns("fss.biz");
 
-$import("fss.biz.FeedUpdater");
+var async = require("async");
+
+$import("fss.rss.RssUpdater");
 
 fss.biz.ChannelManager = function()
 {
@@ -46,7 +48,16 @@ fss.biz.ChannelManager = function()
                 {
                     mx.logger.info("%d channels were loaded from the database.", p_results.length);
                     me.channels = p_results;
-                    new fss.biz.FeedUpdater({ channel: me.channels[2] }).update();
+                    
+                    var updaters = me.channels.map(function(p_channel)
+                    {
+                        var updater = new fss.rss.RssUpdater({
+                            channel: p_channel,
+                            ignoreError: true
+                        });
+                        return updater.update;
+                    });
+                    
                     if (isFunction(p_callback))
                     {
                         p_callback(null, p_results);
@@ -84,6 +95,7 @@ fss.biz.ChannelManager = function()
             });
             return channel;
         });
+        
         fs.model.Channel.create(channels, function(p_err, p_results)
         {
             if (isEmpty(p_err))
@@ -101,4 +113,3 @@ fss.biz.ChannelManager = function()
     
     return me.endOfClass(arguments);
 };
-module.exports = fss.biz.ChannelManager;

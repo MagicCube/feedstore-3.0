@@ -1,7 +1,7 @@
 module.exports = {
     "/": function(req, res)
     {
-        res.json(fss.app.channelManager.channels);
+        res.json(fss.server.channelManager.channels);
     },
     
     "init": function(req, res)

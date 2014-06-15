@@ -68,8 +68,7 @@ fss.Server = function()
         _setStatus("starting");
         
         async.series([
-            me.channelManager.load,
-            _initExpressApp
+            me.channelManager.load
         ], function(p_err, p_results)
         {
             if (isEmpty(p_err))
@@ -89,6 +88,7 @@ fss.Server = function()
     me.run = function(p_callback)
     {        
         _setStatus("preparing");
+        _initExpressApp();
         _startHttpServer(function()
         {
             _setStatus("running");
@@ -106,7 +106,7 @@ fss.Server = function()
     function _initExpressApp()
     {
         var app = express();
-        app.set("port", process.env.PORT || 18080);
+        app.set("port", process.env.PORT || fss.settings.http.port);
         app.use(express.favicon());
         app.use(express.bodyParser());
         app.use(express.methodOverride());
@@ -122,13 +122,13 @@ fss.Server = function()
     
     function _initRoutes(p_app)
     {
-        var routes = require("./routes");
+        var routes = require("./route");
         routes.applyAll(p_app, [
             "/api/channels"
         ]);
     }
     
-    function _initHttpServer(p_callback)
+    function _startHttpServer(p_callback)
     {
         http.createServer(me.expressApp).listen(me.expressApp.get("port"), function()
         {
@@ -209,4 +209,3 @@ fss.Server = function()
     return me.endOfClass(arguments);
 };
 fss.server = new fss.Server();
-module.exports = fss.Server;
