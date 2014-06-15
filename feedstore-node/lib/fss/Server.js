@@ -147,7 +147,7 @@ fss.Server = function()
     
     function _setStatus(p_status)
     {
-        mx.logger.info("FeedStore server status is now switch to <%s>", p_status.toUpperCase());
+        mx.logger.info("FeedStore server status is now switch to <" + p_status.toUpperCase() + ">");
         me.status = p_status;
     }
     
@@ -159,7 +159,7 @@ fss.Server = function()
     {
         console.log();
         console.log("***************************************************************************");
-        console.log(" MagicCube FeedStore 3.0 (%s @ %s)", me.runningMode.toUpperCase(), me.runAt.toUpperCase());
+        console.log(" MagicCube FeedStore 3.0 (" + me.runningMode.toUpperCase() + " @ " + me.runAt.toUpperCase() + ")");
         console.log("***************************************************************************");
     }
     

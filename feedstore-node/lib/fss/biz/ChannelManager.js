@@ -49,7 +49,7 @@ fss.biz.ChannelManager = function()
                 }
                 else
                 {
-                    mx.logger.info("%d channels were loaded from the database.", p_results.length);
+                    mx.logger.info(p_results.length + " channels were loaded from the database.");
                     me.channels = p_results;
                     _createUpdaters();
                     if (isFunction(p_callback))
@@ -128,7 +128,7 @@ fss.biz.ChannelManager = function()
             });
             return updater;
         });
-        mx.logger.info("%s ChannelUpdaters were created accordingly.", me.updaters.length);
+        mx.logger.info(me.updaters.length + " ChannelUpdaters were created accordingly.");
     }
     
     function _batchUpdate()
@@ -151,11 +151,11 @@ fss.biz.ChannelManager = function()
                 var seconds = (fss.settings.update.interval / 1000);
                 if (seconds < 60)
                 {
-                    mx.logger.info("The next shift will start in %d seconds.", seconds);
+                    mx.logger.info("The next shift will start in " + seconds + " seconds.");
                 }
                 else
                 {
-                    mx.logger.info("The next shift will start in %d minutes.", seconds / 60);
+                    mx.logger.info("The next shift will start in " + (seconds / 60) + " minutes.");
                 }
                 
                 console.log("\n");

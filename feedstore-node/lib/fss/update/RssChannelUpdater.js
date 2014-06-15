@@ -49,7 +49,7 @@ fss.update.RssChannelUpdater = function()
             if (isEmpty(p_error))
             {
                 me.channel.lastSuccessfulUpdateTime = new Date();
-                mx.logger.info("Successfully updated Channel <%s> with %d posts in %d seconds.", me.channel.cid, p_posts.length, (Date.now() - beginTime) / 1000);
+                mx.logger.info("Successfully updated Channel <" + me.channel.cid + "> with " + p_posts.length + " posts in " + ((Date.now() - beginTime) / 1000) + " seconds.");
                 if (p_posts.length > 0)
                 {
                     _updateChannel(p_posts[0].meta);
@@ -65,13 +65,13 @@ fss.update.RssChannelUpdater = function()
                 {
                     if (!me.ignoreError)
                     {
-                        mx.logger.error("Failed to updated Channel <%s> with error code <%d>.", me.channel.cid, me.channel.lastUpdateStatus);
+                        mx.logger.error("Failed to updated Channel <" + me.channel.cid + "> with error code <" + me.channel.lastUpdateStatus + ">.");
                         p_callback(p_error);
                     }
                     else
                     {
                         // Ignore errors and return nothing.
-                        mx.logger.warn("Failed to updated Channel <%s> with error code <%d> which will be ignored.", me.channel.cid, me.channel.lastUpdateStatus);
+                        mx.logger.warn("Failed to updated Channel <" + me.channel.cid + "> with error code <" + me.channel.lastUpdateStatus + "> which will be ignored.");
                         p_callback(null, null);
                     }
                 }
@@ -85,7 +85,7 @@ fss.update.RssChannelUpdater = function()
         me.hasError = false;
         
         var url = me.channel.feedUrl;
-        mx.logger.debug("Updating Channel <%s>...", me.channel.cid);
+        mx.logger.debug("Updating Channel <" + me.channel.cid + ">...");
         var req = request(url, {timeout: fss.settings.update.timeout, pool: false});
         req.setHeader('user-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36')
            .setHeader('accept', 'text/html,application/xhtml+xml');
@@ -130,7 +130,7 @@ fss.update.RssChannelUpdater = function()
             if (!/utf-*8/i.test(charset))
             {
                 iconv = new Iconv(charset, 'utf-8');
-                mx.logger.debug('Converting from charset %s to utf-8.', charset);
+                mx.logger.debug('Converting from charset " + charset + " to utf-8.');
                 iconv.on('error', function(p_err)
                 {
                     if (me.hasError)
