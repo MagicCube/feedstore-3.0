@@ -55,7 +55,7 @@ fss.Server = function()
         _setStatus("initializing");
         
         // Connect to MongoDB
-        fss.db.DbConnection.connect();
+        //fss.db.DbConnection.connect();
         
         // Initialize managers
         me.channelManager = new fss.biz.ChannelManager();

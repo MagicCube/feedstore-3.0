@@ -22,9 +22,11 @@ fss.biz.ChannelManager = function()
     
     me.load = function(p_callback)
     {
+        fss.db.DbConnection.connect();
         mx.logger.info("Loading channels...");
         fs.model.Channel.find({}, function(p_err, p_results)
         {
+            fss.db.DbConnection.disconnect();
             if (isEmpty(p_err))
             {
                 if (p_results.length === 0)

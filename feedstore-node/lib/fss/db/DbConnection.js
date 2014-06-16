@@ -6,12 +6,15 @@ fss.db.DbConnectionClass = function()
 {
     var me = $extend(mx.Component);
     var base = {};
+    
+    me.connected = false;
 
     base.init = me.init;
     me.init = function(p_options)
     {
         base.init(p_options);
         mongoose.connection.on("open", _onopen);
+        mongoose.connection.on("close", _onclose);
         mongoose.connection.on("error", _onerror);
     };
     
@@ -31,13 +34,27 @@ fss.db.DbConnectionClass = function()
     
     me.connect = function()
     {
-        mx.logger.info("DbConnection is now connecting to " + me.getConnectionUrl());
-        mongoose.connect(me.getConnectionUrl());
+        if (me.connected)
+        {
+            mx.logger.info("DbConnection is already connected.");
+        }
+        else
+        {
+            mx.logger.info("DbConnection is now connecting to " + me.getConnectionUrl());
+            mongoose.connect(me.getConnectionUrl());
+        }
     };
     
     me.disconnect = function()
     {
-        mongoose.disconnect();
+        try
+        {
+            mongoose.disconnect();
+        }
+        catch (e)
+        {
+            
+        }
     };
     
     
@@ -52,11 +69,19 @@ fss.db.DbConnectionClass = function()
     
     function _onopen()
     {
+        me.connected = true;
         mx.logger.info("DbConnection is now open.");
+    }
+    
+    function _onclose()
+    {
+        me.connected = false;
+        mx.logger.info("DbConnection is now closed.");
     }
     
     function _onerror(err)
     {
+        me.connected = false;
         mx.logger.error("An error occurred in DbConnection.");
         mx.logger.error(err);
     }
