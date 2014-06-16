@@ -5,6 +5,6 @@
         "database": "feedstore"
     },
     "update": {
-        "interval": 300000
+        "interval": 10000
     }
 }
