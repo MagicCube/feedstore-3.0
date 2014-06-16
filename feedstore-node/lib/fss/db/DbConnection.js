@@ -11,25 +11,55 @@ fss.db.DbConnectionClass = function()
     me.init = function(p_options)
     {
         base.init(p_options);
+        mongoose.connection.on("open", _onopen);
+        mongoose.connection.on("error", _onerror);
     };
     
-    me.connect = function()
+    me.getConnectionUrl = function()
     {
         if (isEmpty(fss.settings.db.username))
         {
-            mongoose.connect(String.format("mongodb://{host}:{port}/{database}", fss.settings.db));
+            return String.format("mongodb://{host}:{port}/{database}", fss.settings.db);
         }
         else
         {
-            mongoose.connect(String.format("mongodb://{username}:{password}@{host}:{port}/{database}", fss.settings.db));
+            return String.format("mongodb://{username}:{password}@{host}:{port}/{database}", fss.settings.db);
         }
     };
+    
+    
+    
+    me.connect = function()
+    {
+        mx.logger.info("DbConnection is now connecting to " + me.getConnectionUrl());
+        mongoose.connect(me.getConnectionUrl());
+    };
+    
+    me.disconnect = function()
+    {
+        mongoose.disconnect();
+    };
+    
+    
     
     me.registerModel = function(p_name, p_schema)
     {
         var model = mongoose.model(p_name, new mongoose.Schema(p_schema));
         return model;
     };
+    
+    
+    
+    function _onopen()
+    {
+        mx.logger.info("DbConnection is now open.");
+    }
+    
+    function _onerror(err)
+    {
+        mx.logger.error("An error occurred in DbConnection.");
+        mx.logger.error(err);
+    }
     
     return me.endOfClass(arguments);
 };
