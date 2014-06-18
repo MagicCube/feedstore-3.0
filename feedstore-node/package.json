@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
-        "start": "node app.js"
+        "start": "node index.js"
     },
     "dependencies": {
         "tracer": "0.7.1",
