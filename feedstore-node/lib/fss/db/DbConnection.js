@@ -36,11 +36,11 @@ fss.db.DbConnectionClass = function()
     {
         if (me.connected)
         {
-            mx.logger.info("DbConnection is already connected.");
+            //mx.logger.info("DbConnection is already connected.");
         }
         else
         {
-            mx.logger.info("DbConnection is now connecting to " + me.getConnectionUrl());
+            //mx.logger.info("DbConnection is now connecting to " + me.getConnectionUrl());
             mongoose.connect(me.getConnectionUrl());
         }
     };
@@ -70,13 +70,13 @@ fss.db.DbConnectionClass = function()
     function _onopen()
     {
         me.connected = true;
-        mx.logger.info("DbConnection is now open.");
+        //mx.logger.info("DbConnection is now open.");
     }
     
     function _onclose()
     {
         me.connected = false;
-        mx.logger.info("DbConnection is now closed.");
+        //mx.logger.info("DbConnection is now closed.");
     }
     
     function _onerror(err)

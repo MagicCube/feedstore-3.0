@@ -26,7 +26,6 @@ fss.biz.ChannelManager = function()
         mx.logger.info("Loading channels...");
         fs.model.Channel.find({}, function(p_err, p_results)
         {
-            fss.db.DbConnection.disconnect();
             if (isEmpty(p_err))
             {
                 if (p_results.length === 0)
@@ -51,6 +50,8 @@ fss.biz.ChannelManager = function()
                 }
                 else
                 {
+                    fss.db.DbConnection.disconnect();
+                    
                     mx.logger.info(p_results.length + " channels were loaded from the database.");
                     me.channels = p_results;
                     _createUpdaters();
@@ -62,6 +63,7 @@ fss.biz.ChannelManager = function()
             }
             else
             {
+                fss.db.DbConnection.disconnect();
                 mx.logger.error("Fail to load channels.");
                 if (isFunction(p_callback))
                 {
@@ -149,6 +151,12 @@ fss.biz.ChannelManager = function()
             if (isEmpty(p_error) && notEmpty(p_results) && p_results.length == me.channels.length)
             {
                 mx.logger.info("****************************** Finished Sheduled Update ******************************");
+                
+                fss.db.DbConnection.connect();
+                me.channels.forEach(function(p_channel)
+                {
+                    p_channel.save();
+                });
                 
                 var seconds = (fss.settings.update.interval / 1000);
                 if (seconds < 60)

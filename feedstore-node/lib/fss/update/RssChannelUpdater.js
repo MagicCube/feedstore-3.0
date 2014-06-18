@@ -65,13 +65,13 @@ fss.update.RssChannelUpdater = function()
                 {
                     if (!me.ignoreError)
                     {
-                        mx.logger.error("Failed to updated Channel <" + me.channel.cid + "> with error code <" + me.channel.lastUpdateStatus + ">.");
+                        mx.logger.error("Failed to updated Channel <" + me.channel.cid + "> with error code <" + me.channel.lastUpdateStatus + ">: " + (notEmpty(p_error) ? p_error.message : ""));
                         p_callback(p_error);
                     }
                     else
                     {
                         // Ignore errors and return nothing.
-                        mx.logger.warn("Failed to updated Channel <" + me.channel.cid + "> with error code <" + me.channel.lastUpdateStatus + "> which will be ignored.");
+                        mx.logger.warn("Failed to updated Channel <" + me.channel.cid + "> with error code <" + me.channel.lastUpdateStatus + "> which will be ignored: " + (notEmpty(p_error) ? p_error.message : ""));
                         p_callback(null, null);
                     }
                 }
@@ -85,7 +85,7 @@ fss.update.RssChannelUpdater = function()
         me.hasError = false;
         
         var url = me.channel.feedUrl;
-        mx.logger.debug("Updating Channel <" + me.channel.cid + ">...");
+        //mx.logger.debug("Updating Channel <" + me.channel.cid + ">...");
         var req = request(url, {timeout: fss.settings.update.timeout, pool: false});
         req.setHeader('user-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36')
            .setHeader('accept', 'text/html,application/xhtml+xml');
@@ -171,7 +171,7 @@ fss.update.RssChannelUpdater = function()
             });
             feedparser.on("end", function(p_err)
             {
-                if (isEmpty(p_err))
+                if (isEmpty(p_err) && !me.hasError)
                 {
                     p_callback(null, posts);
                 }
