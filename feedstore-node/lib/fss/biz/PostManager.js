@@ -57,7 +57,15 @@ fss.biz.PostManager = function()
     
     me.getPosts = function(p_callback)
     {
-        fss.model.Post.find({}, p_callback);
+        fss.db.DbConnection.connect();
+        fss.model.Post.find().sort("-publishTime").exec(function(p_error, p_results)
+        {
+            fss.db.DbConnection.disconnect();
+            if (isFunction(p_callback))
+            {
+                p_callback(p_error, p_results);
+            }
+        });
     };
         
     return me.endOfClass(arguments);
