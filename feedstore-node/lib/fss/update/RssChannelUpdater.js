@@ -6,6 +6,7 @@ var FeedParser = require("feedparser");
 
 /*
  * Channel.lastUpdateStatus
+ *    0 - Not updated yet
  *  200 - OK
  *  403 - Forbidden
  *  404 - Not found
@@ -49,11 +50,7 @@ fss.update.RssChannelUpdater = function()
             if (isEmpty(p_error))
             {
                 me.channel.lastSuccessfulUpdateTime = new Date();
-                mx.logger.info("Successfully updated Channel <" + me.channel.cid + "> with " + p_posts.length + " posts in " + ((Date.now() - beginTime) / 1000) + " seconds.");
-                if (p_posts.length > 0)
-                {
-                    _updateChannel(p_posts[0].meta);
-                }
+                mx.logger.info("Successfully updated Channel <" + _getChannelTitle() + "> with " + p_posts.length + " posts in " + ((Date.now() - beginTime) / 1000) + " seconds.");
                 if (isFunction(p_callback))
                 {
                     p_callback(null, p_posts);
@@ -65,13 +62,13 @@ fss.update.RssChannelUpdater = function()
                 {
                     if (!me.ignoreError)
                     {
-                        mx.logger.error("Failed to updated Channel <" + me.channel.cid + "> with error code <" + me.channel.lastUpdateStatus + ">: " + (notEmpty(p_error) ? p_error.message : ""));
+                        mx.logger.error("Failed to updated Channel <" + _getChannelTitle() + "> with error code <" + me.channel.lastUpdateStatus + ">: " + (notEmpty(p_error) ? p_error.message : ""));
                         p_callback(p_error);
                     }
                     else
                     {
                         // Ignore errors and return nothing.
-                        mx.logger.warn("Failed to updated Channel <" + me.channel.cid + "> with error code <" + me.channel.lastUpdateStatus + "> which will be ignored: " + (notEmpty(p_error) ? p_error.message : ""));
+                        mx.logger.warn("Failed to updated Channel <" + _getChannelTitle() + "> with error code <" + me.channel.lastUpdateStatus + "> which will be ignored: " + (notEmpty(p_error) ? p_error.message : ""));
                         p_callback(null, null);
                     }
                 }
@@ -85,7 +82,7 @@ fss.update.RssChannelUpdater = function()
         me.hasError = false;
         
         var url = me.channel.feedUrl;
-        //mx.logger.debug("Updating Channel <" + me.channel.cid + ">...");
+        //mx.logger.debug("Updating Channel <" + _getChannelTitle() + ">...");
         var req = request(url, {timeout: fss.settings.update.timeout, pool: false});
         req.setHeader('user-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36')
            .setHeader('accept', 'text/html,application/xhtml+xml');
@@ -166,6 +163,11 @@ fss.update.RssChannelUpdater = function()
                 var post = null;
                 while (post = this.read())
                 {
+                    if (me.channel.cid.indexOf("evolife.cn") != -1)
+                    {
+                        post.pubDate = post.pubDate.addHours(-14);
+                        post.pubdate = post.pubDate;
+                    }
                     posts.add(post);
                 }
             });
@@ -189,17 +191,6 @@ fss.update.RssChannelUpdater = function()
             });
         });
     }
-    
-    function _updateChannel(p_meta)
-    {
-        me.channel.title = p_meta.title;
-        me.channel.description = p_meta.description ? p_meta.description : null;
-        me.channel.copyright = p_meta.copyright ? p_meta.copyright : null;
-        me.channel.linkUrl = p_meta.link ? p_meta.link : me.channel.feedUrl;
-        me.channel.lastPublishTime = p_meta.date;
-    }
-    
-    
 
     function _getParams(str)
     {
@@ -216,6 +207,11 @@ fss.update.RssChannelUpdater = function()
             return params;
         }, {});
         return params;
+    }
+    
+    function _getChannelTitle()
+    {
+        return me.channel.title.startsWith("Channel#") ? me.channel.cid : me.channel.title;
     }
     
     return me.endOfClass(arguments);

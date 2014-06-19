@@ -1,6 +1,6 @@
-$ns("fs.model");
+$ns("fss.model");
 
-fs.model.Channel = fss.db.DbConnection.registerModel("Channel", {
+fss.model.Channel = fss.db.DbConnection.registerModel("Channel", {
     cid: { type: String, index: true },
     title: String,
     description: String,

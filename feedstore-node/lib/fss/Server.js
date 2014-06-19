@@ -7,8 +7,8 @@ var path = require("path");
 
 
 $import("fss.db.DbConnection");
-$import("fss.model.Channel");
 $import("fss.biz.ChannelManager");
+$import("fss.biz.PostManager");
 
 fss.Server = function()
 {
@@ -40,6 +40,7 @@ fss.Server = function()
     
     me.expressApp = null;
     me.channelManager = null;
+    me.postManager = null;
     
     base.init = me.init;
     me.init = function(p_options)
@@ -54,11 +55,9 @@ fss.Server = function()
 
         _setStatus("initializing");
         
-        // Connect to MongoDB
-        //fss.db.DbConnection.connect();
-        
         // Initialize managers
         me.channelManager = new fss.biz.ChannelManager();
+        me.postManager = new fss.biz.PostManager();
         
         _setStatus("initialized");
     };
@@ -126,7 +125,8 @@ fss.Server = function()
     {
         var routes = require("./route");
         routes.applyAll(p_app, [
-            "/api/channels"
+            "/api/channels",
+            "/api/posts"
         ]);
     }
     
