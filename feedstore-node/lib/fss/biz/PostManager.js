@@ -8,6 +8,19 @@ fss.biz.PostManager = function()
 {
     var me = $extend(mx.Component);
     var base = {};
+
+    
+    me.queryPosts = function(p_params, p_callback)
+    {
+        fss.model.Post.find({}, {}, { skip: (p_params.pageIndex * p_params.pageSize) }).sort("-publishTime").limit(p_params.pageSize).exec(function(p_error, p_results)
+        {
+            if (isFunction(p_callback))
+            {
+                p_callback(p_error, p_results);
+            }
+        });
+    };
+    
     
     me.savePost = function(p_rawPost, p_channel, p_callback)
     {
@@ -55,18 +68,5 @@ fss.biz.PostManager = function()
         });
     };
     
-    me.getPosts = function(p_callback)
-    {
-        fss.db.DbConnection.connect();
-        fss.model.Post.find().sort("-publishTime").exec(function(p_error, p_results)
-        {
-            fss.db.DbConnection.disconnect();
-            if (isFunction(p_callback))
-            {
-                p_callback(p_error, p_results);
-            }
-        });
-    };
-        
     return me.endOfClass(arguments);
 };
