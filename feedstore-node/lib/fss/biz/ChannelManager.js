@@ -187,8 +187,7 @@ fss.biz.ChannelManager = function()
     
     function _batchUpdate_callback(p_channels)
     {
-        fss.db.DbConnection.connect();
-        
+        var tasks = [];
         p_channels.forEach(function(p_rawPosts, p_channelIndex)
         {
             if (isEmpty(p_rawPosts) || p_rawPosts.length === 0)
@@ -203,9 +202,23 @@ fss.biz.ChannelManager = function()
             
             var cid = p_rawPosts[0].meta.link;
             var channel = me.channels[p_channelIndex];
-                        
-            _updatePosts(p_rawPosts, channel);
-            _updateChannel(p_rawPosts[0].meta, channel, p_rawPosts[0].pubDate);
+
+            tasks.add(function(p_callback)
+            {
+                _updatePosts(p_rawPosts, channel, p_callback);
+            });
+            
+            tasks.add(function(p_callback)
+            {
+                _updateChannel(p_rawPosts[0].meta, channel, p_rawPosts[0].pubDate, p_callback);
+            })
+        });
+        
+        fss.db.DbConnection.connect();
+        async.series(tasks, function(p_error, p_results)
+        {
+            mx.logger.info("ALL-DONE.");
+            fss.db.DbConnection.disconnect();
         });
     }
     
@@ -250,6 +263,7 @@ fss.biz.ChannelManager = function()
         p_channel.copyright = p_meta.copyright ? p_meta.copyright : null;
         p_channel.linkUrl = p_meta.link ? p_meta.link : me.channel.feedUrl;
         p_channel.lastPublishTime = p_lastPublishTime;
+        mx.logger.info("channel <" + p_channel.title + "> has been saved.");
         p_channel.save(p_callback);
     }
     
