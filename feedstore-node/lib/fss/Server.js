@@ -90,7 +90,7 @@ fss.Server = function()
         _initExpressApp();
         _startHttpServer(function()
         {
-            fss.server.channelManager.startSheduledUpdate();
+            //fss.server.channelManager.startSheduledUpdate();
             
             _setStatus("running");
             
