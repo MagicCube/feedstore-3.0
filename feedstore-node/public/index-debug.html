@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MagicCube FeedStore</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="css/zero.css">
+<link rel="stylesheet" href="css/app.css">
+<script type="text/javascript" src="scripts/mx/debug.js"></script>
+</head>
+
+<body>
+</body>
+
+<script>
+$import("fs.App");
+
+mx.whenReady(function()
+{
+    fs.app = new fs.App();
+    // Or you can try this if you want to customize the root element of the app
+    // fs.app = new fs.App({ $element: $("body") });
+
+    var args = { };
+    fs.app.run(args);
+});
+</script>
+</html>

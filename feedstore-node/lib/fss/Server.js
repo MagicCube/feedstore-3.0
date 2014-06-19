@@ -115,7 +115,7 @@ fss.Server = function()
         app.use(express.bodyParser());
         app.use(express.methodOverride());
         app.use(app.router);
-        app.use(express.static(path.join(__dirname, "public")));
+        app.use(express.static($mappath("~/public")));
         if ("development" == me.runningMode)
         {
             app.use(express.errorHandler());
@@ -129,7 +129,8 @@ fss.Server = function()
         var routes = require("./route");
         routes.applyAll(p_app, [
             "/api/channels",
-            "/api/posts"
+            "/api/posts",
+            "/api/subscriptions"
         ]);
     }
     

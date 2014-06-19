@@ -1,0 +1,61 @@
+.PostListView
+{
+	position: relative;
+	display: block;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+.PostListView > .colgroup
+{
+	display: block;
+	margin: auto;
+}
+
+.PostListView > .colgroup > .col
+{
+	position: relative;
+	float: left;
+	width: 224px;
+	margin-left: 12px;
+}
+
+.PostListView .post
+{
+	position: relative;
+	overflow: hidden;
+	display: inline-block;
+	width: 224px;
+	margin-bottom: 12px;
+	background: white;
+	border: 1px solid #d0d1d4;
+	border-radius: 5px;
+}
+
+.PostListView .post > #thumb
+{
+	width: 192px;
+	min-height: 154px;
+	margin: auto;
+	margin-top: 12px;
+	background: url(images/post-thumb-placeholder.png);
+}
+
+.PostListView .post > #title
+{
+	width: 192px;
+	margin: auto;
+	margin-top: 12px;
+	line-height: 140%;
+}
+
+.PostListView .post > #info
+{
+	position: relative;
+	background: #f1f1f1;
+	height: 44px;
+	overflow: hidden;
+	margin: auto;
+	margin-top: 12px;
+	padding: 12px;
+}
