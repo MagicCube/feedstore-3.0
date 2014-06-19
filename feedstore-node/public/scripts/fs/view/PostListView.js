@@ -23,10 +23,13 @@ fs.view.PostListView = function()
     };
 
     me.load = function()
-    {
+    {        
         me.pageIndex = -1;
         me.colIndex = -1;
         _onresize();
+        
+        me.clear();
+        
         _nextPage();
     };
     
@@ -44,10 +47,24 @@ fs.view.PostListView = function()
                 var $col = $("<div class=col/>");
                 _$colgroup.append($col);
                 _$cols.add($col);
+                if (i != me.cols - 1)
+                {
+                    $col.css({
+                        marginRight: 12
+                    });
+                }
             }
             me.$container.append(_$colgroup);
+            _$colgroup.css({
+                width: (224 + 12) * me.cols - 12
+            });
         }
     }
+    
+    me.clear = function()
+    {
+        _$colgroup.find(".post").remove();
+    };
     
     function _nextPage()
     {
@@ -76,8 +93,9 @@ fs.view.PostListView = function()
                 me.$container.append($post);
                 
                 var $info = $("<div id=info>");
-                var $channel = $("<div id=channel>");
+                var $channel = $("<a id=channel>");
                 $channel.text(channel.title);
+                $channel.attr("title", channel.title);
                 $info.append($channel);
                 $post.append($info);
                 

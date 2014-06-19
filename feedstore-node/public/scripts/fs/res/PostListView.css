@@ -17,7 +17,6 @@
 	position: relative;
 	float: left;
 	width: 224px;
-	margin-left: 12px;
 }
 
 .PostListView .post
@@ -53,9 +52,20 @@
 {
 	position: relative;
 	background: #f1f1f1;
-	height: 44px;
 	overflow: hidden;
 	margin: auto;
 	margin-top: 12px;
 	padding: 12px;
+}
+
+.PostListView .post > #info > #channel
+{
+	display: block;
+	color: black;
+	width: 150px;
+	font-size: 12px;
+	line-height: 20px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
