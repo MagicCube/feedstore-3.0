@@ -73,6 +73,8 @@ fs.view.PostListView = function()
         {
             p_posts.forEach(function(p_post)
             {
+                p_post.publishTime = new Date(p_post.publishTime); 
+                
                 me.colIndex++;
                 if (me.colIndex == me.cols)
                 {
@@ -92,11 +94,26 @@ fs.view.PostListView = function()
                 $post.append($title);
                 me.$container.append($post);
                 
+                
+                
                 var $info = $("<div id=info>");
+                
                 var $channel = $("<a id=channel>");
                 $channel.text(channel.title);
                 $channel.attr("title", channel.title);
                 $info.append($channel);
+                
+                var $time = $("<div id=time>");
+                if (p_post.publishTime >= Date.today)
+                {
+                    $time.text($format(p_post.publishTime, "HH:mm"));
+                }
+                else
+                {
+                    $time.text($format(p_post.publishTime, "M月d日"));
+                }
+                $info.append($time);
+                
                 $post.append($info);
                 
                 $col.append($post);
