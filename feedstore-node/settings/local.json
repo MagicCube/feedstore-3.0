@@ -5,6 +5,7 @@
         "database": "feedstore"
     },
     "update": {
+        "enabled": false,
         "interval": 300000
     }
 }
