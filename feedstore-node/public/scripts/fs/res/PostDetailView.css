@@ -1,0 +1,53 @@
+.PostDetailView
+{
+	background: white;
+	border-radius: 15px 15px 0 0;
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.PostDetailView > #header
+{
+	position: relative;
+	margin-bottom: 36px;
+}
+
+.PostDetailView > #header > h1
+{
+	color: #07297e;
+	font-size: 28px;
+	line-height: 32px;
+}
+
+.PostDetailView > #header > #channel
+{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+.PostDetailView > #header > #publishTime
+{
+	color: #b4afb3;
+}
+
+.PostDetailView > #content *
+{
+	font-size: 16px;
+	line-height: 160%;
+}
+
+.PostDetailView > #content p
+{
+	margin-top: 14px;
+	margin-bottom: 14px;
+}
+
+.PostDetailView > #content img
+{
+	max-width: 768px;
+}

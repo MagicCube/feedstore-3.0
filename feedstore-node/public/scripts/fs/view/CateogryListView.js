@@ -13,7 +13,6 @@ fs.view.CateogryListView = function()
     {
         base.init(p_options);
         
-        me.$container.append("<div id=logo>");
         me.$container.append("<ul><li>全部</li><li>科技</li><li>设计</li><li>开发</li><li>购物</li></ul>");
     };
 

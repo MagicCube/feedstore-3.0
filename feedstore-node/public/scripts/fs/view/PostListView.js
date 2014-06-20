@@ -18,6 +18,8 @@ fs.view.PostListView = function()
     
     me.colSpace = 12;
     
+    me.onpostclick = null;
+    
     var _$cols = [];
     var _$colgroup = null;
 
@@ -25,6 +27,8 @@ fs.view.PostListView = function()
     me.init = function(p_options)
     {
         base.init(p_options);
+        
+        me.$container.on("click", ".post > #thumb, .post > #title", _post_onclick);
     };
 
     me.load = function()
@@ -92,6 +96,7 @@ fs.view.PostListView = function()
         
         var channel = fs.app.subscriptionAgent.channels[p_post.cid];
         var $post = $("<div class=post>");
+        $post.data("post", p_post);
         $post.attr("id", p_post._id);
         
         var $thumb = $("<img id=thumb>");
@@ -217,6 +222,12 @@ fs.view.PostListView = function()
         _checkPaging();
     }
     $(window).on("scroll", _onscroll);
+    
+    function _post_onclick(e)
+    {
+        var post = $(e.currentTarget).parent().data("post");
+        me.trigger("postclick", { post: post });
+    }
     
     function _img_onerror(e)
     {

@@ -32,6 +32,7 @@
 
 .PostListView .post > #thumb
 {
+	cursor: pointer;
 	display: block;
 	width: 192px;
 	min-height: 154px;
@@ -41,6 +42,7 @@
 
 .PostListView .post > #title
 {
+	cursor: pointer;
 	width: 192px;
 	margin: auto;
 	margin-top: 12px;

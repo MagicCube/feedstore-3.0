@@ -1,29 +1,19 @@
 .CateogryListView
 {
 	position: relative;
-}
-
-.CateogryListView > #logo
-{
-	position: absolute;
-	background: url(../../../images/logo.png) no-repeat;
-	width: 115px;
-	height: 30px;
-	right: 0;
+	line-height: 50px;
 }
 
 .CateogryListView > ul
 {
-	position: absolute;
-	top: 50px;
-	right: 0;
+	
 }
 
 .CateogryListView > ul > li
 {
-	display: block;
-	font-size: 18px;
+	display: inline-block;
+	font-size: 15px;
 	color: rgba(255, 255, 255, 0.6);
 	letter-spacing: 2px;
-	margin-bottom: 32px;
+	margin-right: 18px;
 }
