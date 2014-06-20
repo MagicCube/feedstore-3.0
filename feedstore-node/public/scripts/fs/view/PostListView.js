@@ -69,7 +69,7 @@ fs.view.PostListView = function()
             width: (224 + me.colSpace) * me.cols - me.colSpace
         });
         
-        me.colIndex = -1;
+        me.colIndex = 0;
         _$colgroup.find(".post").remove();
         var posts = me.posts.clone();
         me.posts.clear();
@@ -84,7 +84,6 @@ fs.view.PostListView = function()
         }
         me.posts.add(p_post);
         
-        me.colIndex++;
         if (me.colIndex == me.cols)
         {
             me.colIndex = 0;
@@ -125,6 +124,8 @@ fs.view.PostListView = function()
         $post.append($info);
         
         $col.append($post);
+        
+        me.colIndex++;
     };
 
     me.addPosts = function(p_posts)
@@ -143,8 +144,8 @@ fs.view.PostListView = function()
     
     me.clear = function(p_clearData)
     {
-        me.pageIndex = -1;
-        me.colIndex = -1;
+        me.pageIndex = 0;
+        me.colIndex = 0;
         if (_$colgroup !== null)
         {
             _$colgroup.find(".post").remove();
@@ -161,12 +162,13 @@ fs.view.PostListView = function()
     {
         if (me.loading) return;
         
-        me.pageIndex++;
         _setLoading();
         fs.app.postAgent.queryPosts({ pageIndex: me.pageIndex, pageSize: me.pageSize }).done(function(p_posts)
         {
             _setLoading(false);
             me.addPosts(p_posts);
+            
+            me.pageIndex++;
         });
     }
     
@@ -185,8 +187,7 @@ fs.view.PostListView = function()
                 return p_min;
             }
         }, Number.MAX_VALUE);
-        console.log(minHeight);
-        if (y > minHeight)
+        if (y > minHeight + 20)
         {
             _nextPage();
         }
