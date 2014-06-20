@@ -6,6 +6,7 @@ fs.view.PostListView = function()
 {
     var me = $extend(mx.view.View);
     me.elementClass = "PostListView";
+    me.frame = {};
     var base = {};
     
     me.posts = [];
@@ -26,9 +27,47 @@ fs.view.PostListView = function()
 
     me.load = function()
     {
-        me.clear();
         _onresize();
+        me.clear();
         _nextPage();
+    };
+    
+    me.resetCols = function()
+    {
+        var cols = Math.floor(me.frame.width / (224 + 12));
+        if (me.cols === cols) return;
+        
+        if (_$colgroup === null)
+        {
+            _$colgroup = $("<div class=colgroup>");
+            me.$container.append(_$colgroup);
+        }
+
+        _$cols.clear();
+        me.cols = cols;
+        _$colgroup.find(".col").remove();
+        for (var i = 0; i < me.cols; i++)
+        {
+            var $col = $("<div class=col/>");
+            _$colgroup.append($col);
+            _$cols.add($col);
+            if (i != me.cols - 1)
+            {
+                $col.css({
+                    marginRight: 12
+                });
+            }
+        }
+        
+        _$colgroup.css({
+            width: (224 + 12) * me.cols - 12
+        });
+        
+        me.colIndex = -1;
+        _$colgroup.find(".post").remove();
+        var posts = me.posts.clone();
+        me.posts.clear();
+        me.addPosts(posts);
     };
     
     me.addPost = function(p_post)
@@ -101,26 +140,43 @@ fs.view.PostListView = function()
     {
         me.pageIndex = -1;
         me.colIndex = -1;
-        if (_$colgroup != null)
+        if (_$colgroup !== null)
         {
             _$colgroup.find(".post").remove();
         }
         me.posts.clear();
     };
     
+    function _setLoading(p_loading)
+    {
+        me.loading = isEmpty(p_loading) ? true : false; 
+    }
+    
     function _nextPage()
     {
+        if (me.loading) return;
+        
         me.pageIndex++;
+        _setLoading();
         fs.app.postAgent.queryPosts({ pageIndex: me.pageIndex, pageSize: me.pageSize }).done(function(p_posts)
         {
+            _setLoading(false);
             me.addPosts(p_posts);
         });
     }
     
+    function _checkPaging()
+    {
+        var y = document.body.scrollTop + document.body.offsetHeight;
+        if (y > document.body.scrollHeight - 50)
+        {
+            _nextPage();
+        }
+    }
     
     
     
-    function _onresize()
+    function _onresize(e)
     {
         me.frame.height = me.$container.height();
         if (me.frame.width === me.$container.width())
@@ -130,43 +186,18 @@ fs.view.PostListView = function()
         
         me.frame.width = me.$container.width();
         
-        if (_$colgroup === null)
-        {
-            _$colgroup = $("<div class=colgroup>");
-            me.$container.append(_$colgroup);
-        }
+        me.resetCols();
         
-
-        var cols = Math.floor(me.frame.width / (224 + 12));
-        if (me.cols === cols) return;
-        
-        _$cols.clear();
-        me.cols = cols;
-        _$colgroup.find(".col").remove();
-        for (var i = 0; i < me.cols; i++)
-        {
-            var $col = $("<div class=col/>");
-            _$colgroup.append($col);
-            _$cols.add($col);
-            if (i != me.cols - 1)
-            {
-                $col.css({
-                    marginRight: 12
-                });
-            }
-        }
-        
-        _$colgroup.css({
-            width: (224 + 12) * me.cols - 12
-        });
-        
-        me.colIndex = -1;
-        _$colgroup.find(".post").remove();
-        var posts = me.posts.clone();
-        me.posts.clear();
-        me.addPosts(posts);
+        _checkPaging();
     }
     $(window).on("resize", _onresize);
+    
+    
+    function _onscroll(e)
+    {
+        _checkPaging();
+    }
+    $(window).on("scroll", _onscroll);
     
     return me.endOfClass(arguments);
 };

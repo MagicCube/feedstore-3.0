@@ -12,8 +12,9 @@
 
 .PostListView > .colgroup > .col
 {
+	vertical-align: top;
 	position: relative;
-	float: left;
+	display: inline-block;
 	width: 224px;
 }
 

@@ -25,7 +25,7 @@ fs.App = function()
         me.postAgent = new fs.biz.PostAgent();
         
         me.postListView = new fs.view.PostListView({
-            frame: { top: 0, bottom: 0, left: 0, right: 0 }
+            id: "postList"
         });
         me.postListView.css({
             marginTop: 62
