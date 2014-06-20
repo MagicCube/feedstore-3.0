@@ -91,7 +91,11 @@ fs.view.PostListView = function()
         var $post = $("<div class=post>");
         $post.attr("id", p_post._id);
         
-        var $thumb = $("<div id=thumb>");
+        var $thumb = $("<img id=thumb>");
+        $thumb.on("error", _img_onerror);
+        $thumb.attr({
+            "src": (notEmpty(p_post.image) ? (fs.app.getServiceUrl("/images/?url=") + encodeURIComponent(p_post.image.url)) : me.getResourcePath("images.post-thumb-placeholder", "png"))
+        });
         $post.append($thumb);
         
         var $title = $("<div id=title>");
@@ -194,6 +198,11 @@ fs.view.PostListView = function()
         _checkPaging();
     }
     $(window).on("scroll", _onscroll);
+    
+    function _img_onerror(e)
+    {
+        e.target.src = me.getResourcePath("images.post-thumb-placeholder", "png");
+    }
     
     return me.endOfClass(arguments);
 };

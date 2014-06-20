@@ -32,11 +32,11 @@
 
 .PostListView .post > #thumb
 {
+	display: block;
 	width: 192px;
 	min-height: 154px;
 	margin: auto;
 	margin-top: 12px;
-	background: url(images/post-thumb-placeholder.png);
 }
 
 .PostListView .post > #title

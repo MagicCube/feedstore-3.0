@@ -130,7 +130,8 @@ fss.Server = function()
         routes.applyAll(p_app, [
             "/api/channels",
             "/api/posts",
-            "/api/subscriptions"
+            "/api/subscriptions",
+            "/api/images"
         ]);
     }
     

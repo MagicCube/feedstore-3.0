@@ -1,14 +1,14 @@
 {
     "auth": {
-        "username": "Wf8ieCQNwhoIWVtWmnNMgSOf",
-        "password": "1BDQMrnmVG2wLXMK6GDMj76hb4yHMya7"
+        "username": "nsRLSS0Gv8sqViOfDTjuWNz2",
+        "password": "GvGdabHuSN5H00isLUBKjbhBYbBnkLNL"
     },
     "db": {
         "host": "mongo.duapp.com",
         "port": "8908",
-        "database": "QYmfhSWkhaiJMsVuvwHZ",
-        "username": "Wf8ieCQNwhoIWVtWmnNMgSOf",
-        "password": "1BDQMrnmVG2wLXMK6GDMj76hb4yHMya7"
+        "database": "TumltGSOvjEWpkOMPymk",
+        "username": "nsRLSS0Gv8sqViOfDTjuWNz2",
+        "password": "GvGdabHuSN5H00isLUBKjbhBYbBnkLNL"
     },
     "log": {
         "logger": "console",

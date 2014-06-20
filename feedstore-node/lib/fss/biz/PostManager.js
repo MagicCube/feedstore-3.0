@@ -1,6 +1,7 @@
 $ns("fss.biz");
 
 var async = require("async");
+var cheerio = require("cheerio");
 
 $import("fss.model.Post");
 
@@ -33,6 +34,17 @@ fss.biz.PostManager = function()
         {
             content = p_rawPost.description;
         }
+        
+        var img = null;
+        var $dom = cheerio.load(content);
+        var $img = $dom("img:first-child");
+        if ($img.length > 0 && !isEmptyString($img.attr("src")))
+        {
+            img = {
+                url: $img.attr("src")
+            };
+        }
+        
         var post = new fss.model.Post({
             pid: p_rawPost.link,
             cid: p_channel.id,
@@ -40,6 +52,7 @@ fss.biz.PostManager = function()
             content: content,
             author: p_rawPost.author,
             linkUrl: p_rawPost.link,
+            image: img,
             publishTime: p_rawPost.pubDate,
         });
         post.save(p_callback);
