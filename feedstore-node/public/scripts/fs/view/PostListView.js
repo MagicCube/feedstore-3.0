@@ -94,7 +94,8 @@ fs.view.PostListView = function()
         var $thumb = $("<img id=thumb>");
         $thumb.on("error", _img_onerror);
         $thumb.attr({
-            "src": (notEmpty(p_post.image) ? (fs.app.getServiceUrl("/images/?url=") + encodeURIComponent(p_post.image.url)) : me.getResourcePath("images.post-thumb-placeholder", "png"))
+            //"src": (notEmpty(p_post.image) ? (fs.app.getServiceUrl("/images/?url=") + encodeURIComponent(p_post.image.url)) : me.getResourcePath("images.post-thumb-placeholder", "png"))
+            "src": (notEmpty(p_post.image) ? p_post.image.url : me.getResourcePath("images.post-thumb-placeholder", "png"))
         });
         $post.append($thumb);
         
