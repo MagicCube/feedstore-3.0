@@ -16,6 +16,8 @@ fs.view.PostListView = function()
     me.pageIndex = 0;
     me.pageSize = 50;
     
+    me.colSpace = 12;
+    
     var _$cols = [];
     var _$colgroup = null;
 
@@ -34,7 +36,7 @@ fs.view.PostListView = function()
     
     me.resetCols = function()
     {
-        var cols = Math.floor(me.frame.width / (224 + 12));
+        var cols = Math.floor(me.frame.width / (224 + me.colSpace));
         if (me.cols === cols) return;
         
         if (_$colgroup === null)
@@ -54,13 +56,13 @@ fs.view.PostListView = function()
             if (i != me.cols - 1)
             {
                 $col.css({
-                    marginRight: 12
+                    marginRight: me.colSpace
                 });
             }
         }
         
         _$colgroup.css({
-            width: (224 + 12) * me.cols - 12
+            width: (224 + me.colSpace) * me.cols - me.colSpace
         });
         
         me.colIndex = -1;
@@ -74,7 +76,7 @@ fs.view.PostListView = function()
     {
         if (isString(p_post.publishTime))
         {
-            p_post.publishTime = new Date(p_post.publishTime);
+            p_post.publishTime = fs.util.DateTimeUtil.parseServerTime(p_post.publishTime);
         }
         me.posts.add(p_post);
         
@@ -107,14 +109,8 @@ fs.view.PostListView = function()
         $info.append($channel);
         
         var $time = $("<div id=time>");
-        if (p_post.publishTime >= Date.today)
-        {
-            $time.text($format(p_post.publishTime, "HH:mm"));
-        }
-        else
-        {
-            $time.text($format(p_post.publishTime, "M月d日"));
-        }
+        $time.text(fs.util.DateTimeUtil.getShortString(p_post.publishTime));
+        $time.attr("title", p_post.publishTime.toLocaleString());
         $info.append($time);
         
         $post.append($info);

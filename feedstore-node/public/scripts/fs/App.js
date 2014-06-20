@@ -2,6 +2,7 @@ $ns("fs");
 
 $import("fs.biz.PostAgent");
 $import("fs.biz.SubscriptionAgent");
+$import("fs.util.DateTimeUtil");
 $import("fs.view.PostListView");
 
 fs.App = function()
