@@ -27,6 +27,9 @@ fs.App = function()
         me.postListView = new fs.view.PostListView({
             frame: { top: 0, bottom: 0, left: 0, right: 0 }
         });
+        me.postListView.css({
+            marginTop: 62
+        });
         me.addSubview(me.postListView);
     };
 

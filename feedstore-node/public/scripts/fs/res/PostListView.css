@@ -2,8 +2,6 @@
 {
 	position: relative;
 	display: block;
-	overflow-x: hidden;
-	overflow-y: scroll;
 }
 
 .PostListView > .colgroup

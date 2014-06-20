@@ -8,6 +8,7 @@ html, body
 body
 {
 	background: url(../images/bg.png);
+    overflow-y: auto;
 }
 
 .mx-app
