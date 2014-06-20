@@ -37,6 +37,10 @@ fs.view.PostListView = function()
     me.resetCols = function()
     {
         var cols = Math.floor(me.frame.width / (224 + me.colSpace));
+        if (cols > 6)
+        {
+            cols = 6;
+        }
         if (me.cols === cols) return;
         
         if (_$colgroup === null)
@@ -168,8 +172,21 @@ fs.view.PostListView = function()
     
     function _checkPaging()
     {
+        if (_$cols === null || _$cols.length === 0) return;
         var y = document.body.scrollTop + document.body.offsetHeight;
-        if (y > document.body.scrollHeight - 50)
+        var minHeight = _$cols.reduce(function(p_min, $p_col)
+        {
+            if (isEmpty(p_min) || p_min > $p_col.height())
+            {
+                return $p_col.height();
+            }
+            else
+            {
+                return p_min;
+            }
+        }, Number.MAX_VALUE);
+        console.log(minHeight);
+        if (y > minHeight)
         {
             _nextPage();
         }
