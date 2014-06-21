@@ -25,3 +25,6 @@ git push
 echo
 echo Updating BAE
 bae app publish
+
+echo
+bae log tail -f userapp --instanceid 172180 --max 40
