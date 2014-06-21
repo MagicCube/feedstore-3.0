@@ -1,0 +1,7 @@
+.DS_Store
+.jshintrc
+.project
+.settings
+*-debug.html
+node_modules
+public/scripts

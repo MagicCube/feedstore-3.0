@@ -3,6 +3,7 @@
         "port": 18080
     },
     "update": {
+        "enabled": true,
         "interval": 300000,
         "timeout": 10000,
         "parallelLimit": 5,

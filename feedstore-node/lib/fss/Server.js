@@ -90,7 +90,7 @@ fss.Server = function()
         _initExpressApp();
         _startHttpServer(function()
         {
-            if (fss.settings.update.enabled)
+            if (fss.settings.update.enabled !== false)
             {
                 fss.server.channelManager.startSheduledUpdate();
             }
@@ -130,8 +130,7 @@ fss.Server = function()
         routes.applyAll(p_app, [
             "/api/channels",
             "/api/posts",
-            "/api/subscriptions",
-            "/api/images"
+            "/api/subscriptions"
         ]);
     }
     
@@ -190,7 +189,7 @@ fss.Server = function()
         var defaultSettings = require($mappath("~/settings/default.json"));
         var specificSettings = require($mappath("~/settings/{runAt}.json", me));
         fss.settings = $merge(true, defaultSettings, specificSettings);
-        _printLog("%j", fss.settings);
+        JSON.stringify(fss.settings, null, '\t');
         
         if (notEmpty(fss.settings.log))
         {
