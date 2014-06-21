@@ -189,7 +189,11 @@ fss.Server = function()
         var defaultSettings = require($mappath("~/settings/default.json"));
         var specificSettings = require($mappath("~/settings/{runAt}.json", me));
         fss.settings = $merge(true, defaultSettings, specificSettings);
-        _printLog("fss.settings = " + JSON.stringify(fss.settings) + ";");
+        
+        for (var key in fss.settings)
+        {
+            _printLog("fss.settings." + key + " = " + JSON.stringify(fss.settings[key]) + ";");
+        }
         
         if (notEmpty(fss.settings.log))
         {

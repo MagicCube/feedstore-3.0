@@ -10,6 +10,11 @@ body
 	background: url(../images/bg.png);
 }
 
+body > #statusBar
+{
+	
+}
+
 body > #header
 {
 	position: fixed;
