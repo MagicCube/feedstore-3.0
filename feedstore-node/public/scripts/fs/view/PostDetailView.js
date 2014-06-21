@@ -20,6 +20,8 @@ fs.view.PostDetailView = function()
     {
         base.init(p_options);
         
+        var $post = $("<div id=post>"); 
+        
         var $header = $("<div id=header>");
         _$title = $("<h1>");
         $header.append(_$title);
@@ -28,10 +30,12 @@ fs.view.PostDetailView = function()
         $header.append(_$publishTime);
         _$channel = $("<div id=channel>");
         $header.append(_$channel);
-        me.$container.append($header);
+        $post.append($header);
         
         _$content = $("<div id=content>");
-        me.$container.append(_$content);
+        $post.append(_$content);
+        
+        me.$container.append($post);
     };
     
     me.setPost = function(p_post)

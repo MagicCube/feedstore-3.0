@@ -41,20 +41,22 @@ fs.App = function()
         
         me.postListView = new fs.view.PostListView({
             id: "postList",
+            frame: {
+                left: 0,
+                top: 0,
+                right: 0,
+                bottom: 0
+            },
             onpostclick: _postListView_onpostclick
         });
         me.postListView.css({
-            marginTop: 62
+            paddingTop: 62
         });
         me.addSubview(me.postListView);
         
+        
         me.postDetailView = new fs.view.PostDetailView({
-            id: "postDetail",
-            frame: { height: window.innerHeight - 80, bottom: 0, width: 1024 }
-        });
-        me.postDetailView.$container.css({
-            position: "fixed",
-            zIndex: 9999
+            id: "postDetail"
         });
     };
 
@@ -76,7 +78,7 @@ fs.App = function()
     
     me.showOverlay = function()
     {
-        if (_$overlay == null)
+        if (_$overlay === null)
         {
             _$overlay = $("<div id=overlay>");
             _$overlay.on("click", me.hideOverlay);
@@ -90,6 +92,10 @@ fs.App = function()
     
     me.hideOverlay = function()
     {
+        $(document.body).css({
+            overflow: "auto"
+        });
+        me.postDetailView.$container.fadeOut();
         _$overlay.transit({ opacity: 0 }, "fast", function()
         {
             _$overlay.detach();
@@ -102,11 +108,33 @@ fs.App = function()
     function _postListView_onpostclick(e)
     {
         me.showOverlay();
-        me.addSubview(me.postDetailView);
-        me.postDetailView.setFrame({
-            left: (window.innerWidth - me.postDetailView.frame.width) / 2
+        
+        me.postDetailView.$container.css({
+            opacity: 0,
+            position: "fixed",
+            zIndex: 9999,
+            top: e.$post.offset().top - document.body.scrollTop,
+            left: e.$post.offset().left,
+            width: e.$post.width(),
+            height: e.$post.height()
         });
         me.postDetailView.setPost(e.post);
+        me.$container.append(me.postDetailView.$container);
+        
+        var width = window.innerWidth * 0.8;
+        if (width > 1280)
+        {
+            width = 1280;
+        }
+        var height = window.innerHeight - 80;
+        var left = (window.innerWidth - width) / 2;
+        me.postDetailView.$container.transit({
+            opacity: 1,
+            left: left,
+            top: 80,
+            width: width,
+            height: height
+        });
     }
 
     return me.endOfClass(arguments);

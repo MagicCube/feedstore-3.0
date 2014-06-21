@@ -1,53 +1,64 @@
 .PostDetailView
 {
+	position: relative;
 	background: white;
-	border-radius: 15px 15px 0 0;
-	padding-left: 50px;
-	padding-right: 50px;
-	padding-top: 40px;
+	border-radius: 5px 5px 0 0;
 	padding-bottom: 40px;
-	overflow-y: auto;
-	overflow-x: hidden;
+	box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
 }
 
-.PostDetailView > #header
+.PostDetailView > #post
+{
+	position: absolute;
+	top: 8px;
+	bottom: 4px;
+	left: 0;
+	right: 0;
+	padding-top: 25px;
+	padding-left: 50px;
+	padding-right: 50px;
+	overflow-y: auto;
+	overflow-x: hidden;	
+}
+
+.PostDetailView > #post > #header
 {
 	position: relative;
 	margin-bottom: 36px;
 }
 
-.PostDetailView > #header > h1
+.PostDetailView > #post > #header > h1
 {
 	color: #07297e;
 	font-size: 28px;
 	line-height: 32px;
 }
 
-.PostDetailView > #header > #channel
+.PostDetailView > #post > #header > #channel
 {
 	position: absolute;
 	bottom: 0;
 	right: 0;
 }
 
-.PostDetailView > #header > #publishTime
+.PostDetailView > #post > #header > #publishTime
 {
 	color: #b4afb3;
 }
 
-.PostDetailView > #content *
+.PostDetailView > #post > #content *
 {
 	font-size: 16px;
 	line-height: 160%;
 }
 
-.PostDetailView > #content p
+.PostDetailView > #post > #content p
 {
-	margin-top: 14px;
-	margin-bottom: 14px;
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
 
-.PostDetailView > #content img
+.PostDetailView > #post > #content img
 {
 	max-width: 768px;
 }

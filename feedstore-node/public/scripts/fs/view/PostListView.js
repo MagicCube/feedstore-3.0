@@ -29,6 +29,8 @@ fs.view.PostListView = function()
         base.init(p_options);
         
         me.$container.on("click", ".post > #thumb, .post > #title", _post_onclick);
+        me.$container.on("scroll", _onscroll);
+        $(window).on("resize", _onresize);
     };
 
     me.load = function()
@@ -180,7 +182,7 @@ fs.view.PostListView = function()
     function _checkPaging()
     {
         if (_$cols === null || _$cols.length === 0) return;
-        var y = document.body.scrollTop + document.body.offsetHeight;
+        var y = me.$container[0].scrollTop + document.body.offsetHeight;
         var minHeight = _$cols.reduce(function(p_min, $p_col)
         {
             if (isEmpty(p_min) || p_min > $p_col.height())
@@ -214,19 +216,18 @@ fs.view.PostListView = function()
         
         _checkPaging();
     }
-    $(window).on("resize", _onresize);
     
     
     function _onscroll(e)
     {
         _checkPaging();
     }
-    $(window).on("scroll", _onscroll);
     
     function _post_onclick(e)
     {
-        var post = $(e.currentTarget).parent().data("post");
-        me.trigger("postclick", { post: post });
+        var $post = $(e.currentTarget).parent();
+        var post = $post.data("post");
+        me.trigger("postclick", { post: post, $post: $post });
     }
     
     function _img_onerror(e)
