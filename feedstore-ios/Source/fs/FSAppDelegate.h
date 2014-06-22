@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class FSRootViewController;
+
 @interface FSAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic, readonly) FSRootViewController *rootViewController;
 
 @end

@@ -8,13 +8,21 @@
 
 #import "FSAppDelegate.h"
 
+#import "FSRootViewController.h"
+
 @implementation FSAppDelegate
+
+@synthesize rootViewController = _rootViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    _rootViewController = [[FSRootViewController alloc] init];
+    self.window.rootViewController = _rootViewController;
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
