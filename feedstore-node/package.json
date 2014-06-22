@@ -20,6 +20,7 @@
         "mongodb":"1.4.6",
         "feedparser": "0.17.0",
         "iconv": "2.1.4",
-        "cheerio": "0.17.0"
+        "cheerio": "0.17.0",
+        "image-size": "0.3.0"
     }
 }

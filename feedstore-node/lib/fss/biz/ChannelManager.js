@@ -230,22 +230,9 @@ fss.biz.ChannelManager = function()
     
     function _updatePosts(p_rawPosts, p_channel, p_callback)
     {
-        var newRawPosts = null;
-        if (p_channel.lastUpdateStatus === 0)
+        if (p_rawPosts.length > 0)
         {
-            newRawPosts = p_rawPosts;
-        }
-        else
-        {
-            newRawPosts = p_rawPosts.filter(function(p_rawPost)
-            {
-                return (p_channel.lastPublishTime < p_rawPost.pubDate);
-            });
-        }
-
-        if (newRawPosts.length > 0)
-        {
-            fss.server.postManager.savePosts(newRawPosts, p_channel, p_callback);
+            fss.server.postManager.savePosts(p_rawPosts, p_channel, p_callback);
         }
         else
         {

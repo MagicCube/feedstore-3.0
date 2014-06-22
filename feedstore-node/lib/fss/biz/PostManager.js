@@ -1,7 +1,6 @@
 $ns("fss.biz");
 
 var async = require("async");
-var cheerio = require("cheerio");
 
 $import("fss.model.Post");
 
@@ -25,36 +24,17 @@ fss.biz.PostManager = function()
     
     me.savePost = function(p_rawPost, p_channel, p_callback)
     {
-        var content = "";
-        if (notEmpty(p_rawPost.content))
-        {
-            content = p_rawPost.content;
-        }
-        else if (notEmpty(p_rawPost.description) && content.length < p_rawPost.description.length)
-        {
-            content = p_rawPost.description;
-        }
-        
-        var img = null;
-        var $dom = cheerio.load(content);
-        var $img = $dom("img:first-child");
-        if ($img.length > 0 && !isEmptyString($img.attr("src")))
-        {
-            img = {
-                url: $img.attr("src")
-            };
-        }
-        
         var post = new fss.model.Post({
             pid: p_rawPost.link,
             cid: p_channel.id,
             title: p_rawPost.title,
-            content: content,
+            content: p_rawPost.bigContent,
+            image: p_rawPost.image,
             author: p_rawPost.author,
             linkUrl: p_rawPost.link,
-            image: img,
             publishTime: p_rawPost.pubDate,
         });
+                
         post.save(p_callback);
     };
     
@@ -79,7 +59,7 @@ fss.biz.PostManager = function()
                 p_callback(p_error, p_results);
             }
         });
-    };
+    };    
     
     return me.endOfClass(arguments);
 };

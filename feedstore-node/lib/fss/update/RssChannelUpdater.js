@@ -1,8 +1,15 @@
 $ns("fss.update");
 
+var async = require("async");
+
 var request = require('request');
 var Iconv = require('iconv').Iconv;
 var FeedParser = require("feedparser");
+
+var urlUtil = require('url');
+var http = require('http');
+var cheerio = require("cheerio");
+var sizeOf = require('image-size');
 
 /*
  * Channel.lastUpdateStatus
@@ -83,7 +90,7 @@ fss.update.RssChannelUpdater = function()
         
         var url = me.channel.feedUrl;
         //mx.logger.debug("Updating Channel <" + _getChannelTitle() + ">...");
-        var req = request(url, {timeout: fss.settings.update.timeout, pool: false});
+        var req = request(url, {timeout: fss.settings.update.timeout, pool: true});
         req.setHeader('user-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36')
            .setHeader('accept', 'text/html,application/xhtml+xml');
         
@@ -163,19 +170,44 @@ fss.update.RssChannelUpdater = function()
                 var post = null;
                 while (post = this.read())
                 {
-                    if (me.channel.cid.indexOf("evolife.cn") != -1)
-                    {
-                        post.pubDate = post.pubDate.addHours(-14);
-                        post.pubdate = post.pubDate;
+                    if (_isNew(post))
+                    {                        
+                        if (me.channel.cid.indexOf("evolife.cn") != -1)
+                        {
+                            post.pubDate = post.pubDate.addHours(-14);
+                            post.pubdate = post.pubDate;
+                        }
+
+                        post.bigContent = _getContent(post);
+                        post.image = _getImage(post);
+                        
+                        posts.add(post);
                     }
-                    posts.add(post);
                 }
             });
             feedparser.on("end", function(p_err)
             {
                 if (isEmpty(p_err) && !me.hasError)
                 {
-                    p_callback(null, posts);
+                    var imgTasks = posts.reduce(function(p_imgTasks, p_currentPost)
+                    {
+                        if (p_currentPost.image != null)
+                        {
+                            p_imgTasks.add(function(p_taskCallback)
+                            {
+                                _tryToGetImageSize(p_currentPost, p_taskCallback);
+                            });
+                        }
+                        return p_imgTasks;
+                    }, []);
+                    var hasCalledBack = false;
+                    async.parallel(imgTasks, function()
+                    {
+                        if (!hasCalledBack)
+                        {
+                            p_callback(null, posts);
+                        }
+                    });
                 }
                 else
                 {
@@ -190,6 +222,50 @@ fss.update.RssChannelUpdater = function()
                 }
             });
         });
+    }
+    
+    function _isNew(p_post)
+    {
+        return me.channel.lastUpdateStatus === 0 || me.channel.lastPublishTime < p_post.pubDate;
+    }
+    
+    function _getContent(p_post)
+    {
+        var content = "";
+        if (notEmpty(p_post.content))
+        {
+            content = p_post.content;
+        }
+        else if (notEmpty(p_post.description) && content.length < p_post.description.length)
+        {
+            content = p_post.description;
+        }
+        return content;
+    }
+    
+    function _getImage(post)
+    {
+        var img = null;
+        var $dom = cheerio.load(post.bigContent);
+        var $img = $dom("img");
+        if ($img.length > 0)
+        {
+            var url = $img.eq(0).attr("src");
+            if (notEmpty(url) && !isEmptyString(url) && !url.startsWith("http://geekpark-img.qiniudn.com/uploads/anonymous_avatar"))
+            {
+                img = {
+                    url: url
+                };
+            }
+            else if ($img.length > 1)
+            {
+                url = $img.eq($img.length - 1).attr("src");
+                img = {
+                    url: url
+                };
+            }
+        }
+        return img;
     }
 
     function _getParams(str)
@@ -212,6 +288,94 @@ fss.update.RssChannelUpdater = function()
     function _getChannelTitle()
     {
         return me.channel.title.startsWith("Channel#") ? me.channel.cid : me.channel.title;
+    }
+    
+    
+    
+    function _tryToGetImageSize(p_post, p_callback)
+    {
+        var url = p_post.image.url;
+        var req = request(url, {timeout: fss.settings.update.timeout, pool: true});
+        var chunks = [];
+        req.on('data', function(chunk)
+        {
+            chunks.push(chunk);
+            var buffer = Buffer.concat(chunks);
+            var size = null;
+            try
+            {
+                size = sizeOf(buffer);
+                if (isObject(size) && size.width > 0 && size.height > 0)
+                {
+                    req.abort();
+                    if (isFunction(p_callback))
+                    {
+                        if (size.width > 100 && size.height > 50)
+                        {
+                            p_post.image.width = size.width;
+                            p_post.image.height = size.height;
+                        }
+                        else
+                        {
+                            p_post.image = null;
+                        }
+                        p_callback(null, 1);
+                        p_callback = null;
+                    }
+                }
+            }
+            catch (e)
+            {
+                
+            }
+        });
+        req.on('end', function()
+        {
+            if (!isFunction(p_callback))
+            {
+                return;
+            }
+            var buffer = Buffer.concat(chunks);
+            var size = null;
+            try
+            {
+                size = sizeOf(buffer);
+                if (isObject(size) && size.width > 0 && size.height > 0)
+                {
+                    req.abort();
+                    if (isFunction(p_callback))
+                    {
+                        if (size.width > 100 && size.height > 50)
+                        {
+                            p_post.image.width = size.width;
+                            p_post.image.height = size.height;
+                        }
+                        else
+                        {
+                            p_post.image = null;
+                        }
+                        p_callback(null, 1);
+                        p_callback = null;
+                    }
+                }
+            }
+            catch (e)
+            {
+                if (isFunction(p_callback))
+                {
+                    p_callback(null, 0);
+                    p_callback = null;
+                }
+            }
+        });
+        req.once('error', function()
+        {
+            if (isFunction(p_callback))
+            {
+                p_callback(null, 0);
+                p_callback = null;
+            }
+        });
     }
     
     return me.endOfClass(arguments);
