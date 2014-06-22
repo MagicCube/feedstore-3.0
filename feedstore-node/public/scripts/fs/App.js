@@ -29,6 +29,7 @@ fs.App = function()
     me.init = function(p_options)
     {
         base.init(p_options);
+        me.css({ position: "absolute" });
 
         me.subscriptionAgent = new fs.biz.SubscriptionAgent();
         me.postAgent = new fs.biz.PostAgent();
@@ -70,7 +71,6 @@ fs.App = function()
         me.postDetailView = new fs.view.PostDetailView({
             id: "postDetail"
         });
-        me.postDetailView.parentView = me;
     }
 
     base.run = me.run;
@@ -100,7 +100,7 @@ fs.App = function()
         $(document.body).css({
             overflow: "hidden"
         }).append(_$overlay);
-        _$overlay.transit({ opacity: 1 }, "fast");
+        _$overlay.transit({ opacity: 1 }, 100);
     };
     
     me.hideOverlay = function()
@@ -108,9 +108,21 @@ fs.App = function()
         $(document.body).css({
             overflow: "auto"
         });
+        
+        me.postDetailView.$container.transit({
+            opacity: 0
+        }, "fast", function()
+        {
+            me.removeSubview(me.postDetailView);
+        });
+        
         _$overlay.transit({ opacity: 0 }, "fast", function()
         {
             _$overlay.detach();
+        }, "fast");
+        
+        me.$container.transit({
+            scale: 1
         });
     };
     
@@ -120,6 +132,37 @@ fs.App = function()
     function _postListView_onpostclick(e)
     {
         me.showOverlay();
+        me.postDetailView.setPost(e.post);
+        
+        var width = window.innerWidth * 0.85;
+        if (width > 1280)
+        {
+            width = 1280;
+        }
+        me.postDetailView.setFrame({
+            top: 50,
+            bottom: 0,
+            left: (window.innerWidth - width) / 2,
+            width: width
+        });
+        me.postDetailView.css({
+            position: "fixed",
+            zIndex: 999,
+            opacity: 0,
+            y: 400
+        });
+        me.addSubview(me.postDetailView, $("body"));
+        
+        
+        me.$container.transit({
+            scale: 0.9
+        });
+        
+        me.postDetailView.$container.transit({
+            opacity: 1,
+            y: 0
+        }, "fast");
+        
     }
 
     return me.endOfClass(arguments);

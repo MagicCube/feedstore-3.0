@@ -2,7 +2,6 @@
 {
 	position: relative;
 	background: white;
-	border-radius: 5px 5px 0 0;
 	padding-bottom: 40px;
 	box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
 }
@@ -19,6 +18,7 @@
 	padding-right: 50px;
 	overflow-y: auto;
 	overflow-x: hidden;	
+	-webkit-overflow-scrolling: touch;
 }
 
 .PostDetailView > #post > #header
@@ -46,7 +46,7 @@
 	color: #b4afb3;
 }
 
-.PostDetailView > #post > #content *
+.PostDetailView > #post > #content, .PostDetailView > #post > #content *
 {
 	font-size: 18px;
 	line-height: 32px;
@@ -62,5 +62,5 @@
 
 .PostDetailView > #post > #content img
 {
-	max-width: 768px;
+	max-width: 90%;
 }

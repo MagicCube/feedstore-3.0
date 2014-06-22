@@ -26,7 +26,10 @@ if (window.navigator.standalone)
 </head>
 
 <body>
-<div id="header"></div>
+<div id="statusBar"></div>
+<div class="mx-app">
+	<div id="header"></div>
+</div>
 </body>
 
 <script>
@@ -34,9 +37,9 @@ $import("fs.App");
 
 mx.whenReady(function()
 {
-    fs.app = new fs.App();
-    // Or you can try this if you want to customize the root element of the app
-    // fs.app = new fs.App({ $element: $("body") });
+    fs.app = new fs.App({
+        $element: $("body > .mx-app")
+    });
 
     var args = { };
     fs.app.run(args);
