@@ -253,6 +253,7 @@ fss.update.RssChannelUpdater = function()
         var img = null;
         var $dom = cheerio.load(post.bigContent);
         var $img = $dom("img");
+        post.imageCount = $img.length;
         if ($img.length > 0)
         {
             var url = $img.eq(0).attr("src");

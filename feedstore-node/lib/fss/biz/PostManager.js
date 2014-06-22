@@ -31,6 +31,7 @@ fss.biz.PostManager = function()
             content: p_rawPost.bigContent,
             image: p_rawPost.image,
             imageSize: p_rawPost.imageSize,
+            imageCount: p_rawPost.imageCount,
             author: p_rawPost.author,
             linkUrl: p_rawPost.link,
             publishTime: p_rawPost.pubDate,
