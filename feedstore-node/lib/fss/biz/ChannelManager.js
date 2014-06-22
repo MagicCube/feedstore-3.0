@@ -195,12 +195,6 @@ fss.biz.ChannelManager = function()
                 return;
             }
             
-            p_rawPosts.sort(function(a, b)
-            {
-                return b.pubDate - a.pubDate;
-            });
-            
-            var cid = p_rawPosts[0].meta.link;
             var channel = me.channels[p_channelIndex];
 
             tasks.add(function(p_callback)
@@ -210,8 +204,8 @@ fss.biz.ChannelManager = function()
             
             tasks.add(function(p_callback)
             {
-                _updateChannel(p_rawPosts[0].meta, channel, p_rawPosts[0].pubDate, p_callback);
-            })
+                _updateChannel(p_rawPosts, channel, p_callback);
+            });
         });
         
         fss.db.DbConnection.connect();
@@ -243,13 +237,41 @@ fss.biz.ChannelManager = function()
         }
     }
     
-    function _updateChannel(p_meta, p_channel, p_lastPublishTime, p_callback)
+    function _updateChannel(p_rawPosts, p_channel, p_callback)
     {
-        p_channel.title = p_meta.title;
-        p_channel.description = p_meta.description ? p_meta.description : null;
-        p_channel.copyright = p_meta.copyright ? p_meta.copyright : null;
-        p_channel.linkUrl = p_meta.link ? p_meta.link : me.channel.feedUrl;
-        p_channel.lastPublishTime = p_lastPublishTime;
+        var meta = p_rawPosts[0].meta;
+        var lastPublishTime = p_rawPosts[0].pubDate;
+
+        if (p_channel.headnews === null)
+        {
+            p_channel.headnews = [];
+        }
+        var channelHeadnews = p_channel.headnews;
+        
+        var headNews = p_rawPosts.filter(function(p_post) { return p_post.imageSize >= 640; });
+        headNews = headNews.slice(0,3);
+        headNews = headNews.reverse();
+        for (var i = 0; i < headNews.length; i++)
+        {
+            var post = headNews[i];
+            channelHeadnews.push({
+                pid: post.link,
+                title: post.title,
+                image: post.image,
+                publishTime: post.pubDate
+            });
+        }
+        while (channelHeadnews.length > 3)
+        {
+            channelHeadnews[0].remove();
+        }
+        p_channel.headnews = channelHeadnews;
+        
+        p_channel.title = meta.title;
+        p_channel.description = meta.description ? meta.description : null;
+        p_channel.copyright = meta.copyright ? meta.copyright : null;
+        p_channel.linkUrl = meta.link ? meta.link : me.channel.feedUrl;
+        p_channel.lastPublishTime = lastPublishTime;
         mx.logger.info("channel <" + p_channel.title + "> has been saved.");
         p_channel.save(p_callback);
     }

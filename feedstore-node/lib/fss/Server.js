@@ -7,8 +7,8 @@ var path = require("path");
 
 
 $import("fss.db.DbConnection");
-$import("fss.biz.ChannelManager");
 $import("fss.biz.PostManager");
+$import("fss.biz.ChannelManager");
 
 fss.Server = function()
 {

@@ -1,5 +1,7 @@
 $ns("fss.model");
 
+var mongoose = require("mongoose");
+
 fss.model.Channel = fss.db.DbConnection.registerModel("Channel", {
     cid: { type: String, index: true },
     title: String,
@@ -10,5 +12,11 @@ fss.model.Channel = fss.db.DbConnection.registerModel("Channel", {
     lastPublishTime: Date,
     lastUpdateTime: Date,
     lastUpdateStatus: Number,
-    lastSuccessfulUpdateTime: Date
+    lastSuccessfulUpdateTime: Date,
+    headnews: [ new mongoose.Schema({ 
+        pid: String,
+        title: String,
+        image: { url: String, width: Number, height: Number },
+        publishTime: { type: Date, index: true }
+    }) ]
 });

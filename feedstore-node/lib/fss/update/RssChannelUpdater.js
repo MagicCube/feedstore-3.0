@@ -56,6 +56,10 @@ fss.update.RssChannelUpdater = function()
         {
             if (isEmpty(p_error))
             {
+                p_posts.sort(function(a, b)
+                {
+                    return b.pubDate - a.pubDate;
+                });
                 me.channel.lastSuccessfulUpdateTime = new Date();
                 mx.logger.info("Successfully updated Channel <" + _getChannelTitle() + "> with " + p_posts.length + " posts in " + ((Date.now() - beginTime) / 1000) + " seconds.");
                 if (isFunction(p_callback))
@@ -90,7 +94,7 @@ fss.update.RssChannelUpdater = function()
         
         var url = me.channel.feedUrl;
         //mx.logger.debug("Updating Channel <" + _getChannelTitle() + ">...");
-        var req = request(url, {timeout: fss.settings.update.timeout, pool: true});
+        var req = request(url, {timeout: fss.settings.update.timeout, pool: false});
         req.setHeader('user-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36')
            .setHeader('accept', 'text/html,application/xhtml+xml');
         
@@ -179,6 +183,7 @@ fss.update.RssChannelUpdater = function()
                         }
 
                         post.bigContent = _getContent(post);
+                        post.imageSize = 0;
                         post.image = _getImage(post);
                         
                         posts.add(post);
@@ -191,7 +196,7 @@ fss.update.RssChannelUpdater = function()
                 {
                     var imgTasks = posts.reduce(function(p_imgTasks, p_currentPost)
                     {
-                        if (p_currentPost.image != null)
+                        if (p_currentPost.image !== null)
                         {
                             p_imgTasks.add(function(p_taskCallback)
                             {
@@ -295,30 +300,23 @@ fss.update.RssChannelUpdater = function()
     function _tryToGetImageSize(p_post, p_callback)
     {
         var url = p_post.image.url;
-        var req = request(url, {timeout: fss.settings.update.timeout, pool: true});
+        var req = request(url, {timeout: fss.settings.update.timeout, pool: false});
         var chunks = [];
         req.on('data', function(chunk)
         {
             chunks.push(chunk);
-            var buffer = Buffer.concat(chunks);
-            var size = null;
             try
             {
+                var buffer = Buffer.concat(chunks);
+                var size = null;
+            
                 size = sizeOf(buffer);
                 if (isObject(size) && size.width > 0 && size.height > 0)
                 {
                     req.abort();
                     if (isFunction(p_callback))
                     {
-                        if (size.width > 100 && size.height > 50)
-                        {
-                            p_post.image.width = size.width;
-                            p_post.image.height = size.height;
-                        }
-                        else
-                        {
-                            p_post.image = null;
-                        }
+                        _applyImageSize(p_post, size);
                         p_callback(null, 1);
                         p_callback = null;
                     }
@@ -335,25 +333,17 @@ fss.update.RssChannelUpdater = function()
             {
                 return;
             }
-            var buffer = Buffer.concat(chunks);
-            var size = null;
             try
             {
+                var buffer = Buffer.concat(chunks);
+                var size = null;
                 size = sizeOf(buffer);
                 if (isObject(size) && size.width > 0 && size.height > 0)
                 {
                     req.abort();
                     if (isFunction(p_callback))
                     {
-                        if (size.width > 100 && size.height > 50)
-                        {
-                            p_post.image.width = size.width;
-                            p_post.image.height = size.height;
-                        }
-                        else
-                        {
-                            p_post.image = null;
-                        }
+                        _applyImageSize(p_post, size);
                         p_callback(null, 1);
                         p_callback = null;
                     }
@@ -368,7 +358,7 @@ fss.update.RssChannelUpdater = function()
                 }
             }
         });
-        req.once('error', function()
+        req.on('error', function()
         {
             if (isFunction(p_callback))
             {
@@ -376,6 +366,49 @@ fss.update.RssChannelUpdater = function()
                 p_callback = null;
             }
         });
+    }
+    
+    function _applyImageSize(p_post, p_size)
+    {
+        if (p_size.width > 100 && p_size.height > 50)
+        {
+            p_post.image.width = p_size.width;
+            p_post.image.height = p_size.height;
+            
+            var ratio = p_size.width / p_size.height;
+            if (ratio > 1.1 && ratio < 2)
+            {
+                if (p_post.image.width >= 1080)
+                {
+                    p_post.imageSize = 1080;
+                }
+                else if (p_post.image.width >= 720)
+                {
+                    p_post.imageSize = 720;
+                }
+                else if (p_post.image.width >= 640)
+                {
+                    p_post.imageSize = 640;
+                }
+                else if (p_post.image.width >= 320)
+                {
+                    p_post.imageSize = 320;
+                }
+                else
+                {
+                    p_post.imageSize = 100;
+                }
+            }
+            else
+            {
+                p_post.imageSize = 1;
+            }
+        }
+        else
+        {
+            p_post.image = null;
+            p_post.imageSize = 0;
+        }
     }
     
     return me.endOfClass(arguments);

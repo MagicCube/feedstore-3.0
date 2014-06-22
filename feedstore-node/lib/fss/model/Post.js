@@ -10,6 +10,7 @@ fss.model.Post = fss.db.DbConnection.registerModel("Post", {
     author: String,
     linkUrl: String,
     image: { url: String, width: Number, height: Number },
+    imageSize: { type: Number, index: true },
     publishTime: { type: Date, index: true },
     createTime: { type: Date, default: Date.now }
 });
