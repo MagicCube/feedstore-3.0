@@ -30,8 +30,6 @@ fss.db.DbConnectionClass = function()
         }
     };
     
-    
-    
     me.connect = function()
     {
         if (me.connected)
