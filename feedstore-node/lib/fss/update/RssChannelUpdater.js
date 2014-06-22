@@ -174,14 +174,14 @@ fss.update.RssChannelUpdater = function()
                 var post = null;
                 while (post = this.read())
                 {
+                    if (me.channel.cid.indexOf("evolife.cn") != -1)
+                    {
+                        post.pubDate = post.pubDate.addHours(-14);
+                        post.pubdate = post.pubDate;
+                    }
+                    
                     if (_isNew(post))
                     {                        
-                        if (me.channel.cid.indexOf("evolife.cn") != -1)
-                        {
-                            post.pubDate = post.pubDate.addHours(-14);
-                            post.pubdate = post.pubDate;
-                        }
-
                         post.bigContent = _getContent(post);
                         post.imageSize = 0;
                         post.image = _getImage(post);
@@ -379,19 +379,19 @@ fss.update.RssChannelUpdater = function()
             var ratio = p_size.width / p_size.height;
             if (ratio > 1.1 && ratio < 2)
             {
-                if (p_post.image.width >= 1080)
+                if (p_post.image.width >= 1000)
                 {
                     p_post.imageSize = 1080;
                 }
-                else if (p_post.image.width >= 720)
+                else if (p_post.image.width >= 700)
                 {
                     p_post.imageSize = 720;
                 }
-                else if (p_post.image.width >= 640)
+                else if (p_post.image.width >= 600)
                 {
                     p_post.imageSize = 640;
                 }
-                else if (p_post.image.width >= 320)
+                else if (p_post.image.width >= 300)
                 {
                     p_post.imageSize = 320;
                 }

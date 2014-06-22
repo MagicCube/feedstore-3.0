@@ -135,9 +135,9 @@ fs.App = function()
         me.postDetailView.setPost(e.post);
         
         var width = window.innerWidth * 0.85;
-        if (width > 1280)
+        if (width > 1024)
         {
-            width = 1280;
+            width = 1024;
         }
         me.postDetailView.setFrame({
             top: 50,
