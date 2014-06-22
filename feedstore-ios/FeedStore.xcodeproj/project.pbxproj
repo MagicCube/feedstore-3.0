@@ -1,0 +1,304 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BA01E20D19570D7700B1B78E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA01E20C19570D7700B1B78E /* Images.xcassets */; };
+		BA3E590D195710C700E062DE /* FSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E590C195710C700E062DE /* FSAppDelegate.m */; };
+		BA3E5910195710D200E062DE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E590F195710D200E062DE /* main.m */; };
+		BAD100D119570B1900733224 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAD100D019570B1900733224 /* Foundation.framework */; };
+		BAD100D319570B1900733224 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAD100D219570B1900733224 /* CoreGraphics.framework */; };
+		BAD100D519570B1900733224 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAD100D419570B1900733224 /* UIKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BA01E20C19570D7700B1B78E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = "<group>"; };
+		BA3E5909195710B900E062DE /* FeedStore-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "FeedStore-Info.plist"; sourceTree = SOURCE_ROOT; };
+		BA3E590B195710C700E062DE /* FSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSAppDelegate.h; path = Source/FSAppDelegate.h; sourceTree = SOURCE_ROOT; };
+		BA3E590C195710C700E062DE /* FSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSAppDelegate.m; path = Source/FSAppDelegate.m; sourceTree = SOURCE_ROOT; };
+		BA3E590E195710D200E062DE /* FeedStore-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FeedStore-Prefix.pch"; path = "Source/FeedStore-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		BA3E590F195710D200E062DE /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/main.m; sourceTree = SOURCE_ROOT; };
+		BAD100CD19570B1900733224 /* FeedStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAD100D019570B1900733224 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BAD100D219570B1900733224 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		BAD100D419570B1900733224 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		BAD100E919570B1A00733224 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BAD100CA19570B1900733224 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BAD100D319570B1900733224 /* CoreGraphics.framework in Frameworks */,
+				BAD100D519570B1900733224 /* UIKit.framework in Frameworks */,
+				BAD100D119570B1900733224 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BA01E20B19570D5700B1B78E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BA01E20C19570D7700B1B78E /* Images.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		BAD100C419570B1900733224 = {
+			isa = PBXGroup;
+			children = (
+				BAD100D619570B1900733224 /* Source */,
+				BAD100D719570B1900733224 /* Supporting Files */,
+				BA01E20B19570D5700B1B78E /* Resources */,
+				BAD100CF19570B1900733224 /* Frameworks */,
+				BAD100CE19570B1900733224 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BAD100CE19570B1900733224 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BAD100CD19570B1900733224 /* FeedStore.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BAD100CF19570B1900733224 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BAD100D019570B1900733224 /* Foundation.framework */,
+				BAD100D219570B1900733224 /* CoreGraphics.framework */,
+				BAD100D419570B1900733224 /* UIKit.framework */,
+				BAD100E919570B1A00733224 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BAD100D619570B1900733224 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				BA3E590B195710C700E062DE /* FSAppDelegate.h */,
+				BA3E590C195710C700E062DE /* FSAppDelegate.m */,
+			);
+			name = Source;
+			path = FeedStore;
+			sourceTree = "<group>";
+		};
+		BAD100D719570B1900733224 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BA3E590F195710D200E062DE /* main.m */,
+				BA3E590E195710D200E062DE /* FeedStore-Prefix.pch */,
+				BA3E5909195710B900E062DE /* FeedStore-Info.plist */,
+			);
+			name = "Supporting Files";
+			path = FeedStore;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BAD100CC19570B1900733224 /* FeedStore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BAD100F919570B1A00733224 /* Build configuration list for PBXNativeTarget "FeedStore" */;
+			buildPhases = (
+				BAD100C919570B1900733224 /* Sources */,
+				BAD100CA19570B1900733224 /* Frameworks */,
+				BAD100CB19570B1900733224 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FeedStore;
+			productName = FeedStore;
+			productReference = BAD100CD19570B1900733224 /* FeedStore.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BAD100C519570B1900733224 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = FS;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = MagicCube;
+			};
+			buildConfigurationList = BAD100C819570B1900733224 /* Build configuration list for PBXProject "FeedStore" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BAD100C419570B1900733224;
+			productRefGroup = BAD100CE19570B1900733224 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BAD100CC19570B1900733224 /* FeedStore */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BAD100CB19570B1900733224 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA01E20D19570D7700B1B78E /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BAD100C919570B1900733224 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA3E5910195710D200E062DE /* main.m in Sources */,
+				BA3E590D195710C700E062DE /* FSAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		BAD100F719570B1A00733224 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BAD100F819570B1A00733224 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BAD100FA19570B1A00733224 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Source/FeedStore-Prefix.pch";
+				INFOPLIST_FILE = "FeedStore-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		BAD100FB19570B1A00733224 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Source/FeedStore-Prefix.pch";
+				INFOPLIST_FILE = "FeedStore-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BAD100C819570B1900733224 /* Build configuration list for PBXProject "FeedStore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BAD100F719570B1A00733224 /* Debug */,
+				BAD100F819570B1A00733224 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BAD100F919570B1A00733224 /* Build configuration list for PBXNativeTarget "FeedStore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BAD100FA19570B1A00733224 /* Debug */,
+				BAD100FB19570B1A00733224 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BAD100C519570B1900733224 /* Project object */;
+}
