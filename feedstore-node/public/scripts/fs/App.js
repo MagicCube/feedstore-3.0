@@ -109,9 +109,13 @@ fs.App = function()
             overflow: "hidden"
         }).append(_$overlay);
         _$overlay.transit({ opacity: 1 }, 100);
-        me.$container.transit({
-            scale: 0.9
-        });
+        
+        if (window.innerWidth >= 1280 && window.innerWidth <= 1920)
+        {
+            me.$container.transit({
+                scale: 0.9
+            });
+        }
     };
     
     me.hideOverlay = function()
@@ -123,9 +127,13 @@ fs.App = function()
         {
             _$overlay.detach();
         }, "fast");
-        me.$container.transit({
-            scale: 1
-        });
+        
+        if (window.innerWidth >= 1280 && window.innerWidth <= 1920)
+        {
+            me.$container.transit({
+                scale: 1
+            });
+        }
     };
     
     

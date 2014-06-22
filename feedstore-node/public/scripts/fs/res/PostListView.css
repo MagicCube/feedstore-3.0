@@ -1,5 +1,6 @@
 .PostListView
 {
+	color: #666;
 	position: relative;
 	display: block;
 	overflow-x: hidden;
@@ -65,8 +66,8 @@
 
 .PostListView .post > #info > #channel
 {
+	color: #666;
 	display: block;
-	color: black;
 	width: 150px;
 	font-size: 12px;
 	white-space: nowrap;

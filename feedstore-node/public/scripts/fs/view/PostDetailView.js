@@ -13,32 +13,21 @@ fs.view.PostDetailView = function()
     me.onshow = null;
     me.onhide = null;
     
-    var _$title = null;
-    var _$content = null;
-    var _$publishTime = null;
-    var _$channel = null;
+    var _$post = null;
+    var _$postBackup = null;
 
     base.init = me.init;
     me.init = function(p_options)
     {
         base.init(p_options);
         
-        var $post = $("<div id=post>"); 
+        _$post = _createPost();
+        me.$container.append(_$post);
         
-        var $header = $("<div id=header>");
-        _$title = $("<h1>");
-        $header.append(_$title);
-        $header.append("<hr>");
-        _$publishTime = $("<div id=publishTime>");
-        $header.append(_$publishTime);
-        _$channel = $("<div id=channel>");
-        $header.append(_$channel);
-        $post.append($header);
-        
-        _$content = $("<div id=content>");
-        $post.append(_$content);
-        
-        me.$container.append($post);
+        _$postBackup = _createPost();
+        _$postBackup.css({
+            x: 1000
+        });
         
         me.$container.on("click", _onclick);
     };
@@ -46,10 +35,7 @@ fs.view.PostDetailView = function()
     me.setPost = function(p_post)
     {
         me.post = p_post;
-        _$title.text(p_post.title);
-        _$content.html(p_post.content);
-        _$channel.text(fs.app.subscriptionAgent.channels[p_post.cid].title);
-        _$publishTime.text($format(p_post.publishTime, "M月d日 HH:mm"));
+        _renderPost(p_post, _$post);
     };
     
     me.showPost = function(p_post)
@@ -94,6 +80,35 @@ fs.view.PostDetailView = function()
             me.$container.detach();
         });
     };
+    
+    
+    
+    
+    function _renderPost(p_post, $p_post)
+    {
+        $p_post.find("h1").text(p_post.title);
+        $p_post.find("#content").html(p_post.content);
+        $p_post.find("#content").find("a").attr("target", "_blank");
+        $p_post.find("#channel").text(fs.app.subscriptionAgent.channels[p_post.cid].title);
+        $p_post.find("#publishTime").text($format(p_post.publishTime, "M月d日 HH:mm"));
+    }
+    
+    function _createPost()
+    {
+        var $post = $("<div id=post>"); 
+        
+        var $header = $("<div id=header>");
+        $header.append("<h1>");
+        $header.append("<hr>");
+        $header.append("<div id=publishTime>");
+        $header.append("<div id=channel>");
+        $post.append($header);
+
+        $post.append("<div id=content>");
+        
+        return $post;
+    }
+    
     
     function _onclick(e)
     {

@@ -9,13 +9,13 @@
 
 .PostDetailView > #post
 {
-	max-width: 1024px;
-	width: 85%;
+	max-width: 1280px;
+	width: 80%;
 	min-height: 100%;
 	margin-left: auto;
 	margin-right: auto;
 	background: white;
-	padding-top: 25px;
+	padding-top: 40px;
 	padding-left: 50px;
 	padding-right: 50px;
 	padding-bottom: 30px;
