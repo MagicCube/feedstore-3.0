@@ -140,7 +140,7 @@ fs.App = function()
             width = 1024;
         }
         me.postDetailView.setFrame({
-            top: 50,
+            top: 0,
             bottom: 0,
             left: (window.innerWidth - width) / 2,
             width: width

@@ -1,25 +1,19 @@
 .PostDetailView
 {
 	position: relative;
-	background: white;
-	padding-bottom: 40px;
-	box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+	padding-top: 40px;
+	overflow-y: auto;
+    overflow-x: hidden; 
+    -webkit-overflow-scrolling: touch;
 }
 
 .PostDetailView > #post
 {
-	position: absolute;
-	top: 8px;
-	bottom: 4px;
-	left: 0;
-	right: 0;
+	background: white;
 	padding-top: 25px;
 	padding-left: 50px;
 	padding-right: 50px;
 	padding-bottom: 30px;
-	overflow-y: auto;
-	overflow-x: hidden;	
-	-webkit-overflow-scrolling: touch;
 }
 
 .PostDetailView > #post > #header
