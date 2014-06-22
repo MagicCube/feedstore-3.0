@@ -9,6 +9,11 @@
 
 .PostDetailView > #post
 {
+	max-width: 1024px;
+	width: 85%;
+	min-height: 100%;
+	margin-left: auto;
+	margin-right: auto;
 	background: white;
 	padding-top: 25px;
 	padding-left: 50px;
@@ -34,11 +39,14 @@
 	position: absolute;
 	bottom: 0;
 	right: 0;
+	font-size: smaller;
+	font-weight: bold;
 }
 
 .PostDetailView > #post > #header > #publishTime
 {
 	color: #b4afb3;
+	font-size: smaller;
 }
 
 .PostDetailView > #post > #content, .PostDetailView > #post > #content *

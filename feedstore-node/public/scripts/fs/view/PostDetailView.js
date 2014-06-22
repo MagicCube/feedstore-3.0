@@ -10,6 +10,9 @@ fs.view.PostDetailView = function()
     
     me.post = null;
     
+    me.onshow = null;
+    me.onhide = null;
+    
     var _$title = null;
     var _$content = null;
     var _$publishTime = null;
@@ -36,6 +39,8 @@ fs.view.PostDetailView = function()
         $post.append(_$content);
         
         me.$container.append($post);
+        
+        me.$container.on("click", _onclick);
     };
     
     me.setPost = function(p_post)
@@ -46,7 +51,57 @@ fs.view.PostDetailView = function()
         _$channel.text(fs.app.subscriptionAgent.channels[p_post.cid].title);
         _$publishTime.text($format(p_post.publishTime, "M月d日 HH:mm"));
     };
+    
+    me.showPost = function(p_post)
+    {
+        me.setPost(p_post);
+        me.show();
+    };
 
+    
+    
+    me.show = function()
+    {
+        me.trigger("show");
+        me.setFrame({
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0
+        });
+        me.css({
+            scale: 1,
+            position: "fixed",
+            zIndex: 999,
+            opacity: 0,
+            y: 400
+        });
+        
+        $(document.body).append(me.$container);
+        me.$container.transit({
+            opacity: 1,
+            y: 0
+        }, "fast");
+    };
+    
+    me.hide = function()
+    {
+        me.trigger("hide");
+        me.$container.transit({
+            opacity: 0
+        }, "fast", function()
+        {
+            me.$container.detach();
+        });
+    };
+    
+    function _onclick(e)
+    {
+        if (e.target === me.$container[0])
+        {
+            me.hide();
+        }
+    }
 
     return me.endOfClass(arguments);
 };

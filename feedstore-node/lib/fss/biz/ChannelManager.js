@@ -190,17 +190,20 @@ fss.biz.ChannelManager = function()
         var tasks = [];
         p_channels.forEach(function(p_rawPosts, p_channelIndex)
         {
-            if (isEmpty(p_rawPosts) || p_rawPosts.length === 0)
+            if (isEmpty(p_rawPosts))
             {
-                return;
+                p_rawPosts = [];
             }
             
             var channel = me.channels[p_channelIndex];
-
-            tasks.add(function(p_callback)
+            
+            if (p_rawPosts.length > 0)
             {
-                _updatePosts(p_rawPosts, channel, p_callback);
-            });
+                tasks.add(function(p_callback)
+                {
+                    _updatePosts(p_rawPosts, channel, p_callback);
+                });
+            }
             
             tasks.add(function(p_callback)
             {
@@ -239,8 +242,13 @@ fss.biz.ChannelManager = function()
     
     function _updateChannel(p_rawPosts, p_channel, p_callback)
     {
-        var meta = p_rawPosts[0].meta;
-        var lastPublishTime = p_rawPosts[0].pubDate;
+        var meta = null;
+        var lastPublishTime = null;
+        if (p_rawPosts.length > 0)
+        {
+            meta = p_rawPosts[0].meta;
+            lastPublishTime = p_rawPosts[0].pubDate;
+        }
 
         if (p_channel.headnews === null)
         {
@@ -267,11 +275,17 @@ fss.biz.ChannelManager = function()
         }
         p_channel.headnews = channelHeadnews;
         
-        p_channel.title = meta.title;
-        p_channel.description = meta.description ? meta.description : null;
-        p_channel.copyright = meta.copyright ? meta.copyright : null;
-        p_channel.linkUrl = meta.link ? meta.link : me.channel.feedUrl;
-        p_channel.lastPublishTime = lastPublishTime;
+        if (meta !== null)
+        {
+            p_channel.title = meta.title;
+            p_channel.description = meta.description ? meta.description : null;
+            p_channel.copyright = meta.copyright ? meta.copyright : null;
+            p_channel.linkUrl = meta.link ? meta.link : me.channel.feedUrl;
+        }
+        if (lastPublishTime !== null)
+        {
+            p_channel.lastPublishTime = lastPublishTime;
+        }
         mx.logger.info("channel <" + p_channel.title + "> has been saved.");
         p_channel.save(p_callback);
     }
