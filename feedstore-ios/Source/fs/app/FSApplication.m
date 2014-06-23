@@ -6,16 +6,25 @@
 //  Copyright (c) 2014年 MagicCube. All rights reserved.
 //
 
-#import "FSAppDelegate.h"
+#import "FSApplication.h"
 
 #import "FSRootViewController.h"
 
-@implementation FSAppDelegate
+@implementation FSApplication
+
+static FSApplication *_sharedInstance;
 
 @synthesize rootViewController = _rootViewController;
 
++ (FSApplication *)sharedInstance
+{
+    return _sharedInstance;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    _sharedInstance = self;
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];

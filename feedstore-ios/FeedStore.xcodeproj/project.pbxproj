@@ -11,7 +11,8 @@
 		BA3E5910195710D200E062DE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E590F195710D200E062DE /* main.m */; };
 		BA4702001957DF16008981AF /* FSPostListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA4701FF1957DF16008981AF /* FSPostListViewController.m */; };
 		BA4702061957EA94008981AF /* FSPostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA4702051957EA94008981AF /* FSPostDetailViewController.m */; };
-		BA8B18781957198600F9FC71 /* FSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8B18771957198600F9FC71 /* FSAppDelegate.m */; };
+		BA47020B1957F35A008981AF /* FSApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = BA47020A1957F35A008981AF /* FSApplication.m */; };
+		BA47020F1957F646008981AF /* FSServiceAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = BA47020E1957F646008981AF /* FSServiceAgent.m */; };
 		BA8B190A1957219100F9FC71 /* FSRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8B19091957219100F9FC71 /* FSRootViewController.m */; };
 		BA8B190D195722D000F9FC71 /* FSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8B190C195722D000F9FC71 /* FSNavigationController.m */; };
 		BA8B19101957240D00F9FC71 /* FSNavigatableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8B190F1957240D00F9FC71 /* FSNavigatableViewController.m */; };
@@ -19,6 +20,8 @@
 		BAD100D119570B1900733224 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAD100D019570B1900733224 /* Foundation.framework */; };
 		BAD100D319570B1900733224 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAD100D219570B1900733224 /* CoreGraphics.framework */; };
 		BAD100D519570B1900733224 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAD100D419570B1900733224 /* UIKit.framework */; };
+		BAF4F09219581A9800BB0745 /* UIDevice+iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF4F08E19581A9800BB0745 /* UIDevice+iPad.m */; };
+		BAF4F09319581A9800BB0745 /* MXDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF4F09119581A9800BB0745 /* MXDateUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,8 +33,10 @@
 		BA4701FF1957DF16008981AF /* FSPostListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSPostListViewController.m; sourceTree = "<group>"; };
 		BA4702041957EA94008981AF /* FSPostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSPostDetailViewController.h; sourceTree = "<group>"; };
 		BA4702051957EA94008981AF /* FSPostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSPostDetailViewController.m; sourceTree = "<group>"; };
-		BA8B18761957198600F9FC71 /* FSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSAppDelegate.h; sourceTree = "<group>"; };
-		BA8B18771957198600F9FC71 /* FSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSAppDelegate.m; sourceTree = "<group>"; };
+		BA4702091957F35A008981AF /* FSApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSApplication.h; sourceTree = "<group>"; };
+		BA47020A1957F35A008981AF /* FSApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSApplication.m; sourceTree = "<group>"; };
+		BA47020D1957F646008981AF /* FSServiceAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSServiceAgent.h; sourceTree = "<group>"; };
+		BA47020E1957F646008981AF /* FSServiceAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSServiceAgent.m; sourceTree = "<group>"; };
 		BA8B19081957219100F9FC71 /* FSRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSRootViewController.h; sourceTree = "<group>"; };
 		BA8B19091957219100F9FC71 /* FSRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSRootViewController.m; sourceTree = "<group>"; };
 		BA8B190B195722D000F9FC71 /* FSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSNavigationController.h; sourceTree = "<group>"; };
@@ -45,6 +50,12 @@
 		BAD100D219570B1900733224 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		BAD100D419570B1900733224 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BAD100E919570B1A00733224 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		BAF4F08A19581A9800BB0745 /* prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prefix.h; sourceTree = "<group>"; };
+		BAF4F08C19581A9800BB0745 /* UIColor+.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+.h"; sourceTree = "<group>"; };
+		BAF4F08D19581A9800BB0745 /* UIDevice+iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+iPad.h"; sourceTree = "<group>"; };
+		BAF4F08E19581A9800BB0745 /* UIDevice+iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+iPad.m"; sourceTree = "<group>"; };
+		BAF4F09019581A9800BB0745 /* MXDateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXDateUtil.h; sourceTree = "<group>"; };
+		BAF4F09119581A9800BB0745 /* MXDateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXDateUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,25 +80,41 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		BA4702071957F303008981AF /* service */ = {
+			isa = PBXGroup;
+			children = (
+				BA47020D1957F646008981AF /* FSServiceAgent.h */,
+				BA47020E1957F646008981AF /* FSServiceAgent.m */,
+			);
+			path = service;
+			sourceTree = "<group>";
+		};
+		BA4702081957F35A008981AF /* app */ = {
+			isa = PBXGroup;
+			children = (
+				BA4702091957F35A008981AF /* FSApplication.h */,
+				BA47020A1957F35A008981AF /* FSApplication.m */,
+			);
+			path = app;
+			sourceTree = "<group>";
+		};
+		BA47020C1957F625008981AF /* store */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = store;
+			sourceTree = "<group>";
+		};
 		BA8B18751957198600F9FC71 /* fs */ = {
 			isa = PBXGroup;
 			children = (
+				BA4702081957F35A008981AF /* app */,
+				BA4702071957F303008981AF /* service */,
+				BA47020C1957F625008981AF /* store */,
 				BA8B187A19571C7400F9FC71 /* ui */,
-				BA8B18761957198600F9FC71 /* FSAppDelegate.h */,
-				BA8B18771957198600F9FC71 /* FSAppDelegate.m */,
 			);
 			name = fs;
 			path = Source/fs;
-			sourceTree = SOURCE_ROOT;
-		};
-		BA8B187919571C5800F9FC71 /* mx */ = {
-			isa = PBXGroup;
-			children = (
-				BA8B187B19571C8100F9FC71 /* ui */,
-				BA8B187C19571C8100F9FC71 /* util */,
-			);
-			name = mx;
-			path = Source/mx;
 			sourceTree = SOURCE_ROOT;
 		};
 		BA8B187A19571C7400F9FC71 /* ui */ = {
@@ -107,20 +134,6 @@
 				BA8B19091957219100F9FC71 /* FSRootViewController.m */,
 			);
 			path = ui;
-			sourceTree = "<group>";
-		};
-		BA8B187B19571C8100F9FC71 /* ui */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ui;
-			sourceTree = "<group>";
-		};
-		BA8B187C19571C8100F9FC71 /* util */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = util;
 			sourceTree = "<group>";
 		};
 		BAD100C419570B1900733224 = {
@@ -157,7 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				BA8B18751957198600F9FC71 /* fs */,
-				BA8B187919571C5800F9FC71 /* mx */,
+				BAF4F08919581A9800BB0745 /* mx */,
 			);
 			name = Source;
 			path = FeedStore;
@@ -172,6 +185,36 @@
 			);
 			name = "Supporting Files";
 			path = FeedStore;
+			sourceTree = "<group>";
+		};
+		BAF4F08919581A9800BB0745 /* mx */ = {
+			isa = PBXGroup;
+			children = (
+				BAF4F08B19581A9800BB0745 /* ui */,
+				BAF4F08F19581A9800BB0745 /* util */,
+				BAF4F08A19581A9800BB0745 /* prefix.h */,
+			);
+			name = mx;
+			path = Source/mx;
+			sourceTree = SOURCE_ROOT;
+		};
+		BAF4F08B19581A9800BB0745 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				BAF4F08C19581A9800BB0745 /* UIColor+.h */,
+				BAF4F08D19581A9800BB0745 /* UIDevice+iPad.h */,
+				BAF4F08E19581A9800BB0745 /* UIDevice+iPad.m */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		BAF4F08F19581A9800BB0745 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				BAF4F09019581A9800BB0745 /* MXDateUtil.h */,
+				BAF4F09119581A9800BB0745 /* MXDateUtil.m */,
+			);
+			path = util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +246,11 @@
 				CLASSPREFIX = FS;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = MagicCube;
+				TargetAttributes = {
+					BAD100CC19570B1900733224 = {
+						DevelopmentTeam = 4JX28H9K85;
+					};
+				};
 			};
 			buildConfigurationList = BAD100C819570B1900733224 /* Build configuration list for PBXProject "FeedStore" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -240,11 +288,14 @@
 				BA4702061957EA94008981AF /* FSPostDetailViewController.m in Sources */,
 				BA4702001957DF16008981AF /* FSPostListViewController.m in Sources */,
 				BA8B19131957242E00F9FC71 /* FSHomeViewController.m in Sources */,
+				BAF4F09219581A9800BB0745 /* UIDevice+iPad.m in Sources */,
 				BA8B190D195722D000F9FC71 /* FSNavigationController.m in Sources */,
 				BA3E5910195710D200E062DE /* main.m in Sources */,
-				BA8B18781957198600F9FC71 /* FSAppDelegate.m in Sources */,
+				BA47020F1957F646008981AF /* FSServiceAgent.m in Sources */,
+				BAF4F09319581A9800BB0745 /* MXDateUtil.m in Sources */,
 				BA8B19101957240D00F9FC71 /* FSNavigatableViewController.m in Sources */,
 				BA8B190A1957219100F9FC71 /* FSRootViewController.m in Sources */,
+				BA47020B1957F35A008981AF /* FSApplication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,11 +381,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Source/FeedStore-Prefix.pch";
 				INFOPLIST_FILE = "FeedStore-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FeedStore;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -345,11 +397,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Source/FeedStore-Prefix.pch";
 				INFOPLIST_FILE = "FeedStore-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FeedStore;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

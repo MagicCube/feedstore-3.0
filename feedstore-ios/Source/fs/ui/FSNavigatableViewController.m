@@ -30,6 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     if (_contentView == nil && _contentViewController != nil)
     {
         self.contentView = _contentViewController.view;
@@ -43,7 +44,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)setContentView:(UIView *)contentView

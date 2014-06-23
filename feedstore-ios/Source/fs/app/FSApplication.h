@@ -10,9 +10,11 @@
 
 @class FSRootViewController;
 
-@interface FSAppDelegate : UIResponder <UIApplicationDelegate>
+@interface FSApplication : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic, readonly) FSRootViewController *rootViewController;
+
++ (FSApplication *)sharedInstance;
 
 @end

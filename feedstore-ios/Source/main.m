@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "FSAppDelegate.h"
+#import "FSApplication.h"
 
 int main(int argc, char * argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([FSAppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([FSApplication class]));
     }
 }
