@@ -10,4 +10,12 @@
 
 @interface FSPostListViewController : UITableViewController
 
+@property (strong, nonatomic, readonly) NSMutableArray *posts;
+@property (nonatomic) NSInteger pageIndex;
+@property (nonatomic) NSInteger pageSize;
+
+- (void)nextPageWithCallback:(void (^)())callback;
+- (void)refreshWithCallback:(void (^)())callback;
+- (void)refresh;
+
 @end

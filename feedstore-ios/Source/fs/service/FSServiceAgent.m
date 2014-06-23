@@ -9,9 +9,14 @@
 #import "FSServiceAgent.h"
 #import "AFNetworking.h"
 
+@interface FSServiceAgent()
+
+@end
+
 @implementation FSServiceAgent
 
-+ (FSServiceAgent *)sharedInstance {
++ (FSServiceAgent *)sharedInstance
+{
     static id sharedInstance = nil;
     
     static dispatch_once_t onceToken;
@@ -20,6 +25,52 @@
     });
     
     return sharedInstance;
+}
+
+- (NSString *)rootServicePath
+{
+    static NSString *rootServicePath = nil;
+    if (rootServicePath == nil)
+    {
+        rootServicePath = [NSString stringWithFormat:@"http://%@/api", [FSConfig settingWithKey:@"fs.service.host"]];
+    }
+    return rootServicePath;
+}
+
+- (NSString *)servicePathUnder:(NSString *)subpath
+{
+    return [NSString stringWithFormat:@"%@/%@", self.rootServicePath, subpath];
+}
+
+- (id)queryPostsAtPage:(NSInteger)pageIndex
+          withPageSize:(NSInteger)pageSize
+              callback:(void (^)(NSError *error, id posts))callback
+{
+    id param = @{
+        @"pageIndex": [NSNumber numberWithLong: pageIndex],
+        @"pageSize": [NSNumber numberWithLong: pageSize]
+    };
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:[self servicePathUnder:@"posts"]
+      parameters: param
+     
+    success:^(AFHTTPRequestOperation *operation, id responseObject)
+    {
+        if (callback != nil)
+        {
+            callback(nil, responseObject);
+        }
+    }
+     
+    failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    {
+        if (callback != nil)
+        {
+            callback(error, nil);
+        }
+    }];
+    
+    return nil;
 }
 
 @end

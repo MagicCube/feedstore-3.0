@@ -12,6 +12,13 @@
 
 @interface FSServiceAgent : NSObject
 
+@property (copy, nonatomic, readonly) NSString *rootServicePath;
+
 + (FSServiceAgent *)sharedInstance;
+
+- (NSString *)servicePathUnder:(NSString *)subpath;
+- (id)queryPostsAtPage:(NSInteger)pageIndex
+          withPageSize:(NSInteger)pageSize
+              callback:(void (^)(NSError *error, id posts))callback;
 
 @end

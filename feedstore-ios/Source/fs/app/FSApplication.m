@@ -10,6 +10,7 @@
 
 #import "FSRootViewController.h"
 
+
 @implementation FSApplication
 
 static FSApplication *_sharedInstance;
