@@ -7,6 +7,7 @@
 //
 
 #import "FSServiceAgent.h"
+#import "AFNetworking.h"
 
 @implementation FSServiceAgent
 
