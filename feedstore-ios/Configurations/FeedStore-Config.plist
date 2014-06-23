@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>fs.service.host</key>
-	<string>192.168.1.6:18080</string>
+	<string>feedstore.duapp.com</string>
 </dict>
 </plist>

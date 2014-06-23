@@ -8,7 +8,8 @@
 
 #import "FSPostListViewController.h"
 #import "FSPostListViewCell.h"
-#import "FSPostListViewSimpleCell.h"
+#import "FSPostListViewTextCell.h"
+#import "FSPostListViewTextPhotoCell.h"
 #import "FSServiceAgent.h"
 
 @interface FSPostListViewController ()
@@ -27,7 +28,7 @@
     if (self) {
         _posts = [NSMutableArray arrayWithArray:@[]];
         _pageIndex = 0;
-        _pageSize = 50;
+        _pageSize = 20;
     }
     return self;
 }
@@ -68,19 +69,31 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 96;
+    return 112;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FSPostListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier"];
-
-    if (cell == nil)
-    {
-        cell = [[FSPostListViewSimpleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FSPostListViewSimpleCell"];
-    }
-    
     NSDictionary *post = _posts[indexPath.row];
+    
+    FSPostListViewCell *cell = nil;
+    if (post[@"image"] != nil)
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"FSPostListViewTextPhotoCell"];
+        if (cell == nil)
+        {
+            cell = [[FSPostListViewTextPhotoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FSPostListViewTextPhotoCell"];
+        }
+    }
+    else
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"FSPostListViewTextCell"];
+        if (cell == nil)
+        {
+            cell = [[FSPostListViewTextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FSPostListViewTextCell"];
+        }
+    }
+   
     [cell renderPost:post];
     
     return cell;

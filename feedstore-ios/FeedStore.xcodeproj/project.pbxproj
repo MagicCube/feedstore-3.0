@@ -11,7 +11,7 @@
 		BA01E20D19570D7700B1B78E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA01E20C19570D7700B1B78E /* Images.xcassets */; };
 		BA171A3D19582B70002BD5B6 /* FSConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = BA171A3C19582B70002BD5B6 /* FSConfig.m */; };
 		BA171A4119585B36002BD5B6 /* FSPostListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA171A4019585B36002BD5B6 /* FSPostListViewCell.m */; };
-		BA171A4419585CFF002BD5B6 /* FSPostListViewSimpleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA171A4319585CFF002BD5B6 /* FSPostListViewSimpleCell.m */; };
+		BA171A4419585CFF002BD5B6 /* FSPostListViewTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA171A4319585CFF002BD5B6 /* FSPostListViewTextCell.m */; };
 		BA171A48195864C2002BD5B6 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = BA171A47195864C2002BD5B6 /* NSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BA171A4C195865A9002BD5B6 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = BA171A4B195865A9002BD5B6 /* GTMNSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BA3E5910195710D200E062DE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E590F195710D200E062DE /* main.m */; };
@@ -29,6 +29,7 @@
 		BAF4F09219581A9800BB0745 /* UIDevice+iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF4F08E19581A9800BB0745 /* UIDevice+iPad.m */; };
 		BAF4F09319581A9800BB0745 /* MXDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF4F09119581A9800BB0745 /* MXDateUtil.m */; };
 		BAF4F096195827C700BB0745 /* FeedStore-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = BAF4F095195827C700BB0745 /* FeedStore-Config.plist */; };
+		BAF951DD195877EC00473CCF /* FSPostListViewTextPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF951DC195877EC00473CCF /* FSPostListViewTextPhotoCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,8 +39,8 @@
 		BA171A3C19582B70002BD5B6 /* FSConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSConfig.m; sourceTree = "<group>"; };
 		BA171A3F19585B36002BD5B6 /* FSPostListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSPostListViewCell.h; sourceTree = "<group>"; };
 		BA171A4019585B36002BD5B6 /* FSPostListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSPostListViewCell.m; sourceTree = "<group>"; };
-		BA171A4219585CFF002BD5B6 /* FSPostListViewSimpleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSPostListViewSimpleCell.h; sourceTree = "<group>"; };
-		BA171A4319585CFF002BD5B6 /* FSPostListViewSimpleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSPostListViewSimpleCell.m; sourceTree = "<group>"; };
+		BA171A4219585CFF002BD5B6 /* FSPostListViewTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSPostListViewTextCell.h; sourceTree = "<group>"; };
+		BA171A4319585CFF002BD5B6 /* FSPostListViewTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSPostListViewTextCell.m; sourceTree = "<group>"; };
 		BA171A46195864C2002BD5B6 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
 		BA171A47195864C2002BD5B6 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		BA171A49195865A9002BD5B6 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
@@ -76,6 +77,8 @@
 		BAF4F09019581A9800BB0745 /* MXDateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXDateUtil.h; sourceTree = "<group>"; };
 		BAF4F09119581A9800BB0745 /* MXDateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXDateUtil.m; sourceTree = "<group>"; };
 		BAF4F095195827C700BB0745 /* FeedStore-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "FeedStore-Config.plist"; sourceTree = "<group>"; };
+		BAF951DB195877EC00473CCF /* FSPostListViewTextPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSPostListViewTextPhotoCell.h; sourceTree = "<group>"; };
+		BAF951DC195877EC00473CCF /* FSPostListViewTextPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSPostListViewTextPhotoCell.m; sourceTree = "<group>"; };
 		C5BC505132D04F0A973B1099 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,8 +119,10 @@
 			children = (
 				BA171A3F19585B36002BD5B6 /* FSPostListViewCell.h */,
 				BA171A4019585B36002BD5B6 /* FSPostListViewCell.m */,
-				BA171A4219585CFF002BD5B6 /* FSPostListViewSimpleCell.h */,
-				BA171A4319585CFF002BD5B6 /* FSPostListViewSimpleCell.m */,
+				BA171A4219585CFF002BD5B6 /* FSPostListViewTextCell.h */,
+				BA171A4319585CFF002BD5B6 /* FSPostListViewTextCell.m */,
+				BAF951DB195877EC00473CCF /* FSPostListViewTextPhotoCell.h */,
+				BAF951DC195877EC00473CCF /* FSPostListViewTextPhotoCell.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -390,6 +395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA4702061957EA94008981AF /* FSPostDetailViewController.m in Sources */,
+				BAF951DD195877EC00473CCF /* FSPostListViewTextPhotoCell.m in Sources */,
 				BA4702001957DF16008981AF /* FSPostListViewController.m in Sources */,
 				BA8B19131957242E00F9FC71 /* FSHomeViewController.m in Sources */,
 				BAF4F09219581A9800BB0745 /* UIDevice+iPad.m in Sources */,
@@ -397,7 +403,7 @@
 				BA3E5910195710D200E062DE /* main.m in Sources */,
 				BA47020F1957F646008981AF /* FSServiceAgent.m in Sources */,
 				BA171A48195864C2002BD5B6 /* NSString+HTML.m in Sources */,
-				BA171A4419585CFF002BD5B6 /* FSPostListViewSimpleCell.m in Sources */,
+				BA171A4419585CFF002BD5B6 /* FSPostListViewTextCell.m in Sources */,
 				BAF4F09319581A9800BB0745 /* MXDateUtil.m in Sources */,
 				BA171A3D19582B70002BD5B6 /* FSConfig.m in Sources */,
 				BA171A4119585B36002BD5B6 /* FSPostListViewCell.m in Sources */,

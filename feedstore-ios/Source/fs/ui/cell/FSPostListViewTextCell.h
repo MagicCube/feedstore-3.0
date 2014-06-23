@@ -8,7 +8,7 @@
 
 #import "FSPostListViewCell.h"
 
-@interface FSPostListViewSimpleCell : FSPostListViewCell
+@interface FSPostListViewTextCell : FSPostListViewCell
 
 @property (strong, nonatomic) UILabel *contentLabel;
 

@@ -6,9 +6,9 @@
 //  Copyright (c) 2014年 MagicCube. All rights reserved.
 //
 
-#import "FSPostListViewSimpleCell.h"
+#import "FSPostListViewTextCell.h"
 
-@implementation FSPostListViewSimpleCell
+@implementation FSPostListViewTextCell
 
 @synthesize contentLabel = _contentLabel;
 
@@ -17,7 +17,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
-        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 26, self.frame.size.width - 20, 68)];
+        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 34, self.frame.size.width - 20, 68)];
         _contentLabel.textColor = rgbhex(0x252d4b);
         _contentLabel.font = [UIFont systemFontOfSize:13];
         _contentLabel.numberOfLines = 0;
@@ -32,7 +32,7 @@
 {
     [super renderPost:post];
     
-    NSInteger maxLength = 75;
+    NSInteger maxLength = 100;
     NSString *text = [self flattenHTML:post[@"content"]];
     if (text.length > maxLength)
     {

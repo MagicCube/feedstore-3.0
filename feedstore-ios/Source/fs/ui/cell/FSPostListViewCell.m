@@ -18,9 +18,9 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, self.frame.size.width - 20, 16)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 18, self.frame.size.width - 20, 17)];
         _titleLabel.textColor = rgbhex(0X002d9b);
-        _titleLabel.font = [UIFont systemFontOfSize:16];
+        _titleLabel.font = [UIFont systemFontOfSize:17];
         [self addSubview:_titleLabel];
     }
     return self;
@@ -36,6 +36,15 @@
     _titleLabel.text = post[@"title"];
 }
 
+/*
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect
+ {
+ // Drawing code
+ }
+ */
+
 
 
 - (NSString *)flattenHTML:(NSString *)html
@@ -43,7 +52,10 @@
     NSString *text = [html stringByStrippingTags];
     text = [text stringByDecodingHTMLEntities];
     text = [text stringByRemovingNewLinesAndWhitespace];
+    text = [text stringByReplacingOccurrencesOfString:@"　" withString:@""];
     return text;
 }
+
+
 
 @end
