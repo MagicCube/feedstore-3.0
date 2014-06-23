@@ -46,6 +46,7 @@
           withPageSize:(NSInteger)pageSize
               callback:(void (^)(NSError *error, id posts))callback
 {
+    NSLog(@"Querying post...");
     id param = @{
         @"pageIndex": [NSNumber numberWithLong: pageIndex],
         @"pageSize": [NSNumber numberWithLong: pageSize]
@@ -56,6 +57,7 @@
      
     success:^(AFHTTPRequestOperation *operation, id responseObject)
     {
+        NSLog(@"DONE");
         if (callback != nil)
         {
             callback(nil, responseObject);
@@ -64,6 +66,7 @@
      
     failure:^(AFHTTPRequestOperation *operation, NSError *error)
     {
+        NSLog(@"FAIL");
         if (callback != nil)
         {
             callback(error, nil);

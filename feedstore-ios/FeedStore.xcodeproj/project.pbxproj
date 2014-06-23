@@ -10,6 +10,10 @@
 		8C1B215D75E24F2785795AF4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 223DA25979A6424882E67219 /* libPods.a */; };
 		BA01E20D19570D7700B1B78E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA01E20C19570D7700B1B78E /* Images.xcassets */; };
 		BA171A3D19582B70002BD5B6 /* FSConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = BA171A3C19582B70002BD5B6 /* FSConfig.m */; };
+		BA171A4119585B36002BD5B6 /* FSPostListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA171A4019585B36002BD5B6 /* FSPostListViewCell.m */; };
+		BA171A4419585CFF002BD5B6 /* FSPostListViewSimpleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA171A4319585CFF002BD5B6 /* FSPostListViewSimpleCell.m */; };
+		BA171A48195864C2002BD5B6 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = BA171A47195864C2002BD5B6 /* NSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BA171A4C195865A9002BD5B6 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = BA171A4B195865A9002BD5B6 /* GTMNSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BA3E5910195710D200E062DE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E590F195710D200E062DE /* main.m */; };
 		BA4702001957DF16008981AF /* FSPostListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA4701FF1957DF16008981AF /* FSPostListViewController.m */; };
 		BA4702061957EA94008981AF /* FSPostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA4702051957EA94008981AF /* FSPostDetailViewController.m */; };
@@ -32,6 +36,15 @@
 		BA01E20C19570D7700B1B78E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = "<group>"; };
 		BA171A3B19582B70002BD5B6 /* FSConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSConfig.h; sourceTree = "<group>"; };
 		BA171A3C19582B70002BD5B6 /* FSConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSConfig.m; sourceTree = "<group>"; };
+		BA171A3F19585B36002BD5B6 /* FSPostListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSPostListViewCell.h; sourceTree = "<group>"; };
+		BA171A4019585B36002BD5B6 /* FSPostListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSPostListViewCell.m; sourceTree = "<group>"; };
+		BA171A4219585CFF002BD5B6 /* FSPostListViewSimpleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSPostListViewSimpleCell.h; sourceTree = "<group>"; };
+		BA171A4319585CFF002BD5B6 /* FSPostListViewSimpleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSPostListViewSimpleCell.m; sourceTree = "<group>"; };
+		BA171A46195864C2002BD5B6 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
+		BA171A47195864C2002BD5B6 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
+		BA171A49195865A9002BD5B6 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		BA171A4A195865A9002BD5B6 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
+		BA171A4B195865A9002BD5B6 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
 		BA3E5909195710B900E062DE /* FeedStore-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "FeedStore-Info.plist"; sourceTree = SOURCE_ROOT; };
 		BA3E590E195710D200E062DE /* FeedStore-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FeedStore-Prefix.pch"; path = "Source/FeedStore-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		BA3E590F195710D200E062DE /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/main.m; sourceTree = SOURCE_ROOT; };
@@ -98,6 +111,29 @@
 			path = conf;
 			sourceTree = "<group>";
 		};
+		BA171A3E19585A50002BD5B6 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				BA171A3F19585B36002BD5B6 /* FSPostListViewCell.h */,
+				BA171A4019585B36002BD5B6 /* FSPostListViewCell.m */,
+				BA171A4219585CFF002BD5B6 /* FSPostListViewSimpleCell.h */,
+				BA171A4319585CFF002BD5B6 /* FSPostListViewSimpleCell.m */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		BA171A45195864C2002BD5B6 /* ext */ = {
+			isa = PBXGroup;
+			children = (
+				BA171A49195865A9002BD5B6 /* GTMDefines.h */,
+				BA171A4A195865A9002BD5B6 /* GTMNSString+HTML.h */,
+				BA171A4B195865A9002BD5B6 /* GTMNSString+HTML.m */,
+				BA171A46195864C2002BD5B6 /* NSString+HTML.h */,
+				BA171A47195864C2002BD5B6 /* NSString+HTML.m */,
+			);
+			path = ext;
+			sourceTree = "<group>";
+		};
 		BA4702071957F303008981AF /* service */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +164,7 @@
 			children = (
 				BA4702081957F35A008981AF /* app */,
 				BA171A3A19582B38002BD5B6 /* conf */,
+				BA171A45195864C2002BD5B6 /* ext */,
 				BA4702071957F303008981AF /* service */,
 				BA47020C1957F625008981AF /* store */,
 				BA8B187A19571C7400F9FC71 /* ui */,
@@ -139,6 +176,7 @@
 		BA8B187A19571C7400F9FC71 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				BA171A3E19585A50002BD5B6 /* cell */,
 				BA8B19111957242E00F9FC71 /* FSHomeViewController.h */,
 				BA8B19121957242E00F9FC71 /* FSHomeViewController.m */,
 				BA8B190E1957240D00F9FC71 /* FSNavigatableViewController.h */,
@@ -358,9 +396,13 @@
 				BA8B190D195722D000F9FC71 /* FSNavigationController.m in Sources */,
 				BA3E5910195710D200E062DE /* main.m in Sources */,
 				BA47020F1957F646008981AF /* FSServiceAgent.m in Sources */,
+				BA171A48195864C2002BD5B6 /* NSString+HTML.m in Sources */,
+				BA171A4419585CFF002BD5B6 /* FSPostListViewSimpleCell.m in Sources */,
 				BAF4F09319581A9800BB0745 /* MXDateUtil.m in Sources */,
 				BA171A3D19582B70002BD5B6 /* FSConfig.m in Sources */,
+				BA171A4119585B36002BD5B6 /* FSPostListViewCell.m in Sources */,
 				BA8B19101957240D00F9FC71 /* FSNavigatableViewController.m in Sources */,
+				BA171A4C195865A9002BD5B6 /* GTMNSString+HTML.m in Sources */,
 				BA8B190A1957219100F9FC71 /* FSRootViewController.m in Sources */,
 				BA47020B1957F35A008981AF /* FSApplication.m in Sources */,
 			);

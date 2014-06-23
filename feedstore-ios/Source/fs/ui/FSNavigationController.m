@@ -29,7 +29,7 @@
     
     self.navigationBar.barTintColor = rgbhex(0x0079c7);
     self.navigationBar.translucent = YES;
-    [self.navigationBar setTitleTextAttributes:@{ NSForegroundColorAttributeName: [UIColor whiteColor] }];
+    self.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName: [UIColor whiteColor] };
 }
 
 - (void)didReceiveMemoryWarning

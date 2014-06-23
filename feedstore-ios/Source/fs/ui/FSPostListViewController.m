@@ -7,6 +7,8 @@
 //
 
 #import "FSPostListViewController.h"
+#import "FSPostListViewCell.h"
+#import "FSPostListViewSimpleCell.h"
 #import "FSServiceAgent.h"
 
 @interface FSPostListViewController ()
@@ -64,22 +66,25 @@
     return _posts.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 96;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier"];
+    FSPostListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier"];
 
     if (cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"reuseIdentifier"];
+        cell = [[FSPostListViewSimpleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FSPostListViewSimpleCell"];
     }
     
     NSDictionary *post = _posts[indexPath.row];
-    cell.textLabel.text = post[@"title"];
+    [cell renderPost:post];
     
     return cell;
 }
-
-
 
 
 - (void)nextPageWithCallback:(void (^)())callback
