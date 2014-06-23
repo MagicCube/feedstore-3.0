@@ -1,30 +1,24 @@
 //
-//  FSHomeViewController.m
+//  FSPostDetailViewController.m
 //  FeedStore
 //
-//  Created by Henry on 14-6-22.
+//  Created by Henry on 14-6-23.
 //  Copyright (c) 2014年 MagicCube. All rights reserved.
 //
 
-#import "FSHomeViewController.h"
-#import "FSPostListViewController.h"
+#import "FSPostDetailViewController.h"
 
-@interface FSHomeViewController ()
+@interface FSPostDetailViewController ()
 
 @end
 
-@implementation FSHomeViewController
-
-@synthesize postListViewController = _postListViewController;
+@implementation FSPostDetailViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"FeedStore";
-        
-        _postListViewController = [[FSPostListViewController alloc] init];
-        self.contentViewController = _postListViewController;
+        self.title = @"详情";
     }
     return self;
 }
@@ -32,6 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning

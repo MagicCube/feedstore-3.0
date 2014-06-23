@@ -10,6 +10,7 @@
 
 #import "FSNavigationController.h"
 #import "FSHomeViewController.h"
+#import "FSPostDetailViewController.h"
 
 @interface FSRootViewController ()
 
@@ -28,6 +29,8 @@
         _homeViewController = [[FSHomeViewController alloc] init];
         
         _navigationController = [[FSNavigationController alloc] initWithRootViewController:_homeViewController];
+        FSPostDetailViewController *detailViewController = [[FSPostDetailViewController alloc] init];
+        [_navigationController pushViewController:detailViewController animated:YES];
     }
     return self;
 }

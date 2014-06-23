@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		BA01E20D19570D7700B1B78E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA01E20C19570D7700B1B78E /* Images.xcassets */; };
 		BA3E5910195710D200E062DE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E590F195710D200E062DE /* main.m */; };
+		BA4702001957DF16008981AF /* FSPostListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA4701FF1957DF16008981AF /* FSPostListViewController.m */; };
+		BA4702061957EA94008981AF /* FSPostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA4702051957EA94008981AF /* FSPostDetailViewController.m */; };
 		BA8B18781957198600F9FC71 /* FSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8B18771957198600F9FC71 /* FSAppDelegate.m */; };
 		BA8B190A1957219100F9FC71 /* FSRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8B19091957219100F9FC71 /* FSRootViewController.m */; };
 		BA8B190D195722D000F9FC71 /* FSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8B190C195722D000F9FC71 /* FSNavigationController.m */; };
@@ -24,6 +26,10 @@
 		BA3E5909195710B900E062DE /* FeedStore-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "FeedStore-Info.plist"; sourceTree = SOURCE_ROOT; };
 		BA3E590E195710D200E062DE /* FeedStore-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FeedStore-Prefix.pch"; path = "Source/FeedStore-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		BA3E590F195710D200E062DE /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/main.m; sourceTree = SOURCE_ROOT; };
+		BA4701FE1957DF16008981AF /* FSPostListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSPostListViewController.h; sourceTree = "<group>"; };
+		BA4701FF1957DF16008981AF /* FSPostListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSPostListViewController.m; sourceTree = "<group>"; };
+		BA4702041957EA94008981AF /* FSPostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSPostDetailViewController.h; sourceTree = "<group>"; };
+		BA4702051957EA94008981AF /* FSPostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSPostDetailViewController.m; sourceTree = "<group>"; };
 		BA8B18761957198600F9FC71 /* FSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSAppDelegate.h; sourceTree = "<group>"; };
 		BA8B18771957198600F9FC71 /* FSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSAppDelegate.m; sourceTree = "<group>"; };
 		BA8B19081957219100F9FC71 /* FSRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSRootViewController.h; sourceTree = "<group>"; };
@@ -93,6 +99,10 @@
 				BA8B190F1957240D00F9FC71 /* FSNavigatableViewController.m */,
 				BA8B190B195722D000F9FC71 /* FSNavigationController.h */,
 				BA8B190C195722D000F9FC71 /* FSNavigationController.m */,
+				BA4702041957EA94008981AF /* FSPostDetailViewController.h */,
+				BA4702051957EA94008981AF /* FSPostDetailViewController.m */,
+				BA4701FE1957DF16008981AF /* FSPostListViewController.h */,
+				BA4701FF1957DF16008981AF /* FSPostListViewController.m */,
 				BA8B19081957219100F9FC71 /* FSRootViewController.h */,
 				BA8B19091957219100F9FC71 /* FSRootViewController.m */,
 			);
@@ -227,6 +237,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA4702061957EA94008981AF /* FSPostDetailViewController.m in Sources */,
+				BA4702001957DF16008981AF /* FSPostListViewController.m in Sources */,
 				BA8B19131957242E00F9FC71 /* FSHomeViewController.m in Sources */,
 				BA8B190D195722D000F9FC71 /* FSNavigationController.m in Sources */,
 				BA3E5910195710D200E062DE /* main.m in Sources */,
