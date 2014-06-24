@@ -10,19 +10,19 @@
 
 @interface FSNavigatableViewController ()
 
-- (void)_changeContentView;
+- (void)changeContentViewController;
 
 @end
 
 @implementation FSNavigatableViewController
 
-@synthesize contentView = _contentView;
+@synthesize contentViewController = _contentViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
@@ -31,14 +31,8 @@
 {
     [super viewDidLoad];
     
-    if (_contentView == nil && _contentViewController != nil)
-    {
-        self.contentView = _contentViewController.view;
-    }
-    else
-    {
-        [self _changeContentView];
-    }
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self changeContentViewController];
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,23 +40,31 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)setContentView:(UIView *)contentView
+- (UIView *)contentView
 {
-    _contentView = contentView;
-    
-    [self _changeContentView];
+    return _contentViewController.view;
 }
 
-- (void)_changeContentView
+- (void)setContentViewController:(UIViewController *)contentViewController
+{
+    _contentViewController = contentViewController;
+    [self changeContentViewController];
+}
+
+- (void)changeContentViewController
 {
     while (self.view.subviews.count > 0)
     {
         [self.view.subviews[0] removeFromSuperview];
     }
-    
-    CGFloat top = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
-    _contentView.frame = CGRectMake(0, top, self.navigationController.navigationBar.frame.size.width, self.navigationController.view.frame.size.height - top);
-    [self.view addSubview:_contentView];
+ 
+    if (_contentViewController != nil)
+    {
+        [self.view addSubview:self.contentView];
+        [self addChildViewController:_contentViewController];
+
+        self.contentView.frame = CGRectMake(0, 0, self.navigationController.navigationBar.frame.size.width, self.navigationController.view.frame.size.height);
+    }
 }
 
 @end

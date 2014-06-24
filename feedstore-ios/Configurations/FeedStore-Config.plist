@@ -5,6 +5,6 @@
 	<key>fs.ui.postlist.pagesize</key>
 	<integer>50</integer>
 	<key>fs.service.host</key>
-	<string>feedstore.duapp.com</string>
+	<string>localhost:18080</string>
 </dict>
 </plist>

@@ -10,7 +10,7 @@
 
 @interface FSNavigatableViewController : UIViewController
 
-@property (strong, nonatomic) UIView *contentView;
+@property (strong, nonatomic, readonly) UIView *contentView;
 @property (strong, nonatomic) UIViewController *contentViewController;
 
 @end

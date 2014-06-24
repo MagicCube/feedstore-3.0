@@ -7,7 +7,14 @@
 //
 
 #import "FSNavigatableViewController.h"
+#import "DTCoreText.h"
+@class DTAttributedLabel;
 
-@interface FSPostDetailViewController : FSNavigatableViewController
+@interface FSPostDetailViewController : FSNavigatableViewController <DTAttributedTextContentViewDelegate>
+
+@property (strong, nonatomic, readonly) DTAttributedLabel *contentLabel;
+@property (strong, nonatomic, readonly) UIScrollView *scrollView;
+
+- (void)renderPost:(NSMutableDictionary *)post;
 
 @end

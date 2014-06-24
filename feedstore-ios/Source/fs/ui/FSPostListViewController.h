@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+@class FSPostDetailViewController;
 
 @interface FSPostListViewController : UITableViewController
 
-@property (strong, nonatomic, readonly) NSMutableArray *posts;
 @property (nonatomic) NSInteger pageIndex;
 @property (nonatomic) NSInteger pageSize;
+@property (strong, nonatomic, readonly) NSMutableArray *posts;
+@property (strong, nonatomic, readonly) FSPostDetailViewController *detailViewController;
 
 - (void)nextPageWithCallback:(void (^)())callback;
 - (void)refreshWithCallback:(void (^)())callback;

@@ -7,6 +7,7 @@
 //
 
 #import "NSString+HTML.h"
+#import "FSPostDetailViewController.h"
 #import "FSPostListViewController.h"
 #import "FSPostListViewCell.h"
 #import "FSPostListViewGallaryCell.h"
@@ -23,9 +24,10 @@
 
 @implementation FSPostListViewController
 
-@synthesize posts = _posts;
 @synthesize pageIndex = _pageIndex;
 @synthesize pageSize = _pageSize;
+@synthesize posts = _posts;
+@synthesize detailViewController = _detailViewController;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -162,6 +164,18 @@
     [cell renderPost:post];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSMutableDictionary *post = _posts[indexPath.row];
+    if (_detailViewController == nil)
+    {
+        _detailViewController = [[FSPostDetailViewController alloc] init];
+    }
+    [self.navigationController pushViewController:_detailViewController animated:YES];
+    [_detailViewController renderPost:post];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

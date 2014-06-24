@@ -21,8 +21,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _postListViewController = [[FSPostListViewController alloc] init];
-        self.contentViewController = _postListViewController;
         self.title = @"FeedStore";
     }
     return self;
@@ -31,6 +29,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    _postListViewController = [[FSPostListViewController alloc] init];
+    self.contentViewController = _postListViewController;
 }
 
 - (void)didReceiveMemoryWarning
