@@ -7,7 +7,6 @@
 //
 
 #import "FSPostListViewCell.h"
-#import "NSString+HTML.h"
 
 @implementation FSPostListViewCell
 
@@ -31,7 +30,7 @@
     [super setSelected:selected animated:animated];
 }
 
-- (void)renderPost:(NSDictionary *)post
+- (void)renderPost:(NSMutableDictionary *)post
 {
     _titleLabel.text = post[@"title"];
 }
@@ -44,18 +43,5 @@
  // Drawing code
  }
  */
-
-
-
-- (NSString *)flattenHTML:(NSString *)html
-{
-    NSString *text = [html stringByStrippingTags];
-    text = [text stringByDecodingHTMLEntities];
-    text = [text stringByRemovingNewLinesAndWhitespace];
-    text = [text stringByReplacingOccurrencesOfString:@"　" withString:@""];
-    return text;
-}
-
-
 
 @end

@@ -9,6 +9,10 @@
 #import "FSPostListViewTextPhotoCell.h"
 #import "UIImageView+AFNetworking.h"
 
+@interface FSPostListViewTextPhotoCell()
+
+@end
+
 @implementation FSPostListViewTextPhotoCell
 
 @synthesize photoView = _photoView;
@@ -23,14 +27,16 @@
         _photoView.backgroundColor = rgbhex(0xdddddd);
         [self addSubview:_photoView];
         
-        self.contentLabel.frame = CGRectMake(10 + photoWidth + 10, 34, self.frame.size.width - 20 - _photoView.frame.size.width - 10, photoWidth);
+        self.contentLabel.frame = CGRectMake(10 + photoWidth + 10, 35, self.frame.size.width - 20 - _photoView.frame.size.width - 10, photoWidth);
     }
     return self;
 }
 
-- (void)renderPost:(NSDictionary *)post
+- (void)renderPost:(NSMutableDictionary *)post
 {
     [super renderPost:post];
+    
+    _photoView.image = nil;
     
     NSURL *url = [NSURL URLWithString:post[@"image"][@"url"]];
     [_photoView setImageWithURL:url];

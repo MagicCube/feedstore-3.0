@@ -52,7 +52,7 @@
         @"pageSize": [NSNumber numberWithLong: pageSize]
     };
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:[self servicePathUnder:@"posts"]
+    AFHTTPRequestOperation *operation = [manager GET:[self servicePathUnder:@"posts"]
       parameters: param
      
     success:^(AFHTTPRequestOperation *operation, id responseObject)
@@ -72,6 +72,8 @@
             callback(error, nil);
         }
     }];
+    
+    operation.responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions: NSJSONReadingMutableContainers];
     
     return nil;
 }

@@ -6,13 +6,18 @@
 //  Copyright (c) 2014年 MagicCube. All rights reserved.
 //
 
+#import "NSString+HTML.h"
 #import "FSPostListViewController.h"
 #import "FSPostListViewCell.h"
+#import "FSPostListViewGallaryCell.h"
 #import "FSPostListViewTextCell.h"
 #import "FSPostListViewTextPhotoCell.h"
 #import "FSServiceAgent.h"
 
 @interface FSPostListViewController ()
+
+- (Class)tableView:(UITableView *)tableView classForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (NSString *)flattenHTML:(NSString *)html;
 
 @end
 
@@ -28,7 +33,7 @@
     if (self) {
         _posts = [NSMutableArray arrayWithArray:@[]];
         _pageIndex = 0;
-        _pageSize = 20;
+        _pageSize = [((NSNumber *)([FSConfig settingWithKey:@"fs.ui.postlist.pagesize"])) integerValue];
     }
     return self;
 }
@@ -67,33 +72,59 @@
     return _posts.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (Class)tableView:(UITableView *)tableView classForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 112;
-}
+    NSMutableDictionary *post = _posts[indexPath.row];
+    if (post[@"textContent"] == nil)
+    {
+        post[@"textContent"] = [self flattenHTML:post[@"content"]];
+    }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSDictionary *post = _posts[indexPath.row];
-    
-    FSPostListViewCell *cell = nil;
     if (post[@"image"] != nil)
     {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"FSPostListViewTextPhotoCell"];
-        if (cell == nil)
+        NSInteger imageCount = [((NSNumber *)post[@"imageCount"]) integerValue];
+        if (imageCount >= 4)
         {
-            cell = [[FSPostListViewTextPhotoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FSPostListViewTextPhotoCell"];
+            return FSPostListViewGallaryCell.class;
+        }
+        else
+        {
+            return FSPostListViewTextPhotoCell.class;
         }
     }
     else
     {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"FSPostListViewTextCell"];
-        if (cell == nil)
-        {
-            cell = [[FSPostListViewTextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FSPostListViewTextCell"];
-        }
+        return FSPostListViewTextCell.class;
     }
-   
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Class cls = [self tableView:self.tableView classForRowAtIndexPath:indexPath];
+    if (cls == FSPostListViewTextPhotoCell.class)
+    {
+        return 112;
+    }
+    else
+    {
+        return 112;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSMutableDictionary *post = _posts[indexPath.row];
+    
+    Class cls = [self tableView:self.tableView classForRowAtIndexPath:indexPath];
+    NSString *clsName = NSStringFromClass(cls);
+    
+    FSPostListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:clsName];
+    if (cell == nil)
+    {
+        cell = [cls alloc];
+        cell = [cell initWithStyle:UITableViewCellStyleDefault reuseIdentifier:clsName];
+    }
     [cell renderPost:post];
     
     return cell;
@@ -139,6 +170,21 @@
 - (void)refresh
 {
     [self refreshWithCallback:nil];
+}
+
+
+
+
+
+
+
+- (NSString *)flattenHTML:(NSString *)html
+{
+    NSString *text = [html stringByStrippingTags];
+    text = [text stringByDecodingHTMLEntities];
+    text = [text stringByRemovingNewLinesAndWhitespace];
+    text = [text stringByReplacingOccurrencesOfString:@"　" withString:@""];
+    return text;
 }
 
 @end

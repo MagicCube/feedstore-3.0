@@ -12,7 +12,6 @@
 
 @property (strong, nonatomic) UILabel *titleLabel;
 
-- (void)renderPost:(NSDictionary *)post;
-- (NSString *)flattenHTML:(NSString *)html;
+- (void)renderPost:(NSMutableDictionary *)post;
 
 @end

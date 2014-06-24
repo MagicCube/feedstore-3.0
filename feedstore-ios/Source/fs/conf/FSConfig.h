@@ -11,7 +11,7 @@
 @interface FSConfig : NSObject
 
 + (NSDictionary *)settings;
-+ (NSString *)settingWithKey:(NSString *)key defaultValue:(NSString *)defaultValue;
-+ (NSString *)settingWithKey:(NSString *)key;
++ (id)settingWithKey:(NSString *)key defaultValue:(id)defaultValue;
++ (id)settingWithKey:(NSString *)key;
 
 @end
