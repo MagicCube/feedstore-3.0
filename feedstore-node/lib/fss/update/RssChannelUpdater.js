@@ -253,10 +253,20 @@ fss.update.RssChannelUpdater = function()
         var img = null;
         var $dom = cheerio.load(post.bigContent);
         var $img = $dom("img");
-        post.imageCount = $img.length;
+        var imageCount = 0;
+        var url = null;
+        for (var i = 0; i < $img.length; i++)
+        {
+           url = $img.eq(i).attr("src");
+           if (!url.endsWith(".img"))
+           {
+               imageCount++;
+           }
+        }
+        post.imageCount = imageCount;
         if ($img.length > 0)
         {
-            var url = $img.eq(0).attr("src");
+            url = $img.eq(0).attr("src");
             if (notEmpty(url) && !isEmptyString(url) && !url.startsWith("http://geekpark-img.qiniudn.com/uploads/anonymous_avatar"))
             {
                 img = {
