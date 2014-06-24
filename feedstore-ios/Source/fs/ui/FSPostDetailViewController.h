@@ -12,7 +12,7 @@
 
 @interface FSPostDetailViewController : FSNavigatableViewController <DTAttributedTextContentViewDelegate>
 
-@property (strong, nonatomic, readonly) DTAttributedLabel *contentLabel;
+@property (strong, nonatomic, readonly) DTAttributedTextView *contentView;
 @property (strong, nonatomic, readonly) UIScrollView *scrollView;
 
 - (void)renderPost:(NSMutableDictionary *)post;
