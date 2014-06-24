@@ -36,30 +36,6 @@
 {
     [super renderPost:post];
     
-
-    if (post[@"imageUrls"] == nil)
-    {
-        NSMutableArray *urls = [[NSMutableArray alloc] init];
-        NSString *urlString = nil;
-        NSScanner *scanner = [NSScanner scannerWithString:post[@"content"]];
-        [scanner scanUpToString:@"<img" intoString:nil];
-        while (![scanner isAtEnd])
-        {
-            [scanner scanUpToString:@"src" intoString:nil];
-            NSCharacterSet *charset = [NSCharacterSet characterSetWithCharactersInString:@"\"'"];
-            [scanner scanUpToCharactersFromSet:charset intoString:nil];
-            [scanner scanCharactersFromSet:charset intoString:nil];
-            [scanner scanUpToCharactersFromSet:charset intoString:&urlString];
-            NSURL *url = [NSURL URLWithString:urlString];
-            [urls addObject:url];
-            if (urls.count == 4)
-            {
-                break;
-            }
-        }
-        post[@"imageUrls"] = urls;
-    }
-    
     NSArray *imageUrls = post[@"imageUrls"];
     for (int i = 0; i < imageUrls.count; i++)
     {

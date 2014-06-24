@@ -85,7 +85,41 @@
         NSInteger imageCount = [((NSNumber *)post[@"imageCount"]) integerValue];
         if (imageCount >= 4)
         {
-            return FSPostListViewGallaryCell.class;
+            if (post[@"imageUrls"] == nil)
+            {
+                NSMutableArray *urls = [[NSMutableArray alloc] init];
+                NSString *urlString = nil;
+                NSScanner *scanner = [NSScanner scannerWithString:post[@"content"]];
+                [scanner scanUpToString:@"<img" intoString:nil];
+                while (![scanner isAtEnd])
+                {
+                    [scanner scanUpToString:@"src" intoString:nil];
+                    NSCharacterSet *charset = [NSCharacterSet characterSetWithCharactersInString:@"\"'"];
+                    [scanner scanUpToCharactersFromSet:charset intoString:nil];
+                    [scanner scanCharactersFromSet:charset intoString:nil];
+                    [scanner scanUpToCharactersFromSet:charset intoString:&urlString];
+                    if ([urlString hasSuffix:@".img"])
+                    {
+                        continue;
+                    }
+                    NSURL *url = [NSURL URLWithString:urlString];
+                    [urls addObject:url];
+                    if (urls.count == 4)
+                    {
+                        break;
+                    }
+                }
+                post[@"imageUrls"] = urls;
+            }
+            imageCount = ((NSMutableArray *)post[@"imageUrls"]).count;
+            if (imageCount >= 4)
+            {
+                return FSPostListViewGallaryCell.class;
+            }
+            else
+            {
+                return FSPostListViewTextPhotoCell.class;
+            }
         }
         else
         {
