@@ -23,11 +23,11 @@
     if (self)
     {
         CGFloat photoWidth = 68;
-        _photoView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 44, photoWidth, photoWidth / 4 * 3)];
+        _photoView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 46, photoWidth, photoWidth / 4 * 3)];
         _photoView.backgroundColor = rgbhex(0xdddddd);
         [self addSubview:_photoView];
         
-        self.contentLabel.frame = CGRectMake(10 + photoWidth + 10, 35, self.frame.size.width - 20 - _photoView.frame.size.width - 10, photoWidth);
+        self.contentLabel.frame = CGRectMake(10 + photoWidth + 10, 37, self.frame.size.width - 20 - _photoView.frame.size.width - 10, photoWidth);
     }
     return self;
 }

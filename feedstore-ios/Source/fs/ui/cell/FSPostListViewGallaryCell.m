@@ -22,7 +22,7 @@
         _photoViews = [[NSMutableArray alloc] init];
         for (int i =0; i < 4; i++)
         {
-            CGRect frame = CGRectMake(10 + i * (photoWidth + 10), 44, photoWidth, photoWidth / 4 * 3);
+            CGRect frame = CGRectMake(10 + i * (photoWidth + 10), 46, photoWidth, photoWidth / 4 * 3);
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
             imageView.backgroundColor = rgbhex(0xdddddd);
             [self addSubview:imageView];

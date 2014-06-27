@@ -33,6 +33,8 @@
 {
     self = [super initWithStyle:style];
     if (self) {
+        self.clearsSelectionOnViewWillAppear = YES;
+        
         _posts = [NSMutableArray arrayWithArray:@[]];
         _pageIndex = 0;
         _pageSize = [((NSNumber *)([FSConfig settingWithKey:@"fs.ui.postlist.pagesize"])) integerValue];
@@ -43,18 +45,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.clearsSelectionOnViewWillAppear = YES;
+
+    self.tableView.rowHeight = 116;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     
     [self refresh];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -140,11 +138,11 @@
     Class cls = [self tableView:self.tableView classForRowAtIndexPath:indexPath];
     if (cls == FSPostListViewTextPhotoCell.class)
     {
-        return 112;
+        return self.tableView.rowHeight;
     }
     else
     {
-        return 112;
+        return self.tableView.rowHeight;
     }
 }
 
@@ -201,9 +199,12 @@
 - (void)refreshWithCallback:(void (^)())callback
 {
     self.pageIndex = 0;
+    [_posts removeAllObjects];
+    
     [self.refreshControl beginRefreshing];
     [self nextPageWithCallback:^
     {
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         [self.refreshControl endRefreshing];
         
         [self.tableView reloadData];

@@ -44,44 +44,29 @@
     
     if (delta < 1 * MINUTE)
     {
-        return delta <= 1 ? localize(@"a second ago") : [NSString stringWithFormat:localize(@"%d seconds ago"), (int)delta];
+        return @"刚刚";
     }
     if (delta < 2 * MINUTE)
     {
-        return localize(@"a minute ago");
+        return @"一分钟前";
     }
-    if (delta < 45 * MINUTE)
+    if (delta < 60 * MINUTE)
     {
         int minutes = floor((double)delta/MINUTE);
-        return [NSString stringWithFormat:localize(@"%d minutes ago"), minutes];
-    }
-    if (delta < 90 * MINUTE)
-    {
-        return localize(@"an hour ago");
+        return [NSString stringWithFormat:@"%d 分钟前", minutes];
     }
     if (delta < 24 * HOUR)
     {
         int hours = floor((double)delta/HOUR);
-        return [NSString stringWithFormat:localize(@"%d hours ago"), hours];
+        return [NSString stringWithFormat:@"%d 小时前", hours];
     }
     if (delta < 48 * HOUR)
     {
-        return localize(@"yesterday");
-    }
-    if (delta < 30 * DAY)
-    {
-        int days = floor((double)delta/DAY);
-        return [NSString stringWithFormat:localize(@"%d days ago"), days];
-    }
-    if (delta < 12 * MONTH)
-    {
-        int months = floor((double)delta/MONTH);
-        return months <= 1 ? localize(@"one month ago") : [NSString stringWithFormat:localize(@"%d months ago"), months];
+        return @"昨天";
     }
     else
     {
-        int years = floor((double)delta/MONTH/12.0);
-        return years <= 1 ? localize(@"one year ago") : [NSString stringWithFormat:localize(@"%d years ago"), years];
+        return [MXDateUtil formatDate:date withFormatString:@"yyyy年M月d日"];
     }
 }
 
