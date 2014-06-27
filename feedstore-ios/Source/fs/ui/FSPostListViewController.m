@@ -28,6 +28,7 @@
 @synthesize pageSize = _pageSize;
 @synthesize posts = _posts;
 @synthesize detailViewController = _detailViewController;
+@synthesize footerActivityIndicatorView = _footerActivityIndicatorView;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -51,6 +52,9 @@
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+    
+    _footerActivityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.tableView.tableFooterView = _footerActivityIndicatorView;
     
     [self refresh];
 }
@@ -176,6 +180,16 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+     if (self.posts.count >= 5 && indexPath.row == self.posts.count - 1)
+     {
+         [_footerActivityIndicatorView startAnimating];
+         [self nextPageWithCallback:^{
+             [_footerActivityIndicatorView stopAnimating];
+         }];
+     }
+}
 
 - (void)nextPageWithCallback:(void (^)())callback
 {

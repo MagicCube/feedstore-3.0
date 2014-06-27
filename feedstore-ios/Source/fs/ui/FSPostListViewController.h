@@ -14,6 +14,7 @@
 @property (nonatomic) NSInteger pageIndex;
 @property (nonatomic) NSInteger pageSize;
 @property (strong, nonatomic, readonly) NSMutableArray *posts;
+@property (strong, nonatomic, readonly) UIActivityIndicatorView *footerActivityIndicatorView;
 @property (strong, nonatomic, readonly) FSPostDetailViewController *detailViewController;
 
 - (void)nextPageWithCallback:(void (^)())callback;

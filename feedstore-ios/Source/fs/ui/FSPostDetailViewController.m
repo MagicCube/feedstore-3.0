@@ -7,6 +7,7 @@
 //
 
 #import "FSPostDetailViewController.h"
+#import "TUSafariActivity.h"
 #import "UIImageView+AFNetworking.h"
 #import "DTCoreText.h"
 #import "FSWebViewController.h"
@@ -177,19 +178,11 @@
 
 - (void)rightBarButtonItem_onclick
 {
-    NSArray *items = @[ @"abc" ];
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:nil];
+    NSArray *items = @[ _linkURL ];
+    TUSafariActivity *safariActivity = [[TUSafariActivity alloc] init];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:@[ safariActivity ]];
     [activityViewController setValue:@"This is a Subject" forKey:@"subject"];
     [self presentViewController:activityViewController animated:YES completion:nil];
-    
-    /*
-    if (_webViewController == nil)
-    {
-        _webViewController = [[FSWebViewController alloc] init];
-    }
-    [self.navigationController pushViewController:_webViewController animated:YES];
-    [_webViewController navigateToURL:_linkURL];
-     */
 }
 
 @end

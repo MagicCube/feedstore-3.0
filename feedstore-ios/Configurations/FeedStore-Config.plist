@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>fs.ui.postlist.pagesize</key>
-	<integer>50</integer>
+	<integer>20</integer>
 	<key>fs.service.host</key>
 	<string>feedstore.duapp.com</string>
 </dict>
