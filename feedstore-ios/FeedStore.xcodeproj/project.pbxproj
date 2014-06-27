@@ -20,6 +20,7 @@
 		BA47020B1957F35A008981AF /* FSApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = BA47020A1957F35A008981AF /* FSApplication.m */; };
 		BA47020F1957F646008981AF /* FSServiceAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = BA47020E1957F646008981AF /* FSServiceAgent.m */; };
 		BA473496195914F700F1EC17 /* FSPostListViewGallaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA473495195914F700F1EC17 /* FSPostListViewGallaryCell.m */; };
+		BA82135B195DAE3A005C3193 /* FSOpenOriginalPostActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = BA82135A195DAE3A005C3193 /* FSOpenOriginalPostActivity.m */; };
 		BA8B190A1957219100F9FC71 /* FSRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8B19091957219100F9FC71 /* FSRootViewController.m */; };
 		BA8B190D195722D000F9FC71 /* FSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8B190C195722D000F9FC71 /* FSNavigationController.m */; };
 		BA8B19101957240D00F9FC71 /* FSNavigatableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8B190F1957240D00F9FC71 /* FSNavigatableViewController.m */; };
@@ -61,6 +62,8 @@
 		BA47020E1957F646008981AF /* FSServiceAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSServiceAgent.m; sourceTree = "<group>"; };
 		BA473494195914F700F1EC17 /* FSPostListViewGallaryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSPostListViewGallaryCell.h; sourceTree = "<group>"; };
 		BA473495195914F700F1EC17 /* FSPostListViewGallaryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSPostListViewGallaryCell.m; sourceTree = "<group>"; };
+		BA821359195DAE3A005C3193 /* FSOpenOriginalPostActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSOpenOriginalPostActivity.h; sourceTree = "<group>"; };
+		BA82135A195DAE3A005C3193 /* FSOpenOriginalPostActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSOpenOriginalPostActivity.m; sourceTree = "<group>"; };
 		BA8B19081957219100F9FC71 /* FSRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSRootViewController.h; sourceTree = "<group>"; };
 		BA8B19091957219100F9FC71 /* FSRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSRootViewController.m; sourceTree = "<group>"; };
 		BA8B190B195722D000F9FC71 /* FSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSNavigationController.h; sourceTree = "<group>"; };
@@ -196,6 +199,8 @@
 				BA8B190F1957240D00F9FC71 /* FSNavigatableViewController.m */,
 				BA8B190B195722D000F9FC71 /* FSNavigationController.h */,
 				BA8B190C195722D000F9FC71 /* FSNavigationController.m */,
+				BA821359195DAE3A005C3193 /* FSOpenOriginalPostActivity.h */,
+				BA82135A195DAE3A005C3193 /* FSOpenOriginalPostActivity.m */,
 				BA4702041957EA94008981AF /* FSPostDetailViewController.h */,
 				BA4702051957EA94008981AF /* FSPostDetailViewController.m */,
 				BA4701FE1957DF16008981AF /* FSPostListViewController.h */,
@@ -408,6 +413,7 @@
 				BAF951DD195877EC00473CCF /* FSPostListViewTextPhotoCell.m in Sources */,
 				BAF326B81959916F00AEF985 /* FSWebViewController.m in Sources */,
 				BA473496195914F700F1EC17 /* FSPostListViewGallaryCell.m in Sources */,
+				BA82135B195DAE3A005C3193 /* FSOpenOriginalPostActivity.m in Sources */,
 				BA4702001957DF16008981AF /* FSPostListViewController.m in Sources */,
 				BA8B19131957242E00F9FC71 /* FSHomeViewController.m in Sources */,
 				BAF4F09219581A9800BB0745 /* UIDevice+iPad.m in Sources */,

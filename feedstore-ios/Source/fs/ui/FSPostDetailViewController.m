@@ -8,26 +8,31 @@
 
 #import "FSPostDetailViewController.h"
 #import "TUSafariActivity.h"
+#import "WeixinSessionActivity.h"
+#import "WeixinTimelineActivity.h"
 #import "UIImageView+AFNetworking.h"
 #import "DTCoreText.h"
-#import "FSWebViewController.h"
+#import "FSOpenOriginalPostActivity.h"
+#import "FSNavigationController.h"
 
 
 @interface FSPostDetailViewController ()
 
 @property (strong, nonatomic) NSDictionary* attributedStringOptions;
+@property (strong, nonatomic) NSArray *activities;
 @property (strong, nonatomic) NSMutableDictionary* tmpPost;
 
 @end
 
 @implementation FSPostDetailViewController
 
+@synthesize postTitle = _postTitle;
 @synthesize linkURL = _linkURL;
 @synthesize contentView = _contentView;
 @synthesize scrollView = _scrollView;
-@synthesize webViewController = _webViewController;
 @synthesize attributedStringOptions = _attributedStringOptions;
 @synthesize tmpPost = _tmpPost;
+@synthesize activities = _activities;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,6 +41,13 @@
     {
         _contentView = [[DTAttributedTextView alloc] init];
         _scrollView = [[UIScrollView alloc] init];
+        _activities = @[
+                         [[TUSafariActivity alloc] init],
+                         [[FSOpenOriginalPostActivity alloc] init],
+                         [[WeixinSessionActivity alloc] init],
+                         [[WeixinTimelineActivity alloc] init]
+                         ];
+
         
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(rightBarButtonItem_onclick)];
     }
@@ -102,7 +114,9 @@
     
     self.title = @"详情";
     
+    _postTitle = post[@"title"];
     _linkURL = [NSURL URLWithString:post[@"linkUrl"]];
+    _postImage = nil;
     
     NSString *dateString = post[@"publishTime"];
     NSDateFormatter *rfc3339TimestampFormatterWithTimeZone = [[NSDateFormatter alloc] init];
@@ -157,6 +171,11 @@
         imageView.backgroundColor = rgbhex(0xdddddd);
         NSURLRequest *requst = [NSURLRequest requestWithURL:attachment.contentURL];
         [imageView setImageWithURLRequest:requst placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+            if (_postImage == nil)
+            {
+                _postImage = image;
+            }
+            
             imageView.image = image;
             attachment.originalSize = image.size;
             imageView.backgroundColor = [UIColor clearColor];
@@ -178,10 +197,19 @@
 
 - (void)rightBarButtonItem_onclick
 {
-    NSArray *items = @[ _linkURL ];
-    TUSafariActivity *safariActivity = [[TUSafariActivity alloc] init];
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:@[ safariActivity ]];
-    [activityViewController setValue:@"This is a Subject" forKey:@"subject"];
+    NSArray *items = nil;
+    if (_postImage == nil)
+    {
+        items = @[ _postTitle, _linkURL ];
+    }
+    else
+    {
+        items = @[ _postTitle, _postImage, _linkURL ];
+    }
+    
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:_activities];
+    [activityViewController setValue:[NSString stringWithFormat:@"推荐: %@", _postTitle] forKey:@"subject"];
+    activityViewController.excludedActivityTypes = @[ UIActivityTypeAirDrop, UIActivityTypeAssignToContact, UIActivityTypePostToFlickr, UIActivityTypePrint, UIActivityTypeSaveToCameraRoll ];
     [self presentViewController:activityViewController animated:YES completion:nil];
 }
 

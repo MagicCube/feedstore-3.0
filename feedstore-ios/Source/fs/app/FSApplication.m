@@ -7,7 +7,7 @@
 //
 
 #import "FSApplication.h"
-
+#import "WXApi.h"
 #import "FSRootViewController.h"
 
 
@@ -16,6 +16,7 @@
 static FSApplication *_sharedInstance;
 
 @synthesize rootViewController = _rootViewController;
+@synthesize navigationController = _navigationController;
 
 + (FSApplication *)sharedInstance
 {
@@ -26,11 +27,14 @@ static FSApplication *_sharedInstance;
 {
     _sharedInstance = self;
     
+    [WXApi registerApp:@"wxcefa411f34485347"];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
     _rootViewController = [[FSRootViewController alloc] init];
+    _navigationController = _rootViewController.navigationController;
     self.window.rootViewController = _rootViewController;
     
     [self.window makeKeyAndVisible];

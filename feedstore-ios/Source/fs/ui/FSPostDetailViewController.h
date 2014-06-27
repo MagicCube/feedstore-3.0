@@ -13,10 +13,11 @@
 
 @interface FSPostDetailViewController : FSNavigatableViewController <DTAttributedTextContentViewDelegate>
 
+@property (copy, nonatomic, readonly) NSString *postTitle;
+@property (copy, nonatomic, readonly) UIImage *postImage;
 @property (copy, nonatomic, readonly) NSURL *linkURL;
 @property (strong, nonatomic, readonly) DTAttributedTextView *contentView;
 @property (strong, nonatomic, readonly) UIScrollView *scrollView;
-@property (strong, nonatomic, readonly) FSWebViewController *webViewController;
 
 - (void)renderPost:(NSMutableDictionary *)post;
 
