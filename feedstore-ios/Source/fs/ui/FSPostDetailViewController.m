@@ -171,7 +171,7 @@
         imageView.backgroundColor = rgbhex(0xdddddd);
         NSURLRequest *requst = [NSURLRequest requestWithURL:attachment.contentURL];
         [imageView setImageWithURLRequest:requst placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-            if (_postImage == nil)
+            if (image.size.width > 100 && _postImage == nil)
             {
                 _postImage = image;
             }
