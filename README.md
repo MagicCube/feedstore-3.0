@@ -1,4 +1,5 @@
-![](https://raw.githubusercontent.com/MagicCube/feedstore-3.0/master/design/promotion.png)
+![](https://raw.githubusercontent.com/MagicCube/feedstore-3.0/master/design/promotion-01.jpg)
+![](https://raw.githubusercontent.com/MagicCube/feedstore-3.0/master/design/promotion-02.jpg)
 
 # MagicCube FeedStore 3.0
 MagicCube FeedStore 3.0 是一款集 RSS 聚合服务端、Web 客户端和 iOS 移动客户端为一体的私人定制阅读解决方案。
