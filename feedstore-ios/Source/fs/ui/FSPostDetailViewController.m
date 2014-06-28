@@ -75,6 +75,14 @@
     [self.view addSubview:_contentView];
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    if ([self isMovingFromParentViewController])
+    {
+        [_contentView loadHTMLString:@"" baseURL:nil];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -110,8 +118,6 @@
     NSString *html = [_templateEngine scan:_templateString dict:post];
     [_contentView loadHTMLString:html baseURL:[[NSBundle mainBundle] URLForResource:@"post" withExtension:@"html"]];
 }
-
-
 
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
