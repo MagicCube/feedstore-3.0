@@ -7,11 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-@class FSWebViewController;
 
 @interface FSOpenOriginalPostActivity : UIActivity
 
 @property (strong, nonatomic, readonly) NSURL *originalPostURL;
-@property (strong, nonatomic, readonly) FSWebViewController *webViewController;
 
 @end

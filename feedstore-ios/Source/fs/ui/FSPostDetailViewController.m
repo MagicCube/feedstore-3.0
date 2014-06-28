@@ -14,6 +14,7 @@
 #import "CCTemplate.h"
 #import "FSOpenOriginalPostActivity.h"
 #import "FSNavigationController.h"
+#import "FSWebViewController.h"
 
 
 @interface FSPostDetailViewController ()
@@ -44,6 +45,7 @@
     if (self)
     {
         _contentView = [[UIWebView alloc] init];
+        _contentView.delegate = self;
         _activities = @[
                          [[TUSafariActivity alloc] init],
                          [[FSOpenOriginalPostActivity alloc] init],
@@ -73,14 +75,10 @@
     [self.view addSubview:_contentView];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [_contentView loadHTMLString:@"" baseURL:nil];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    [_contentView loadHTMLString:@"" baseURL:nil];
 }
 
 
@@ -112,6 +110,43 @@
     NSString *html = [_templateEngine scan:_templateString dict:post];
     [_contentView loadHTMLString:html baseURL:[[NSBundle mainBundle] URLForResource:@"post" withExtension:@"html"]];
 }
+
+
+
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    if ([request.URL.scheme isEqualToString:@"about"] || [request.URL.scheme isEqualToString:@"file"])
+    {
+        return YES;
+    }
+    else if ([request.URL.scheme isEqualToString:@"http"] || [request.URL.scheme isEqualToString:@"https"])
+    {
+        FSWebViewController *webViewController = [FSWebViewController sharedInstance];
+        [[FSApplication sharedInstance].navigationController pushViewController:webViewController animated:YES];
+        [webViewController navigateToURL:request.URL];
+        return NO;
+    }
+    return NO;
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+
+}
+
+
+
 
 - (void)rightBarButtonItem_onclick
 {

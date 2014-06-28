@@ -34,7 +34,7 @@
 @property(nonatomic,assign)BOOL canShowLeft;
 @property(nonatomic,assign)BOOL canShowRight;
 
-+ (FSSliderViewController*)sharedSliderController;
++ (FSSliderViewController*)sharedInstance;
 
 - (void)showContentControllerWithModel:(NSString*)className;
 - (void)showLeftViewController;

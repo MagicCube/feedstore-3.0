@@ -12,7 +12,6 @@
 @implementation FSOpenOriginalPostActivity
 
 @synthesize originalPostURL = _originalPostURL;
-@synthesize webViewController = _webViewController;
 
 - (NSString *)activityTitle
 {
@@ -50,12 +49,9 @@
 - (void)performActivity
 {
 	BOOL completed = YES;
-    if (_webViewController == nil)
-    {
-        _webViewController = [[FSWebViewController alloc] init];
-    }
-	[[FSApplication sharedInstance].navigationController pushViewController:_webViewController animated:YES];
-    [_webViewController navigateToURL:_originalPostURL];
+    FSWebViewController *webViewController = [FSWebViewController sharedInstance];
+	[[FSApplication sharedInstance].navigationController pushViewController:webViewController animated:YES];
+    [webViewController navigateToURL:_originalPostURL];
 	[self activityDidFinish:completed];
 }
 

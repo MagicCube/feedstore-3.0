@@ -13,6 +13,7 @@
 @property (strong, nonatomic, readonly) UIWebView *webView;
 @property (strong, nonatomic, readonly) UIActivityIndicatorView *activityIndicatorView;
 
++ (FSWebViewController*)sharedInstance;
 - (void)navigateToURL:(NSURL *)URL;
 
 @end

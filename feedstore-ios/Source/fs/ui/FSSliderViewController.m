@@ -64,7 +64,7 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
 
 }
 
-+ (FSSliderViewController*)sharedSliderController
++ (FSSliderViewController*)sharedInstance
 {
     static FSSliderViewController *sharedSVC;
     static dispatch_once_t onceToken;

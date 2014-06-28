@@ -16,12 +16,22 @@
 
 @synthesize webView = _webView;
 
++ (FSWebViewController*)sharedInstance
+{
+    static FSWebViewController *sharedInstance;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
-        self.title = @"源网页";
+        self.title = @"网页";
         _webView = [[UIWebView alloc] init];
         _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     }
@@ -48,15 +58,21 @@
     _activityIndicatorView.hidesWhenStopped = YES;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.title = @"网页";
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [self.webView loadHTMLString:@"" baseURL:nil];
+    [_webView loadHTMLString:@"" baseURL:nil];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    [_webView loadHTMLString:@"" baseURL:nil];
 }
 
 
@@ -74,6 +90,7 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [_activityIndicatorView stopAnimating];
+    self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error

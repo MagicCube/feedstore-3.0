@@ -9,7 +9,7 @@
 #import "FSNavigatableViewController.h"
 @class FSWebViewController;
 
-@interface FSPostDetailViewController : FSNavigatableViewController
+@interface FSPostDetailViewController : FSNavigatableViewController <UIWebViewDelegate>
 
 @property (copy, nonatomic, readonly) NSString *postTitle;
 @property (copy, nonatomic, readonly) UIImage *postImage;
