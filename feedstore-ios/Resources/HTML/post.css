@@ -56,7 +56,7 @@ a
     line-height: 160%;
 }
 
-.post > .content img
+.post > .content img, .post > .content video
 {
     max-width: 95%;
 }

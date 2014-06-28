@@ -122,11 +122,12 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    if ([request.URL.scheme isEqualToString:@"about"] || [request.URL.scheme isEqualToString:@"file"])
+    NSLog(@"%d | %@ | %@", navigationType, request.URL.scheme, request.URL);
+    if (navigationType == UIWebViewNavigationTypeOther || [request.URL.scheme isEqualToString:@"about"] || [request.URL.scheme isEqualToString:@"file"])
     {
         return YES;
     }
-    else if ([request.URL.scheme isEqualToString:@"http"] || [request.URL.scheme isEqualToString:@"https"])
+    else if (navigationType == UIWebViewNavigationTypeLinkClicked && ([request.URL.scheme isEqualToString:@"http"] || [request.URL.scheme isEqualToString:@"https"]))
     {
         FSWebViewController *webViewController = [FSWebViewController sharedInstance];
         [[FSApplication sharedInstance].navigationController pushViewController:webViewController animated:YES];
