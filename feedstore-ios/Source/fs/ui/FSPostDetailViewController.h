@@ -7,17 +7,14 @@
 //
 
 #import "FSNavigatableViewController.h"
-#import "DTCoreText.h"
-@class DTAttributedLabel;
 @class FSWebViewController;
 
-@interface FSPostDetailViewController : FSNavigatableViewController <DTAttributedTextContentViewDelegate>
+@interface FSPostDetailViewController : FSNavigatableViewController
 
 @property (copy, nonatomic, readonly) NSString *postTitle;
 @property (copy, nonatomic, readonly) UIImage *postImage;
 @property (copy, nonatomic, readonly) NSURL *postLinkURL;
-@property (strong, nonatomic, readonly) DTAttributedTextView *contentView;
-@property (strong, nonatomic, readonly) UIScrollView *scrollView;
+@property (strong, nonatomic, readonly) UIWebView *contentView;
 
 - (void)renderPost:(NSMutableDictionary *)post;
 

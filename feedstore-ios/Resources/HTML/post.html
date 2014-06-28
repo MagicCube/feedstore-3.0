@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<link rel="stylesheet" href="post.css">
+</head>
+<body>
+    <article class="post">
+        <hgroup>
+            <h1 class="title">{{ title }}</h1>
+            <div class="publish">发表于 {{ publishTimeSmart }}</div>
+        </hgroup>
+        <section class="content">
+            {{ content }}
+        </section>
+    </article>
+</body>
+</html>

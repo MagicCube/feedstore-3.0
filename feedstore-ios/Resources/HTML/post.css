@@ -1,0 +1,63 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video
+{
+	box-sizing: border-box;
+    font-family: Helvetica;
+    font-size: 16px;
+    vertical-align: baseline;
+    -webkit-font-smoothing: antialiased;
+	-webkit-text-size-adjust: none;
+}
+
+html, body
+{
+    padding: 0;
+    margin: 0;
+}
+
+body
+{
+    padding: 15px;
+    padding-top: 0;
+}
+
+a
+{
+    text-decoration: none;
+}
+
+.post
+{
+    width: 100%;
+    overflow: hidden;
+}
+
+.post > hgroup > .title
+{
+    font-size: 20px;
+    color: #002d9b;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ccc;
+}
+
+.post > hgroup > .publish
+{
+    color: gray;
+    font-size: 14px;
+}
+
+.post > .content
+{
+    color: #222;
+}
+
+.post > .content, .post > .content *
+{
+    font-size: 17px;
+    line-height: 160%;
+}
+
+.post > .content img
+{
+    max-width: 95%;
+}
+

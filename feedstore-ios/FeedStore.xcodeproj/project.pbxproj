@@ -27,6 +27,8 @@
 		BA8B190D195722D000F9FC71 /* FSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8B190C195722D000F9FC71 /* FSNavigationController.m */; };
 		BA8B19101957240D00F9FC71 /* FSNavigatableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8B190F1957240D00F9FC71 /* FSNavigatableViewController.m */; };
 		BA8B19131957242E00F9FC71 /* FSHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8B19121957242E00F9FC71 /* FSHomeViewController.m */; };
+		BA908FE2195EF686000D5B0F /* post.html in Resources */ = {isa = PBXBuildFile; fileRef = BA908FE1195EF686000D5B0F /* post.html */; };
+		BA908FE4195EF84F000D5B0F /* post.css in Resources */ = {isa = PBXBuildFile; fileRef = BA908FE3195EF84F000D5B0F /* post.css */; };
 		BAD100D119570B1900733224 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAD100D019570B1900733224 /* Foundation.framework */; };
 		BAD100D319570B1900733224 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAD100D219570B1900733224 /* CoreGraphics.framework */; };
 		BAD100D519570B1900733224 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAD100D419570B1900733224 /* UIKit.framework */; };
@@ -78,6 +80,8 @@
 		BA8B190F1957240D00F9FC71 /* FSNavigatableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSNavigatableViewController.m; sourceTree = "<group>"; };
 		BA8B19111957242E00F9FC71 /* FSHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSHomeViewController.h; sourceTree = "<group>"; };
 		BA8B19121957242E00F9FC71 /* FSHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSHomeViewController.m; sourceTree = "<group>"; };
+		BA908FE1195EF686000D5B0F /* post.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = post.html; sourceTree = "<group>"; };
+		BA908FE3195EF84F000D5B0F /* post.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = post.css; sourceTree = "<group>"; };
 		BAD100CD19570B1900733224 /* FeedStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAD100D019570B1900733224 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BAD100D219570B1900733224 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -115,6 +119,7 @@
 		BA01E20B19570D5700B1B78E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BA908FE0195EF64F000D5B0F /* HTML */,
 				BA01E20C19570D7700B1B78E /* Images.xcassets */,
 			);
 			name = Resources;
@@ -221,6 +226,16 @@
 				BAF326B71959916F00AEF985 /* FSWebViewController.m */,
 			);
 			path = ui;
+			sourceTree = "<group>";
+		};
+		BA908FE0195EF64F000D5B0F /* HTML */ = {
+			isa = PBXGroup;
+			children = (
+				BA908FE1195EF686000D5B0F /* post.html */,
+				BA908FE3195EF84F000D5B0F /* post.css */,
+			);
+			name = HTML;
+			path = Resources/HTML;
 			sourceTree = "<group>";
 		};
 		BAD100C419570B1900733224 = {
@@ -375,7 +390,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAF4F096195827C700BB0745 /* FeedStore-Config.plist in Resources */,
+				BA908FE4195EF84F000D5B0F /* post.css in Resources */,
 				BA01E20D19570D7700B1B78E /* Images.xcassets in Resources */,
+				BA908FE2195EF686000D5B0F /* post.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
