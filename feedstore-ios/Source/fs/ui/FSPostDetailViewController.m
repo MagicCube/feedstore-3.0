@@ -27,7 +27,7 @@
 @implementation FSPostDetailViewController
 
 @synthesize postTitle = _postTitle;
-@synthesize linkURL = _linkURL;
+@synthesize postLinkURL = _postLinkURL;
 @synthesize contentView = _contentView;
 @synthesize scrollView = _scrollView;
 @synthesize attributedStringOptions = _attributedStringOptions;
@@ -115,7 +115,7 @@
     self.title = @"详情";
     
     _postTitle = post[@"title"];
-    _linkURL = [NSURL URLWithString:post[@"linkUrl"]];
+    _postLinkURL = [NSURL URLWithString:post[@"linkUrl"]];
     _postImage = nil;
     
     NSString *dateString = post[@"publishTime"];
@@ -200,11 +200,11 @@
     NSArray *items = nil;
     if (_postImage == nil)
     {
-        items = @[ _postTitle, _linkURL ];
+        items = @[ _postTitle, _postLinkURL ];
     }
     else
     {
-        items = @[ _postTitle, _postImage, _linkURL ];
+        items = @[ _postTitle, _postImage, _postLinkURL ];
     }
     
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:_activities];
