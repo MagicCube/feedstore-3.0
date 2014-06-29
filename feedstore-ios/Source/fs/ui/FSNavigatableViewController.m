@@ -65,7 +65,9 @@
         [self.view addSubview:self.contentView];
         [self addChildViewController:_contentViewController];
 
+        NSLog(@"%d", self.navigationController == nil);
         self.contentView.frame = CGRectMake(0, 0, self.navigationController.navigationBar.frame.size.width, self.navigationController.view.frame.size.height);
+        self.contentView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
     }
 }
 

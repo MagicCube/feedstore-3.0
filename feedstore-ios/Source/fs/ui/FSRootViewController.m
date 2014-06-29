@@ -10,6 +10,7 @@
 
 #import "FSNavigationController.h"
 #import "FSHomeViewController.h"
+#import "FSChannelSideViewController.h"
 
 @interface FSRootViewController ()
 
@@ -19,6 +20,7 @@
 
 @synthesize navigationController = _navigationController;
 @synthesize homeViewController = _homeViewController;
+@synthesize channelSideViewController = _channelSideViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,8 +29,10 @@
     {
         _homeViewController = [[FSHomeViewController alloc] init];
         _navigationController = [[FSNavigationController alloc] initWithRootViewController:_homeViewController];
-        //self.mainViewController = _navigationController;
-        //self.leftViewController = [[UIViewController alloc] init];
+        _channelSideViewController = [[FSChannelSideViewController alloc] init];
+        
+        self.mainViewController = _navigationController;
+        self.leftSideViewController = _channelSideViewController;
     }
     return self;
 }
@@ -36,7 +40,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.view addSubview:_navigationController.view];
 }
 
 - (void)didReceiveMemoryWarning

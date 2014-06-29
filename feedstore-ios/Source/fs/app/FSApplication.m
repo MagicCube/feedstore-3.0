@@ -9,6 +9,7 @@
 #import "FSApplication.h"
 #import "WXApi.h"
 #import "FSRootViewController.h"
+#import "FSSideBarController.h"
 
 @implementation FSApplication
 
@@ -34,6 +35,7 @@ static FSApplication *_sharedInstance;
     
     _rootViewController = [[FSRootViewController alloc] init];
     _navigationController = _rootViewController.navigationController;
+
     self.window.rootViewController = _rootViewController;
     
     [self.window makeKeyAndVisible];

@@ -15,7 +15,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic, readonly) FSRootViewController *rootViewController;
-@property (strong, nonatomic, readonly) FSNavigationController *navigationController;
+@property (weak, nonatomic, readonly) FSNavigationController *navigationController;
 
 + (FSApplication *)sharedInstance;
 
