@@ -232,11 +232,9 @@
 {
     self.pageIndex = 0;
     [_posts removeAllObjects];
+    [self.tableView reloadData];
     
     [self.refreshControl beginRefreshing];
-    [self.tableView setContentOffset:CGPointMake(0, -50) animated:YES];
-    
-    [self.tableView reloadData];
     
     [self nextPageWithCallback:^
     {
