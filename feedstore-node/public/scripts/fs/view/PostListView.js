@@ -170,10 +170,10 @@ fs.view.PostListView = function()
         if (me.loading) return;
         
         _setLoading();
-        fs.app.postAgent.queryPosts({ pageIndex: me.pageIndex, pageSize: me.pageSize }).done(function(p_posts)
+        fs.app.postAgent.queryPosts({ pageIndex: me.pageIndex, pageSize: me.pageSize }).done(function(p_results)
         {
             _setLoading(false);
-            me.addPosts(p_posts);
+            me.addPosts(p_results.posts);
             
             me.pageIndex++;
         });
