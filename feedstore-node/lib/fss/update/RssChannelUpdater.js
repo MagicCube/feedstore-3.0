@@ -258,7 +258,7 @@ fss.update.RssChannelUpdater = function()
         for (var i = 0; i < $img.length; i++)
         {
            url = $img.eq(i).attr("src");
-           if (!url.endsWith(".img"))
+           if (notEmpty(url) && !url.endsWith(".img"))
            {
                imageCount++;
            }
