@@ -20,8 +20,6 @@
 		BA47020B1957F35A008981AF /* FSApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = BA47020A1957F35A008981AF /* FSApplication.m */; };
 		BA47020F1957F646008981AF /* FSServiceAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = BA47020E1957F646008981AF /* FSServiceAgent.m */; };
 		BA473496195914F700F1EC17 /* FSPostListViewGallaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA473495195914F700F1EC17 /* FSPostListViewGallaryCell.m */; };
-		BA59BDEA195EE4BB001C6DC7 /* FSSliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA59BDE9195EE4BB001C6DC7 /* FSSliderViewController.m */; };
-		BA59BDED195EE6EC001C6DC7 /* FSSliderNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA59BDEC195EE6EC001C6DC7 /* FSSliderNavigationController.m */; };
 		BA82135B195DAE3A005C3193 /* FSOpenOriginalPostActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = BA82135A195DAE3A005C3193 /* FSOpenOriginalPostActivity.m */; };
 		BA8B190A1957219100F9FC71 /* FSRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8B19091957219100F9FC71 /* FSRootViewController.m */; };
 		BA8B190D195722D000F9FC71 /* FSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8B190C195722D000F9FC71 /* FSNavigationController.m */; };
@@ -68,10 +66,6 @@
 		BA47020E1957F646008981AF /* FSServiceAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSServiceAgent.m; sourceTree = "<group>"; };
 		BA473494195914F700F1EC17 /* FSPostListViewGallaryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSPostListViewGallaryCell.h; sourceTree = "<group>"; };
 		BA473495195914F700F1EC17 /* FSPostListViewGallaryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSPostListViewGallaryCell.m; sourceTree = "<group>"; };
-		BA59BDE8195EE4BB001C6DC7 /* FSSliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSliderViewController.h; sourceTree = "<group>"; };
-		BA59BDE9195EE4BB001C6DC7 /* FSSliderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSliderViewController.m; sourceTree = "<group>"; };
-		BA59BDEB195EE6EC001C6DC7 /* FSSliderNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSliderNavigationController.h; sourceTree = "<group>"; };
-		BA59BDEC195EE6EC001C6DC7 /* FSSliderNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSliderNavigationController.m; sourceTree = "<group>"; };
 		BA821359195DAE3A005C3193 /* FSOpenOriginalPostActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSOpenOriginalPostActivity.h; sourceTree = "<group>"; };
 		BA82135A195DAE3A005C3193 /* FSOpenOriginalPostActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSOpenOriginalPostActivity.m; sourceTree = "<group>"; };
 		BA8B19081957219100F9FC71 /* FSRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSRootViewController.h; sourceTree = "<group>"; };
@@ -225,10 +219,6 @@
 				BA4701FF1957DF16008981AF /* FSPostListViewController.m */,
 				BA8B19081957219100F9FC71 /* FSRootViewController.h */,
 				BA8B19091957219100F9FC71 /* FSRootViewController.m */,
-				BA59BDEB195EE6EC001C6DC7 /* FSSliderNavigationController.h */,
-				BA59BDEC195EE6EC001C6DC7 /* FSSliderNavigationController.m */,
-				BA59BDE8195EE4BB001C6DC7 /* FSSliderViewController.h */,
-				BA59BDE9195EE4BB001C6DC7 /* FSSliderViewController.m */,
 				BAF326B61959916F00AEF985 /* FSWebViewController.h */,
 				BAF326B71959916F00AEF985 /* FSWebViewController.m */,
 			);
@@ -455,7 +445,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA4702061957EA94008981AF /* FSPostDetailViewController.m in Sources */,
-				BA59BDEA195EE4BB001C6DC7 /* FSSliderViewController.m in Sources */,
 				BAF951DD195877EC00473CCF /* FSPostListViewTextPhotoCell.m in Sources */,
 				BAF326B81959916F00AEF985 /* FSWebViewController.m in Sources */,
 				BA473496195914F700F1EC17 /* FSPostListViewGallaryCell.m in Sources */,
@@ -471,7 +460,6 @@
 				BAEA8625195FA85C004B1BC9 /* FSChannelAgent.m in Sources */,
 				BA171A4419585CFF002BD5B6 /* FSPostListViewTextCell.m in Sources */,
 				BAF4F09319581A9800BB0745 /* MXDateUtil.m in Sources */,
-				BA59BDED195EE6EC001C6DC7 /* FSSliderNavigationController.m in Sources */,
 				BA171A3D19582B70002BD5B6 /* FSConfig.m in Sources */,
 				BA171A4119585B36002BD5B6 /* FSPostListViewCell.m in Sources */,
 				BA8B19101957240D00F9FC71 /* FSNavigatableViewController.m in Sources */,
