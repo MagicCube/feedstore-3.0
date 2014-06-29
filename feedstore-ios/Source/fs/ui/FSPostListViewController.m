@@ -13,7 +13,7 @@
 #import "FSPostListViewGallaryCell.h"
 #import "FSPostListViewTextCell.h"
 #import "FSPostListViewTextPhotoCell.h"
-#import "FSServiceAgent.h"
+#import "FSPostAgent.h"
 
 @interface FSPostListViewController ()
 
@@ -193,7 +193,7 @@
 
 - (void)nextPageWithCallback:(void (^)())callback
 {
-    [[FSServiceAgent sharedInstance] queryPostsAtPage:_pageIndex withPageSize:_pageSize callback:^(NSError *error, id results)
+    [[FSPostAgent sharedInstance] queryPostsAtPage:_pageIndex withPageSize:_pageSize callback:^(NSError *error, id results)
     {
         NSMutableArray *posts = results[@"posts"];
         if (((NSArray *)posts).count > 0)

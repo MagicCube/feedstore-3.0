@@ -32,6 +32,8 @@
 		BAD100D119570B1900733224 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAD100D019570B1900733224 /* Foundation.framework */; };
 		BAD100D319570B1900733224 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAD100D219570B1900733224 /* CoreGraphics.framework */; };
 		BAD100D519570B1900733224 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAD100D419570B1900733224 /* UIKit.framework */; };
+		BAEA8625195FA85C004B1BC9 /* FSChannelAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEA8624195FA85C004B1BC9 /* FSChannelAgent.m */; };
+		BAEA8628195FB060004B1BC9 /* FSPostAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEA8627195FB060004B1BC9 /* FSPostAgent.m */; };
 		BAF326B81959916F00AEF985 /* FSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF326B71959916F00AEF985 /* FSWebViewController.m */; };
 		BAF4F09219581A9800BB0745 /* UIDevice+iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF4F08E19581A9800BB0745 /* UIDevice+iPad.m */; };
 		BAF4F09319581A9800BB0745 /* MXDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF4F09119581A9800BB0745 /* MXDateUtil.m */; };
@@ -87,6 +89,10 @@
 		BAD100D219570B1900733224 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		BAD100D419570B1900733224 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BAD100E919570B1A00733224 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		BAEA8623195FA85C004B1BC9 /* FSChannelAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSChannelAgent.h; sourceTree = "<group>"; };
+		BAEA8624195FA85C004B1BC9 /* FSChannelAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSChannelAgent.m; sourceTree = "<group>"; };
+		BAEA8626195FB060004B1BC9 /* FSPostAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSPostAgent.h; sourceTree = "<group>"; };
+		BAEA8627195FB060004B1BC9 /* FSPostAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSPostAgent.m; sourceTree = "<group>"; };
 		BAF326B61959916F00AEF985 /* FSWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSWebViewController.h; sourceTree = "<group>"; };
 		BAF326B71959916F00AEF985 /* FSWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSWebViewController.m; sourceTree = "<group>"; };
 		BAF4F08A19581A9800BB0745 /* prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prefix.h; sourceTree = "<group>"; };
@@ -190,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				BA4702081957F35A008981AF /* app */,
+				BAEA8622195FA81E004B1BC9 /* biz */,
 				BA171A3A19582B38002BD5B6 /* conf */,
 				BA171A45195864C2002BD5B6 /* ext */,
 				BA4702071957F303008981AF /* service */,
@@ -290,6 +297,17 @@
 			);
 			name = "Supporting Files";
 			path = FeedStore;
+			sourceTree = "<group>";
+		};
+		BAEA8622195FA81E004B1BC9 /* biz */ = {
+			isa = PBXGroup;
+			children = (
+				BAEA8623195FA85C004B1BC9 /* FSChannelAgent.h */,
+				BAEA8624195FA85C004B1BC9 /* FSChannelAgent.m */,
+				BAEA8626195FB060004B1BC9 /* FSPostAgent.h */,
+				BAEA8627195FB060004B1BC9 /* FSPostAgent.m */,
+			);
+			path = biz;
 			sourceTree = "<group>";
 		};
 		BAF4F08919581A9800BB0745 /* mx */ = {
@@ -442,6 +460,7 @@
 				BAF326B81959916F00AEF985 /* FSWebViewController.m in Sources */,
 				BA473496195914F700F1EC17 /* FSPostListViewGallaryCell.m in Sources */,
 				BA82135B195DAE3A005C3193 /* FSOpenOriginalPostActivity.m in Sources */,
+				BAEA8628195FB060004B1BC9 /* FSPostAgent.m in Sources */,
 				BA4702001957DF16008981AF /* FSPostListViewController.m in Sources */,
 				BA8B19131957242E00F9FC71 /* FSHomeViewController.m in Sources */,
 				BAF4F09219581A9800BB0745 /* UIDevice+iPad.m in Sources */,
@@ -449,6 +468,7 @@
 				BA3E5910195710D200E062DE /* main.m in Sources */,
 				BA47020F1957F646008981AF /* FSServiceAgent.m in Sources */,
 				BA171A48195864C2002BD5B6 /* NSString+HTML.m in Sources */,
+				BAEA8625195FA85C004B1BC9 /* FSChannelAgent.m in Sources */,
 				BA171A4419585CFF002BD5B6 /* FSPostListViewTextCell.m in Sources */,
 				BAF4F09319581A9800BB0745 /* MXDateUtil.m in Sources */,
 				BA59BDED195EE6EC001C6DC7 /* FSSliderNavigationController.m in Sources */,
