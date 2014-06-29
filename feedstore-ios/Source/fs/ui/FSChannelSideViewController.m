@@ -29,9 +29,6 @@
 {
     [super viewDidLoad];
     
-    UIImage *backgroundImage = [UIImage imageNamed:@"side-bar-bg-568h@2x.jpg"];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
-    
     // Do any additional setup after loading the view.
     FSChannelListViewController *listViewController = [[FSChannelListViewController alloc] initWithStyle:UITableViewStylePlain];
     listViewController.tableView.frame = self.view.bounds;

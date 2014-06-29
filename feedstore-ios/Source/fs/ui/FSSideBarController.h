@@ -10,6 +10,7 @@
 
 @interface FSSideBarController : UIViewController <UIGestureRecognizerDelegate>
 
+@property (strong, nonatomic) UIView *backgroundView;
 @property (weak, nonatomic) UIViewController *mainViewController;
 @property (weak, nonatomic) UIViewController *leftSideViewController;
 

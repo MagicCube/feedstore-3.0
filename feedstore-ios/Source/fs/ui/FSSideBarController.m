@@ -20,6 +20,7 @@
 
 @implementation FSSideBarController
 
+@synthesize backgroundView = _backgroundView;
 @synthesize mainViewController = _mainViewController;
 @synthesize leftSideViewController = _leftSideViewController;
 @synthesize leftSideWidth = _leftSideWidth;
@@ -43,10 +44,13 @@
 {
     [super loadView];
     
+    _backgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
+    UIImage *backgroundImage = [UIImage imageNamed:@"side-bar-bg-568h@2x.jpg"];
+    _backgroundView.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
+    [self.view addSubview:_backgroundView];
     
     _containerView = [[UIView alloc] initWithFrame:self.view.bounds];
     _containerView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
-    _containerView.backgroundColor = [UIColor redColor];
     [self.view addSubview:_containerView];
     
     _panGestureRecognizer = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
@@ -75,16 +79,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-}
-
-- (UIView*)statusBarView;
-{
-    UIView *statusBar = nil;
-    NSData *data = [NSData dataWithBytes:(unsigned char []){0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x42, 0x61, 0x72} length:9];
-    NSString *key = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-    id object = [UIApplication sharedApplication];
-    if ([object respondsToSelector:NSSelectorFromString(key)]) statusBar = [object valueForKey:key];
-    return statusBar;
 }
 
 - (void)setSwipeToShowSideBar:(BOOL)value
@@ -139,7 +133,7 @@
         CGRectDivide(self.view.bounds, &menuFrame, &restFrame, _leftSideWidth, CGRectMinXEdge);
         self.leftSideViewController.view.frame = menuFrame;
         self.leftSideViewController.view.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
-        [self.view insertSubview:self.leftSideViewController.view atIndex:0];
+        [self.view insertSubview:self.leftSideViewController.view atIndex:1];
     }
 }
 
@@ -155,7 +149,7 @@
          usingSpringWithDamping:0.5 initialSpringVelocity:velocity options:UIViewAnimationOptionAllowUserInteraction animations:^
          {
              blockSelf.containerView.transform = CGAffineTransformMakeTranslation(_leftSideWidth, 0);
-             self.statusBarView.transform = blockSelf.containerView.transform;
+             //self.statusBarView.transform = blockSelf.containerView.transform;
          } completion:^(BOOL completed)
          {
              [_containerView addGestureRecognizer:_tapGestureRecognizer];
@@ -175,7 +169,7 @@
     [UIView animateWithDuration:0.3 animations:^
     {
         blockSelf.containerView.transform = CGAffineTransformIdentity;
-        self.statusBarView.transform = blockSelf.containerView.transform;
+        //self.statusBarView.transform = blockSelf.containerView.transform;
     } completion:^(BOOL finished)
     {
         [blockSelf.leftSideViewController.view removeFromSuperview];
@@ -199,7 +193,7 @@
     [self hideSideBarAnimated:YES];
 }
 
-- (void)panGestureRecognized:(UIScreenEdgePanGestureRecognizer*)recognizer
+- (void)panGestureRecognized:(UIPanGestureRecognizer*)recognizer
 {
     if (!self.swipeToShowSideBar) return;
     
@@ -214,7 +208,7 @@
 
         case UIGestureRecognizerStateChanged:
             [recognizer.view setTransform:CGAffineTransformMakeTranslation(MAX(0, translation.x), 0)];
-            self.statusBarView.transform = recognizer.view.transform;
+            //self.statusBarView.transform = recognizer.view.transform;
             break;
 
         case UIGestureRecognizerStateEnded:
