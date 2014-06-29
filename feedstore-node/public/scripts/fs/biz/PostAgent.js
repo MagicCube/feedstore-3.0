@@ -18,10 +18,19 @@ fs.biz.PostAgent = function()
             pageIndex: 0,
             pageSize: 50
         }, p_options);
-        return $.ajax({
+        if (options.pageIndex == 0)
+        {
+            options.selectChannels = true;
+        }
+        var def = $.ajax({
             url: fs.app.getServiceUrl("/posts/"),
             data: options
         });
+        def.done(function(p_results)
+        {
+            fs.app.channelAgent.setChannels(p_results.channels);
+        });
+        return def;
     };
 
     return me.endOfClass(arguments);

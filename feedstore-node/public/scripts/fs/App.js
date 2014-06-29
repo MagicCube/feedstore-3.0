@@ -2,6 +2,7 @@ $ns("fs");
 
 $import("lib.transit.transit");
 
+$import("fs.biz.ChannelAgent");
 $import("fs.biz.PostAgent");
 $import("fs.biz.SubscriptionAgent");
 $import("fs.util.DateTimeUtil");
@@ -31,6 +32,7 @@ fs.App = function()
         base.init(p_options);
         me.css({ position: "absolute" });
 
+        me.channelAgent = new fs.biz.ChannelAgent();
         me.subscriptionAgent = new fs.biz.SubscriptionAgent();
         me.postAgent = new fs.biz.PostAgent();
         

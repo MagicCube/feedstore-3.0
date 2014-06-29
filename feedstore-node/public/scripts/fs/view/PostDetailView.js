@@ -89,7 +89,7 @@ fs.view.PostDetailView = function()
         $p_post.find("h1").text(p_post.title);
         $p_post.find("#content").html(p_post.content);
         $p_post.find("#content").find("a").attr("target", "_blank");
-        $p_post.find("#channel").text(fs.app.subscriptionAgent.channels[p_post.channelId].title);
+        $p_post.find("#channel").text(fs.app.channelAgent.channels[p_post.channelId].title);
         $p_post.find("#publishTime").text($format(p_post.publishTime, "M月d日 HH:mm"));
     }
     
