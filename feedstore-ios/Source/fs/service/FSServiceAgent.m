@@ -42,18 +42,22 @@
     return [NSString stringWithFormat:@"%@/%@", self.rootServicePath, subpath];
 }
 
-- (id)queryPostsAtPage:(NSInteger)pageIndex
+- (void)queryPostsAtPage:(NSInteger)pageIndex
           withPageSize:(NSInteger)pageSize
               callback:(void (^)(NSError *error, id posts))callback
 {
     NSLog(@"Querying post...");
-    id param = @{
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{
         @"pageIndex": [NSNumber numberWithLong: pageIndex],
         @"pageSize": [NSNumber numberWithLong: pageSize]
-    };
+    }];
+    if (pageIndex == 0)
+    {
+        params[@"selectChannels"] = @"true";
+    }
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     AFHTTPRequestOperation *operation = [manager GET:[self servicePathUnder:@"posts"]
-      parameters: param
+      parameters: params
      
     success:^(AFHTTPRequestOperation *operation, id responseObject)
     {
@@ -74,8 +78,6 @@
     }];
     
     operation.responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions: NSJSONReadingMutableContainers];
-    
-    return nil;
 }
 
 @end

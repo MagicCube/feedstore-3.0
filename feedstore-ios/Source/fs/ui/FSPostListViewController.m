@@ -193,8 +193,9 @@
 
 - (void)nextPageWithCallback:(void (^)())callback
 {
-    [[FSServiceAgent sharedInstance] queryPostsAtPage:_pageIndex withPageSize:_pageSize callback:^(NSError *error, id posts)
+    [[FSServiceAgent sharedInstance] queryPostsAtPage:_pageIndex withPageSize:_pageSize callback:^(NSError *error, id results)
     {
+        NSMutableArray *posts = results[@"posts"];
         if (((NSArray *)posts).count > 0)
         {
             [_posts addObjectsFromArray:posts];

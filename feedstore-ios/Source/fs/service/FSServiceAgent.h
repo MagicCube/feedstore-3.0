@@ -17,7 +17,7 @@
 + (FSServiceAgent *)sharedInstance;
 
 - (NSString *)servicePathUnder:(NSString *)subpath;
-- (id)queryPostsAtPage:(NSInteger)pageIndex
+- (void)queryPostsAtPage:(NSInteger)pageIndex
           withPageSize:(NSInteger)pageSize
               callback:(void (^)(NSError *error, id posts))callback;
 
