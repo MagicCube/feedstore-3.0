@@ -96,7 +96,7 @@ fs.view.PostListView = function()
         }
         var $col = _$cols[me.colIndex];
         
-        var channel = fs.app.channelAgent.channels[p_post.channelId];
+        var channel = fs.biz.ChannelAgent.channels[p_post.channelId];
         var $post = $("<div class=post>");
         $post.data("post", p_post);
         $post.attr("id", p_post._id);
@@ -170,7 +170,7 @@ fs.view.PostListView = function()
         if (me.loading) return;
         
         _setLoading();
-        fs.app.postAgent.queryPosts({ pageIndex: me.pageIndex, pageSize: me.pageSize }).done(function(p_results)
+        fs.biz.PostAgent.queryPosts({ pageIndex: me.pageIndex, pageSize: me.pageSize }).done(function(p_results)
         {
             _setLoading(false);
             me.addPosts(p_results.posts);

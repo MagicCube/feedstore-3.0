@@ -1,7 +1,7 @@
 $ns("fs.biz");
 
 
-fs.biz.PostAgent = function()
+fs.biz.PostAgentClass = function()
 {
     var me = $extend(MXComponent);
     var base = {};
@@ -18,7 +18,7 @@ fs.biz.PostAgent = function()
             pageIndex: 0,
             pageSize: 50
         }, p_options);
-        if (options.pageIndex == 0)
+        if (options.pageIndex === 0)
         {
             options.selectChannels = true;
         }
@@ -28,11 +28,12 @@ fs.biz.PostAgent = function()
         });
         def.done(function(p_results)
         {
-            fs.app.channelAgent.setChannels(p_results.channels);
+            fs.biz.ChannelAgent.setChannels(p_results.channels);
         });
         return def;
     };
 
     return me.endOfClass(arguments);
 };
-fs.biz.PostAgent.className = "fs.biz.PostAgent";
+fs.biz.PostAgentClass.className = "fs.biz.PostAgentClass";
+fs.biz.PostAgent = new fs.biz.PostAgentClass();

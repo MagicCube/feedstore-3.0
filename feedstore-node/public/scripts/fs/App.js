@@ -4,7 +4,6 @@ $import("lib.transit.transit");
 
 $import("fs.biz.ChannelAgent");
 $import("fs.biz.PostAgent");
-$import("fs.biz.SubscriptionAgent");
 $import("fs.util.DateTimeUtil");
 $import("fs.view.CateogryListView");
 $import("fs.view.PostListView");
@@ -16,10 +15,7 @@ fs.App = function()
     me.appId = "fs.App";
     me.appDisplayName = "MagicCube FeedStore";
     var base = {};
-    
-    me.subscriptionAgent = null;
-    me.postAgent = null;
-    
+        
     me.categoryListView = null;
     me.postListView = null;
     me.postDetailView = null;
@@ -31,10 +27,6 @@ fs.App = function()
     {
         base.init(p_options);
         me.css({ position: "absolute" });
-
-        me.channelAgent = new fs.biz.ChannelAgent();
-        me.subscriptionAgent = new fs.biz.SubscriptionAgent();
-        me.postAgent = new fs.biz.PostAgent();
         
         _initCategoryListView();
         _initPostListView();
@@ -86,10 +78,7 @@ fs.App = function()
     base.run = me.run;
     me.run = function(args)
     {
-        me.subscriptionAgent.load().done(function()
-        {
-            me.postListView.load();
-        });
+        me.postListView.load();
     };
     
     me.getServiceUrl = function(p_path)
