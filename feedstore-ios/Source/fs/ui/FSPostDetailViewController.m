@@ -12,6 +12,7 @@
 #import "WeixinSessionActivity.h"
 #import "WeixinTimelineActivity.h"
 #import "CCTemplate.h"
+#import "FSChannelAgent.h"
 #import "FSOpenOriginalPostActivity.h"
 #import "FSNavigationController.h"
 #import "FSWebViewController.h"
@@ -113,6 +114,11 @@
         NSDate *date = [rfc3339TimestampFormatterWithTimeZone dateFromString:dateString];
         dateString = [MXDateUtil formatDateFuzzy:date];
         post[@"publishTimeSmart"] = dateString;
+    }
+    if (post[@"channelTitle"] == nil)
+    {
+        NSString *channelId = post[@"channelId"];
+        post[@"channelTitle"] = [[FSChannelAgent sharedInstance] channelWithId:channelId][@"title"] ;
     }
     
     NSString *html = [_templateEngine scan:_templateString dict:post];
