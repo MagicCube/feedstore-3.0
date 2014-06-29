@@ -60,18 +60,22 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+    
     self.title = @"网页";
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
+    
     [_webView loadHTMLString:@"" baseURL:nil];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    
     [_webView loadHTMLString:@"" baseURL:nil];
 }
 

@@ -78,6 +78,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [super viewDidDisappear:animated];
     if ([self isMovingFromParentViewController])
     {
         [_contentView loadHTMLString:@"" baseURL:nil];

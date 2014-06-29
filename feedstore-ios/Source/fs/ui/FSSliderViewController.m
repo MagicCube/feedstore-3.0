@@ -124,7 +124,11 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
 
     [self initChildControllers:_leftViewController rightVC:_rightViewController];
     
-    [self showContentControllerWithModel:_mainViewController!=nil?NSStringFromClass([_mainViewController class]):@"MainViewController"];
+    if (_mainContentView != nil)
+    {
+        _subControllers[NSStringFromClass([_mainViewController class])] = _mainViewController;
+        [self showContentControllerWithModel:_mainViewController!=nil ? NSStringFromClass([_mainViewController class]):@"MainViewController"];
+    }
     
     _rightSideView.frame=[UIScreen mainScreen].bounds;
     _leftSideView.frame=[UIScreen mainScreen].bounds;

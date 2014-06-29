@@ -23,11 +23,12 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        
+    if (self)
+    {
         _homeViewController = [[FSHomeViewController alloc] init];
-        
         _navigationController = [[FSNavigationController alloc] initWithRootViewController:_homeViewController];
+        //self.mainViewController = _navigationController;
+        //self.leftViewController = [[UIViewController alloc] init];
     }
     return self;
 }
