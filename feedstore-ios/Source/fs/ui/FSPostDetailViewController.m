@@ -12,7 +12,6 @@
 #import "WeixinSessionActivity.h"
 #import "WeixinTimelineActivity.h"
 #import "CCTemplate.h"
-#import "FSChannelAgent.h"
 #import "FSOpenOriginalPostActivity.h"
 #import "FSNavigationController.h"
 #import "FSWebViewController.h"

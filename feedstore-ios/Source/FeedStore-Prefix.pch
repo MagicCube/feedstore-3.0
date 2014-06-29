@@ -17,6 +17,8 @@
     #import "mx/prefix.h"
 
     #import "FSApplication.h"
-    #import "FSNavigationController.h"
+    #import "FSChannelAgent.h"
     #import "FSConfig.h"
+    #import "FSNavigationController.h"
+    #import "FSPostAgent.h"
 #endif

@@ -9,11 +9,11 @@
 #import "NSString+HTML.h"
 #import "FSPostDetailViewController.h"
 #import "FSPostListViewController.h"
+#import "FSHomeViewController.h"
 #import "FSListViewCell.h"
 #import "FSListViewGallaryCell.h"
 #import "FSListViewTextCell.h"
 #import "FSListViewTextPhotoCell.h"
-#import "FSPostAgent.h"
 
 @interface FSPostListViewController ()
 
@@ -232,16 +232,27 @@
 {
     self.pageIndex = 0;
     [_posts removeAllObjects];
-    [self.tableView reloadData];
     
     [self.refreshControl beginRefreshing];
+    [self.tableView setContentOffset:CGPointMake(0, 0) animated:YES];
+    
+    [self.tableView reloadData];
+    
+    if (self.channelId != nil)
+    {
+        [FSHomeViewController sharedInstance].title = [[FSChannelAgent sharedInstance] channelWithId:_channelId][@"title"];
+    }
+    else
+    {
+        [FSHomeViewController sharedInstance].title = @"FeedStore";
+    }
     
     [self nextPageWithCallback:^
     {
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        [self.refreshControl endRefreshing];
-        
         [self.tableView reloadData];
+        
+        [self.refreshControl endRefreshing];
         
         if (callback != nil)
         {

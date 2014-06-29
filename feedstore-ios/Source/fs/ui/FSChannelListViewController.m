@@ -7,7 +7,6 @@
 //
 
 #import "FSChannelListViewController.h"
-#import "FSChannelAgent.h"
 #import "FSListViewGallaryCell.h"
 #import "FSPostListViewController.h"
 #import "FSRootViewController.h"
