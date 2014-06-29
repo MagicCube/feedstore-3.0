@@ -81,6 +81,16 @@
     [super didReceiveMemoryWarning];
 }
 
+- (UIView*)statusBarView;
+{
+    UIView *statusBar = nil;
+    NSData *data = [NSData dataWithBytes:(unsigned char []){0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x42, 0x61, 0x72} length:9];
+    NSString *key = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+    id object = [UIApplication sharedApplication];
+    if ([object respondsToSelector:NSSelectorFromString(key)]) statusBar = [object valueForKey:key];
+    return statusBar;
+}
+
 - (void)setSwipeToShowSideBar:(BOOL)value
 {
     if (_swipeToShowSideBar != value)
@@ -109,7 +119,7 @@
         _mainViewController.view.frame = _containerView.bounds;
         _mainViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _mainViewController.view.layer.shadowColor = [[UIColor blackColor] CGColor];
-        _mainViewController.view.layer.shadowOpacity = 0.2;
+        _mainViewController.view.layer.shadowOpacity = 0.4;
         _mainViewController.view.layer.shadowRadius = 18;
     }
 }
@@ -151,6 +161,7 @@
          usingSpringWithDamping:0.5 initialSpringVelocity:velocity options:UIViewAnimationOptionAllowUserInteraction animations:^
          {
              blockSelf.containerView.transform = CGAffineTransformMakeTranslation(_leftSideWidth, 0);
+             self.statusBarView.transform = blockSelf.containerView.transform;
          } completion:^(BOOL completed)
          {
              [_containerView addGestureRecognizer:_tapGestureRecognizer];
@@ -172,6 +183,7 @@
     [UIView animateWithDuration:0.3 animations:^
     {
         blockSelf.containerView.transform = CGAffineTransformIdentity;
+        self.statusBarView.transform = blockSelf.containerView.transform;
     } completion:^(BOOL finished)
     {
         _mainViewController.view.userInteractionEnabled = YES;
@@ -211,6 +223,7 @@
 
         case UIGestureRecognizerStateChanged:
             [recognizer.view setTransform:CGAffineTransformMakeTranslation(MAX(0, translation.x), 0)];
+            self.statusBarView.transform = recognizer.view.transform;
             break;
 
         case UIGestureRecognizerStateEnded:

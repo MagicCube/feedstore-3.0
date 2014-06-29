@@ -16,7 +16,7 @@
 
     #import "mx/prefix.h"
 
-    #import "fs/app/FSApplication.h"
-    #import "fs/ui/FSNavigationController.h"
-    #import "fs/conf/FSConfig.h"
+    #import "FSApplication.h"
+    #import "FSNavigationController.h"
+    #import "FSConfig.h"
 #endif

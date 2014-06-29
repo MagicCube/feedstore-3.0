@@ -17,6 +17,7 @@
 @property (nonatomic, assign) CGFloat leftSideWidth;
 @property (nonatomic, assign) BOOL swipeToShowSideBar;
 
+
 - (void)showLeftSideAnimated:(BOOL)animated;
 - (void)hideSideBarAnimated:(BOOL)animated;
 

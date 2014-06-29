@@ -14,7 +14,7 @@
 @interface FSApplication : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic, readonly) FSRootViewController *rootViewController;
+@property (weak, nonatomic, readonly) FSRootViewController *rootViewController;
 @property (weak, nonatomic, readonly) FSNavigationController *navigationController;
 
 + (FSApplication *)sharedInstance;

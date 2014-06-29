@@ -33,7 +33,7 @@ static FSApplication *_sharedInstance;
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    _rootViewController = [[FSRootViewController alloc] init];
+    _rootViewController = [FSRootViewController sharedInstance];
     _navigationController = _rootViewController.navigationController;
 
     self.window.rootViewController = _rootViewController;

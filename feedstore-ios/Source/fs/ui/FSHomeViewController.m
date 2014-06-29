@@ -26,11 +26,21 @@
     return self;
 }
 
++ (FSHomeViewController*)sharedInstance
+{
+    static FSHomeViewController *sharedInstance;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    _postListViewController = [[FSPostListViewController alloc] init];
+    _postListViewController = [FSPostListViewController sharedInstance];
     self.contentViewController = _postListViewController;
 }
 

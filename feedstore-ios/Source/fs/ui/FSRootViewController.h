@@ -16,7 +16,9 @@
 @interface FSRootViewController : FSSideBarController
 
 @property (strong, nonatomic, readonly) FSNavigationController *navigationController;
-@property (strong, nonatomic, readonly) FSHomeViewController *homeViewController;
+@property (weak, nonatomic, readonly) FSHomeViewController *homeViewController;
 @property (strong, nonatomic, readonly) FSChannelSideViewController *channelSideViewController;
+
++ (FSRootViewController*)sharedInstance;
 
 @end

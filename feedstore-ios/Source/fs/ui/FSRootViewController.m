@@ -27,7 +27,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
-        _homeViewController = [[FSHomeViewController alloc] init];
+        _homeViewController = [FSHomeViewController sharedInstance];
         _navigationController = [[FSNavigationController alloc] initWithRootViewController:_homeViewController];
         _channelSideViewController = [[FSChannelSideViewController alloc] init];
         
@@ -35,6 +35,16 @@
         self.leftSideViewController = _channelSideViewController;
     }
     return self;
+}
+
++ (FSRootViewController*)sharedInstance
+{
+    static FSRootViewController *sharedInstance;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
 }
 
 - (void)viewDidLoad

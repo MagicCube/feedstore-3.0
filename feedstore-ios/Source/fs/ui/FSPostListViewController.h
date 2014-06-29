@@ -17,6 +17,7 @@
 @property (strong, nonatomic, readonly) UIActivityIndicatorView *footerActivityIndicatorView;
 @property (strong, nonatomic, readonly) FSPostDetailViewController *detailViewController;
 
++ (FSPostListViewController*)sharedInstance;
 - (void)nextPageWithCallback:(void (^)())callback;
 - (void)refreshWithCallback:(void (^)())callback;
 - (void)refresh;

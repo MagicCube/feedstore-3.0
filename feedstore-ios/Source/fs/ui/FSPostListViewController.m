@@ -43,6 +43,16 @@
     return self;
 }
 
++ (FSPostListViewController*)sharedInstance
+{
+    static FSPostListViewController *sharedInstance;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

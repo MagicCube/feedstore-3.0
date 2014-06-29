@@ -11,6 +11,8 @@
 
 @interface FSHomeViewController : FSNavigatableViewController
 
-@property (strong, nonatomic, readonly) FSPostListViewController *postListViewController;
+@property (weak, nonatomic, readonly) FSPostListViewController *postListViewController;
+
++ (FSHomeViewController*)sharedInstance;
 
 @end
