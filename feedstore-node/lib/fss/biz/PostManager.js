@@ -13,9 +13,9 @@ fss.biz.PostManager = function()
     me.queryPosts = function(p_params, p_callback)
     {
         var conditions = null;
-        if (!isEmptyString(p_params.cid))
+        if (!isEmptyString(p_params.channelId))
         {
-            conditions = { cid: p_params.cid };
+            conditions = { channelId: p_params.channelId };
         }
         else
         {
@@ -35,7 +35,7 @@ fss.biz.PostManager = function()
     {
         var post = new fss.model.Post({
             pid: p_rawPost.link,
-            cid: p_channel.id,
+            channelId: p_channel.id,
             title: p_rawPost.title,
             content: p_rawPost.bigContent,
             image: p_rawPost.image,

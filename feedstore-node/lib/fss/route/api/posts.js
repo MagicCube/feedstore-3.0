@@ -6,7 +6,7 @@ module.exports = {
             pageSize: isEmptyString(req.query.pageSize) ? 10 : parseInt(req.query.pageSize)
         };
         var search = {
-            cid: isEmptyString(req.query.cid) ? null : req.query.cid,
+            channelId: isEmptyString(req.query.channelId) ? null : req.query.channelId,
         };
         var select = {
             channels: parseBoolean(req.query.selectChannels)

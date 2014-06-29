@@ -4,7 +4,7 @@ var mongoose = require("mongoose");
 
 fss.model.Post = fss.db.DbConnection.registerModel("Post", {
     pid: { type: String, index: true },
-    cid: { type: mongoose.Schema.Types.ObjectId, index: true },
+    channelId: { type: mongoose.Schema.Types.ObjectId, index: true },
     title: String,
     content: String,
     author: String,

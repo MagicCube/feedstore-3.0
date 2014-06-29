@@ -96,7 +96,7 @@ fs.view.PostListView = function()
         }
         var $col = _$cols[me.colIndex];
         
-        var channel = fs.app.subscriptionAgent.channels[p_post.cid];
+        var channel = fs.app.subscriptionAgent.channels[p_post.channelId];
         var $post = $("<div class=post>");
         $post.data("post", p_post);
         $post.attr("id", p_post._id);
