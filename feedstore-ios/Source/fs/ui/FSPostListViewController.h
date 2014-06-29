@@ -11,6 +11,7 @@
 
 @interface FSPostListViewController : UITableViewController
 
+@property (copy, nonatomic) NSString *channelId;
 @property (nonatomic) NSInteger pageIndex;
 @property (nonatomic) NSInteger pageSize;
 @property (strong, nonatomic, readonly) NSMutableArray *posts;

@@ -11,8 +11,9 @@
 @interface FSPostAgent : FSServiceAgent
 
 + (FSPostAgent *)sharedInstance;
-- (void)queryPostsAtPage:(NSInteger)pageIndex
-            withPageSize:(NSInteger)pageSize
-                callback:(void (^)(NSError *error, id posts))callback;
+- (void)queryPostsWithParameters:(NSDictionary *)parameters
+                       pageIndex:(NSInteger)pageIndex
+                        pageSize:(NSInteger)pageSize
+                        callback:(void (^)(NSError *error, id posts))callback;
 
 @end

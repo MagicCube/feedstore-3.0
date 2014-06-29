@@ -81,7 +81,8 @@
     }
     else
     {
-        cell.textLabel.text = [FSChannelAgent sharedInstance].channels[indexPath.row - 1][@"title"];
+        NSDictionary *channel = [FSChannelAgent sharedInstance].channels[indexPath.row - 1];
+        cell.textLabel.text = channel[@"title"];
         cell.textLabel.font = [UIFont systemFontOfSize:15];
     }
     
@@ -93,5 +94,14 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     [[FSRootViewController sharedInstance] hideSideBarAnimated:YES];
+    
+    NSString *channelId = nil;
+    if (indexPath.row != 0)
+    {
+        NSDictionary *channel = [FSChannelAgent sharedInstance].channels[indexPath.row - 1];
+        channelId = channel[@"_id"];
+    }
+    [FSPostListViewController sharedInstance].channelId = channelId;
+    [[FSPostListViewController sharedInstance] refresh];
 }
 @end

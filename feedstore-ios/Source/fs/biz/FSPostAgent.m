@@ -24,15 +24,19 @@
     return sharedInstance;
 }
 
-- (void)queryPostsAtPage:(NSInteger)pageIndex
-            withPageSize:(NSInteger)pageSize
-                callback:(void (^)(NSError *error, id posts))callback
+- (void)queryPostsWithParameters:(NSDictionary *)parameters
+                   pageIndex:(NSInteger)pageIndex
+                    pageSize:(NSInteger)pageSize
+                    callback:(void (^)(NSError *error, id posts))callback
 {
     NSLog(@"Querying post...");
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{
-                                                                                  @"pageIndex": [NSNumber numberWithLong: pageIndex],
-                                                                                  @"pageSize": [NSNumber numberWithLong: pageSize]
-                                                                                  }];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    params[@"pageIndex"] =[NSNumber numberWithLong: pageIndex];
+    params[@"pageSize"] = [NSNumber numberWithLong: pageSize];
+    if (parameters != nil)
+    {
+        [params addEntriesFromDictionary:parameters];
+    }
     if (pageIndex == 0)
     {
         params[@"selectChannels"] = @"true";

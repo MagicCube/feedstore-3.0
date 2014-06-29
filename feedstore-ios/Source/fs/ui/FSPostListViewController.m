@@ -24,6 +24,7 @@
 
 @implementation FSPostListViewController
 
+@synthesize channelId = _channelId;
 @synthesize pageIndex = _pageIndex;
 @synthesize pageSize = _pageSize;
 @synthesize posts = _posts;
@@ -203,7 +204,13 @@
 
 - (void)nextPageWithCallback:(void (^)())callback
 {
-    [[FSPostAgent sharedInstance] queryPostsAtPage:_pageIndex withPageSize:_pageSize callback:^(NSError *error, id results)
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    if (_channelId != nil)
+    {
+        params[@"channelId"] = _channelId;
+    }
+    
+    [[FSPostAgent sharedInstance] queryPostsWithParameters:params pageIndex:_pageIndex pageSize:_pageSize callback:^(NSError *error, id results)
     {
         NSMutableArray *posts = results[@"posts"];
         if (((NSArray *)posts).count > 0)
@@ -227,6 +234,10 @@
     [_posts removeAllObjects];
     
     [self.refreshControl beginRefreshing];
+    [self.tableView setContentOffset:CGPointMake(0, -50) animated:YES];
+    
+    [self.tableView reloadData];
+    
     [self nextPageWithCallback:^
     {
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;

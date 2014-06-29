@@ -31,6 +31,11 @@ a
     overflow: hidden;
 }
 
+.post > hgroup
+{
+    margin-bottom: 30px;
+}
+
 .post > hgroup > .title
 {
     font-size: 20px;
