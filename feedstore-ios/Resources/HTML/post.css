@@ -58,6 +58,8 @@ a
 
 .post > .content img, .post > .content video
 {
-    max-width: 95%;
+    max-width: 99%;
+    max-height: auto;
+    height: auto;
 }
 
