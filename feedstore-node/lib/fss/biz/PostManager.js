@@ -12,7 +12,16 @@ fss.biz.PostManager = function()
     
     me.queryPosts = function(p_params, p_callback)
     {
-        fss.model.Post.find({}, {}, { skip: (p_params.pageIndex * p_params.pageSize) }).sort("-publishTime").limit(p_params.pageSize).exec(function(p_error, p_results)
+        var conditions = null;
+        if (!isEmptyString(p_params.cid))
+        {
+            conditions = { cid: p_params.cid };
+        }
+        else
+        {
+            conditions = {};
+        }
+        fss.model.Post.find(conditions, {}, { skip: (p_params.pageIndex * p_params.pageSize) }).sort("-publishTime").limit(p_params.pageSize).exec(function(p_error, p_results)
         {
             if (isFunction(p_callback))
             {
