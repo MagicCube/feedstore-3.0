@@ -256,7 +256,7 @@ fss.biz.ChannelManager = function()
         }
         var channelHeadnews = p_channel.headnews;
         
-        var headNews = p_rawPosts.filter(function(p_post) { return p_post.imageSize >= 640; });
+        var headNews = p_rawPosts.filter(function(p_post) { return p_post.imageSize >= 320; });
         headNews = headNews.slice(0,3);
         headNews = headNews.reverse();
         for (var i = 0; i < headNews.length; i++)
