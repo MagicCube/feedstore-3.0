@@ -9,10 +9,10 @@
 #import "NSString+HTML.h"
 #import "FSPostDetailViewController.h"
 #import "FSPostListViewController.h"
-#import "FSPostListViewCell.h"
-#import "FSPostListViewGallaryCell.h"
-#import "FSPostListViewTextCell.h"
-#import "FSPostListViewTextPhotoCell.h"
+#import "FSListViewCell.h"
+#import "FSListViewGallaryCell.h"
+#import "FSListViewTextCell.h"
+#import "FSListViewTextPhotoCell.h"
 #import "FSPostAgent.h"
 
 @interface FSPostListViewController ()
@@ -118,21 +118,21 @@
             imageCount = ((NSMutableArray *)post[@"imageUrls"]).count;
             if (imageCount >= 4)
             {
-                return FSPostListViewGallaryCell.class;
+                return FSListViewGallaryCell.class;
             }
             else
             {
-                return FSPostListViewTextPhotoCell.class;
+                return FSListViewTextPhotoCell.class;
             }
         }
         else
         {
-            return FSPostListViewTextPhotoCell.class;
+            return FSListViewTextPhotoCell.class;
         }
     }
     else
     {
-        return FSPostListViewTextCell.class;
+        return FSListViewTextCell.class;
     }
 }
 
@@ -140,7 +140,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Class cls = [self tableView:self.tableView classForRowAtIndexPath:indexPath];
-    if (cls == FSPostListViewTextPhotoCell.class)
+    if (cls == FSListViewTextPhotoCell.class)
     {
         return self.tableView.rowHeight;
     }
@@ -157,7 +157,7 @@
     Class cls = [self tableView:self.tableView classForRowAtIndexPath:indexPath];
     NSString *clsName = NSStringFromClass(cls);
     
-    FSPostListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:clsName];
+    FSListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:clsName];
     if (cell == nil)
     {
         cell = [cls alloc];

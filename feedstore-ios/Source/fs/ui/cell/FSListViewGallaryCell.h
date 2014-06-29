@@ -6,9 +6,9 @@
 //  Copyright (c) 2014年 MagicCube. All rights reserved.
 //
 
-#import "FSPostListViewCell.h"
+#import "FSListViewCell.h"
 
-@interface FSPostListViewGallaryCell : FSPostListViewCell
+@interface FSListViewGallaryCell : FSListViewCell
 
 @property (strong, nonatomic) NSMutableArray *photoViews;
 

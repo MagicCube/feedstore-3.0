@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FSPostListViewCell : UITableViewCell
+@interface FSListViewCell : UITableViewCell
 
 @property (strong, nonatomic) UILabel *titleLabel;
 

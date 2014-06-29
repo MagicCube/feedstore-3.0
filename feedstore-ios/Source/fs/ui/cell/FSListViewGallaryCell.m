@@ -6,10 +6,10 @@
 //  Copyright (c) 2014年 MagicCube. All rights reserved.
 //
 
-#import "FSPostListViewGallaryCell.h"
+#import "FSListViewGallaryCell.h"
 #import "UIImageView+AFNetworking.h"
 
-@implementation FSPostListViewGallaryCell
+@implementation FSListViewGallaryCell
 
 @synthesize photoViews = _photoViews;
 

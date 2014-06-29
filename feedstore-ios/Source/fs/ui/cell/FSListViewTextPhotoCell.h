@@ -6,9 +6,9 @@
 //  Copyright (c) 2014年 MagicCube. All rights reserved.
 //
 
-#import "FSPostListViewTextCell.h"
+#import "FSListViewTextCell.h"
 
-@interface FSPostListViewTextPhotoCell : FSPostListViewTextCell
+@interface FSListViewTextPhotoCell : FSListViewTextCell
 
 @property (strong, nonatomic) UIImageView *photoView;
 

@@ -6,14 +6,14 @@
 //  Copyright (c) 2014年 MagicCube. All rights reserved.
 //
 
-#import "FSPostListViewTextPhotoCell.h"
+#import "FSListViewTextPhotoCell.h"
 #import "UIImageView+AFNetworking.h"
 
-@interface FSPostListViewTextPhotoCell()
+@interface FSListViewTextPhotoCell()
 
 @end
 
-@implementation FSPostListViewTextPhotoCell
+@implementation FSListViewTextPhotoCell
 
 @synthesize photoView = _photoView;
 
