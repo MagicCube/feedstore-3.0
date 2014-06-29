@@ -1,6 +1,9 @@
 module.exports = {
     "/": function(req, res)
     {
-        res.json(fss.server.channelManager.channels);
+        var result = {
+            channels: fss.server.channelManager.channels
+        };
+        res.json(result);
     }
 };

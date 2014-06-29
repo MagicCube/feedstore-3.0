@@ -8,6 +8,9 @@ module.exports = {
         var search = {
             cid: isEmptyString(req.query.cid) ? null : req.query.cid,
         };
+        var select = {
+            channels: parseBoolean(req.query.selectChannels)
+        };
         var params = mx.merge({}, pager, search);
         fss.db.DbConnection.connect();
         fss.server.postManager.queryPosts(params, function(p_error, p_posts)
@@ -15,7 +18,14 @@ module.exports = {
             fss.db.DbConnection.disconnect();
             if (isEmpty(p_error))
             {
-                res.json(p_posts);
+                var results = {
+                    posts: p_posts
+                };
+                if (select.channels)
+                {
+                    results.channels = fss.server.channelManager.channels;
+                }
+                res.json(results);
             }
             else
             {
