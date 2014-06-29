@@ -129,7 +129,7 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    NSLog(@"%d | %@ | %@", navigationType, request.URL.scheme, request.URL);
+    //NSLog(@"%d | %@ | %@", navigationType, request.URL.scheme, request.URL);
     if (navigationType == UIWebViewNavigationTypeOther || [request.URL.scheme isEqualToString:@"about"] || [request.URL.scheme isEqualToString:@"file"])
     {
         return YES;

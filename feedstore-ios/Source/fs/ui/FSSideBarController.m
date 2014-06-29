@@ -140,6 +140,8 @@
 
 - (void)showLeftSideAnimated:(BOOL)animated duration:(CGFloat)duration initialVelocity:(CGFloat)velocity
 {
+    _mainViewController.view.userInteractionEnabled = NO;
+    
     // add menu view
     [self addLeftSideView];
     
@@ -149,7 +151,6 @@
          usingSpringWithDamping:0.5 initialSpringVelocity:velocity options:UIViewAnimationOptionAllowUserInteraction animations:^
          {
              blockSelf.containerView.transform = CGAffineTransformMakeTranslation(_leftSideWidth, 0);
-             //self.statusBarView.transform = blockSelf.containerView.transform;
          } completion:^(BOOL completed)
          {
              [_containerView addGestureRecognizer:_tapGestureRecognizer];
@@ -165,13 +166,15 @@
 
 - (void)hideSideBarAnimated:(BOOL)animated
 {
+    [_containerView removeGestureRecognizer:_tapGestureRecognizer];
+    
     __weak typeof(self) blockSelf = self;
     [UIView animateWithDuration:0.3 animations:^
     {
         blockSelf.containerView.transform = CGAffineTransformIdentity;
-        //self.statusBarView.transform = blockSelf.containerView.transform;
     } completion:^(BOOL finished)
     {
+        _mainViewController.view.userInteractionEnabled = YES;
         [blockSelf.leftSideViewController.view removeFromSuperview];
     }];
 }
@@ -208,7 +211,6 @@
 
         case UIGestureRecognizerStateChanged:
             [recognizer.view setTransform:CGAffineTransformMakeTranslation(MAX(0, translation.x), 0)];
-            //self.statusBarView.transform = recognizer.view.transform;
             break;
 
         case UIGestureRecognizerStateEnded:
