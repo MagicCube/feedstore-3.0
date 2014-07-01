@@ -157,6 +157,7 @@
     
     // animate
     __weak typeof(self) blockSelf = self;
+    _panGestureRecognizer.edges = UIRectEdgeRight;
     [UIView animateWithDuration:animated ? duration : 0.0 delay:0
          usingSpringWithDamping:0.5 initialSpringVelocity:velocity options:UIViewAnimationOptionAllowUserInteraction animations:^
          {
@@ -164,6 +165,7 @@
              self.statusBarView.transform = blockSelf.containerView.transform;
          } completion:^(BOOL completed)
          {
+             _panGestureRecognizer.edges = UIRectEdgeRight;
              [_containerView addGestureRecognizer:_tapGestureRecognizer];
          }];
 }
@@ -178,6 +180,7 @@
 - (void)hideSideBarAnimated:(BOOL)animated
 {
     [_containerView removeGestureRecognizer:_tapGestureRecognizer];
+    _panGestureRecognizer.edges = UIRectEdgeLeft;
     
     __weak typeof(self) blockSelf = self;
     [UIView animateWithDuration:0.3 animations:^
@@ -186,6 +189,7 @@
         self.statusBarView.transform = blockSelf.containerView.transform;
     } completion:^(BOOL finished)
     {
+        _panGestureRecognizer.edges = UIRectEdgeLeft;
         _mainViewController.view.userInteractionEnabled = YES;
         [blockSelf.leftSideViewController.view removeFromSuperview];
     }];
@@ -198,6 +202,7 @@
 {
     if ([recognizer isKindOfClass:[UIScreenEdgePanGestureRecognizer class]])
     {
+        _panGestureRecognizer.edges = UIRectEdgeRight;
         return YES;
     }
     return NO;
