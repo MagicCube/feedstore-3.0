@@ -9,8 +9,6 @@
 #import "FSPostDetailViewController.h"
 #import "TUSafariActivity.h"
 #import "UIImageView+AFNetworking.h"
-#import "WeixinSessionActivity.h"
-#import "WeixinTimelineActivity.h"
 #import "CCTemplate.h"
 #import "FSOpenOriginalPostActivity.h"
 #import "FSNavigationController.h"
@@ -48,9 +46,7 @@
         _contentView.delegate = self;
         _activities = @[
                          [[TUSafariActivity alloc] init],
-                         [[FSOpenOriginalPostActivity alloc] init],
-                         [[WeixinSessionActivity alloc] init],
-                         [[WeixinTimelineActivity alloc] init]
+                         [[FSOpenOriginalPostActivity alloc] init]
                          ];
 
         NSString *path = [[NSBundle mainBundle] pathForResource:@"post" ofType:@"html"];

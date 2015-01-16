@@ -7,7 +7,6 @@
 //
 
 #import "FSApplication.h"
-#import "WXApi.h"
 #import "FSRootViewController.h"
 #import "FSSideBarController.h"
 
@@ -26,8 +25,6 @@ static FSApplication *_sharedInstance;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     _sharedInstance = self;
-    
-    [WXApi registerApp:@"wxcefa411f34485347"];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.

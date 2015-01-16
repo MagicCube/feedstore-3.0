@@ -16,7 +16,8 @@ fs.biz.PostAgentClass = function()
     {
         var options = $.extend({
             pageIndex: 0,
-            pageSize: 50
+            pageSize: 50,
+            selectChannels: true
         }, p_options);
         if (options.pageIndex === 0)
         {

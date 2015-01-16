@@ -27,4 +27,4 @@ echo Updating BAE
 bae app publish
 
 echo
-bae log tail -f userapp --instanceid 172180 --max 50
+bae log tail -f userapp --instanceid 5291192 --max 50
